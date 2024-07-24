@@ -12,6 +12,10 @@ class Newelle extends AbstractEntity
     private string $audio = ""; 
     private string $content = "";
     private string $nwlImg = "";
+    private string $genre = "";
+    private int $duree = 0;
+    private int $taille = 0;
+
 
 
     /**
@@ -166,5 +170,64 @@ class Newelle extends AbstractEntity
     {
         return $this->nwlImg;
     }
+
     
+    /**
+     * Setter pour le genre.
+     * @param string $genre
+     */
+    public function setGenre(string $genre) : void 
+    {
+        $this->genre = $genre;
+    }
+
+    /**
+     * Getter pour le le genre.
+     * @return string
+     */
+    public function getGenre() : string 
+    {
+        return $this->genre;
+    }
+
+    /**
+     * Setter pour la durée
+     *
+     * @return void
+     */
+    public function setDuree(int $duree) : void
+    {
+        $this->duree = $duree;
+    }
+
+    /**
+     * getter pour la durée
+     *
+     * @return integer
+     */
+    public function getDuree() : int
+    {
+        return $this->duree;
+    }
+
+
+    /**
+     * Setter pour la taille
+     *
+     * @return void
+     */
+    public function setTaille(int $taille) : void
+    {
+        $this->taille = $taille;
+    }
+    
+    /**
+     * getter pour la taille
+     *
+     * @return integer
+     */
+    public function getTaille() : int
+    {
+        return $this->taille;
+    }
 }

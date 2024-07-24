@@ -18,21 +18,31 @@
 </head>
 
 <body>
+
     <header>
-        <nav>
-            <a href="index.php">Newelles</a>
-            <?php 
-                // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
-                if (isset($_SESSION['user'])) {
-                    echo '<a href="index.php?action=disconnectUser"><img src="img/deconnection.png" alt="se déconnecter"/></a>';
-                } else {
-                    echo '<a href="index.php?action=connection"><img src="img/connection.png" alt="se connecter"/></a>';
-                }
-                ?>
-        </nav>
-        <a href="index.php">
-            <h1>Newelles</h1>
-        </a>
+        <div class="header">
+            <div class="logo">
+                <img src="img/interface/newel_logo.png" alt="logo du site Newelles"/>
+            </div>
+            <div class="title">
+                    <h1>Newelles</h1>
+            </div>
+            <div class="nav">
+                <nav>
+                    <?php 
+                        // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
+                        if (isset($_SESSION['user'])) {
+                            echo '<a href="index.php?action=disconnectUser"><img src="img/interface/deconnection.png" alt="se déconnecter"/></a>';
+                        } else {
+                            echo '<a href="index.php?action=connection"><img src="img/interface/connection.png" alt="se connecter"/></a>';
+                        }
+                    ?>
+                </nav>
+            </div>
+        </div>
+        <div class="signature">
+            <p>Écoutez, lisez, partagez des histoires originales !</p>
+        </div>
     </header>
 
     <main>    
@@ -40,7 +50,7 @@
     </main>
     
     <footer>
-        <a href="index.php?action=apropos">À propos</a>
+        <a href="index.php?action=apropos">À propos&nbsp;</a>
         <p>Copyright © Newelles 2024 - Neobook -</p>
     </footer>
 

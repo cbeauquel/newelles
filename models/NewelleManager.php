@@ -59,13 +59,16 @@ class NewelleManager extends AbstractEntityManager
      */
     public function addNewelle(Newelle $newelle) : void
     {
-        $sql = "INSERT INTO newelle (id_user, date_creation, date_update, title, audio, content, nwl_img) VALUES (:id_user, NOW(), NOW(), :title, :audio, :content, :nwl_img)";
+        $sql = "INSERT INTO newelle (id_user, date_creation, date_update, title, audio, content, nwl_img, genre, duree, taille) VALUES (:id_user, NOW(), NOW(), :title, :audio, :content, :nwl_img, :genre, :duree, :taille)";
         $this->db->query($sql, [
             'id_user' => $newelle->getIdUser(),
             'title' => $newelle->getTitle(),
             'audio' => $newelle->getAudio(),
             'content' => $newelle->getContent(),
-            'nwl_img' => $newelle->getNwlImg()
+            'nwl_img' => $newelle->getNwlImg(),
+            'genre' => $genre->getGenre(),
+            'duree' => $duree->getDuree(),
+            'taille' => $taille->getTaille()
         ]);
     }
 
@@ -76,10 +79,15 @@ class NewelleManager extends AbstractEntityManager
      */
     public function updateNewelle(Newelle $newelle) : void
     {
-        $sql = "UPDATE newelle SET title = :title, audio = :audio, content = :content, date_update = NOW() WHERE id = :id";
+        $sql = "UPDATE newelle SET title = :title, audio = :audio, content = :content, date_update = NOW(), nwl_img = :nwlimg, genre = :genre, duree = :duree, taille = :taille WHERE id = :id";
         $this->db->query($sql, [
             'title' => $newelle->getTitle(),
+            'audio' => $newelle->getAudio(),
             'content' => $newelle->getContent(),
+            'nwl_img' => $newelle->getNwlImg(),
+            'genre' => $genre->getGenre(),
+            'duree' => $duree->getDuree(),
+            'taille' => $taille->getTaille(),
             'id' => $newelle->getId()
         ]);
     }
