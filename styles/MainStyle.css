@@ -450,7 +450,7 @@ form .formGrid {
 
 form .formGrid .submit {
     grid-column: 2; /* Place l'élément dans la deuxième colonne (la dernière) */
-    grid-row: 6; /* Place l'élément dans la troisième rangée (la dernière) */
+    grid-row: 7; /* Place l'élément dans la troisième rangée (la dernière) */
 }
 
 .submit {

@@ -15,6 +15,8 @@
             <input type="text" name="email" id="email" required value="<?=$userDatas['email'] ?>">
             <label for="password">Mot de passe</label>
             <input type="password" name="password" id="password" required value="<?=$userDatas['password']?>">
+            <label for="confirm_password">Confirmez le mot de passe :</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
             <label for="name">Votre Nom (Nom de famille)</label>
             <input type="text" name="name" id="name" required>
             <label for="firstName">Votre prénom</label>

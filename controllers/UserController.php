@@ -110,6 +110,7 @@ class UserController
         $id = Utils::request("id", -1);
         $email = Utils::request("email");
         $rawPassword = Utils::request("password");
+        $confirmPassword = Utils::request("confirm_password");
         $name = Utils::request("name");
         $firstName = Utils::request("firstName");
         $stageName = Utils::request("stageName");
@@ -120,8 +121,12 @@ class UserController
         // On vérifie que les données sont valides.
         if (empty($email) || empty($rawPassword)  || empty($name) || empty($firstName) || empty($stageName)) {
             throw new Exception("Tous les champs sont obligatoires.");
+        } else if ($rawPassword !== $confirmPassword)
+        {
+            throw new Exception("Les mots de passe ne correspondent pas");
         }
 
+        
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
         $user = $userManager->getUserByLogin($email);
