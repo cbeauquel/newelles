@@ -11,7 +11,11 @@ class NewelleManager extends AbstractEntityManager
      */
     public function getAllNewelles() : array
     {
-        $sql = "SELECT * FROM newelle";
+        $sql = "SELECT a.* , b. `stage_name`
+        FROM newelle a
+        LEFT JOIN `users` b on a. `id_user` = b. `id`
+        GROUP BY a. `id`
+        ";
         $result = $this->db->query($sql);
         $newelles = [];
 
@@ -28,7 +32,11 @@ class NewelleManager extends AbstractEntityManager
      */
     public function getNewelleById(int $id) : ?Newelle
     {
-        $sql = "SELECT * FROM newelle WHERE id = :id";
+        $sql = "SELECT a.* , b. `stage_name`
+        FROM newelle a
+        LEFT JOIN `users` b on a. `id_user` = b. `id`
+        WHERE a. id = :id";
+
         $result = $this->db->query($sql, ['id' => $id]);
         $newelle = $result->fetch();
         if ($newelle) {

@@ -170,9 +170,6 @@ td.delete {
 
 /* Affichage des newelles */
 
-article{
-    width:33%;
-}
 
 .newelleList {
     display: flex;
@@ -182,6 +179,9 @@ article{
     width: 100%;
 }
 
+article.home{
+    width:33%;
+}
 
 .newelle {
     display:flex;
@@ -219,9 +219,12 @@ article{
     margin-bottom: 10px;
     font-size: 15px;
     padding-left: 10px;
-    height:200px;
 }
 
+.newelle-content > p.stagename {
+    font-style:italic;
+    text-decoration:underline;
+}
 .newelle-footer{
     display:flex;
     flex-direction: row;
@@ -229,7 +232,7 @@ article{
     border-top:1px dotted var(--titleColor);
     width:100%;
     padding:5px;
-    height:40px;
+    height:35px;
 }
 
 .newelle-footer .info{
@@ -239,10 +242,49 @@ article{
 
 /* Page de détail d'un newelle */
 
-.mainNewelle .footer {
+article.detail{
+    width:100%;
+}
+
+
+.newelle-detail {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: var(--headerPaleColor);
+    margin-top:20px
+}
+
+.meta-data{
+    width:25%;
+    padding:10px;
+}
+
+.meta-data li{
+    font-size:1.2em;
+    padding-bottom: 20px;;
+}
+
+
+.newelle-text{
+    width:75%;
+    text-align:justify;
+    display:flex;
     flex-direction: column;
-    align-items: flex-end;
+    line-height: 1.3em;
+    background-color: var(--backgroundNewelle);
+    padding:30px;
+}
+
+.material-symbols-outlined {
+    font-size: 180px!important;
+    display:block;
+    margin:-80px auto 10px auto;
+}
+
+.newelle-text a{
+    display:inline;
+    text-align:center;
 }
 
 /* Affichage des commentaires */

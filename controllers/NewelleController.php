@@ -35,7 +35,7 @@ class NewelleController
         // $comments = $commentManager->getAllCommentsByNewelleId($id);
 
         $view = new View($newelle->getTitle());
-        $view->render("detailNewelle", ['newelle' => $newelle, 'comments' => $comments]);
+        $view->render("detailNewelle", ['newelle' => $newelle]);
     }
 
     /**

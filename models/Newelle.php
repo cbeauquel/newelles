@@ -6,6 +6,7 @@
 class Newelle extends AbstractEntity
 {
     private int $idUser;
+    private string $stageName;
     private ?DateTime $dateCreation = null;   
     private ?DateTime $dateUpdate = null;
     private string $title = "";
@@ -37,6 +38,26 @@ class Newelle extends AbstractEntity
     {
         return $this->idUser;
     }
+
+    /**
+     * Setter pour le stageName.
+     * @param string $stageName
+     */
+    public function setStageName(string $stageName) : void 
+    {
+        $this->stageName = $stageName;
+    }
+
+
+    /**
+     * Getter pour le stageName.
+     * @return string
+     */
+    public function getStageName() : string 
+    {
+        return $this->stageName;
+    }
+
 
     /**
      * Setter pour la date de création. Si la date est une string, on la convertit en DateTime.

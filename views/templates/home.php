@@ -7,12 +7,13 @@
 <div class="newelleList">
     <h2>Les dernières Newelles</h2>
     <?php foreach($newelles as $newelle) { ?>
-        <article>
-            <a href="index.php?action=<?= $newelle->getId()?>" title="voir le détail">
+        <article class="home">
+            <a href="index.php?action=detail&id=<?= $newelle->getId()?>" title="voir le détail">
                 <div class="newelle">
                     <div class="newelle-content">
                         <h3><?= $newelle->getTitle() ?></h3>
-                        <p><?= $newelle->getContent(500) ?></p>
+                        <p class="stagename">proposé par <?= $newelle->getStageName()?></p>
+                        <p><?= $newelle->getContent(500) ?></p>                        
                     </div>
                     <img class="newelle-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
                     <div class="newelle-footer">

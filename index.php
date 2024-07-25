@@ -17,6 +17,17 @@ try {
             $newelleController->showHome();
             break;
 
+        case 'detail':
+            $newelleController = new NewelleController();
+            $newelleController->showNewelle();
+            break;
+
+        case 'detail':
+            $newelleController = new NewelleController();
+            $newelleController->showNewelle();
+            break;
+    
+
         
         default:
             throw new Exception("La page demandée n'existe pas.");
