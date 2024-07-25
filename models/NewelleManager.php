@@ -74,9 +74,9 @@ class NewelleManager extends AbstractEntityManager
             'audio' => $newelle->getAudio(),
             'content' => $newelle->getContent(),
             'nwl_img' => $newelle->getNwlImg(),
-            'genre' => $genre->getGenre(),
-            'duree' => $duree->getDuree(),
-            'taille' => $taille->getTaille()
+            'genre' => $newelle->getGenre(),
+            'duree' => $newelle->getDuree(),
+            'taille' => $newelle->getTaille()
         ]);
     }
 

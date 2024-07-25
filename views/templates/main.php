@@ -23,7 +23,7 @@
     <header>
         <div class="header">
             <div class="logo">
-                <img src="img/interface/newel_logo.png" alt="logo du site Newelles"/>
+                <a href="index.php" title="retour à l'accueil"><img src="img/interface/newel_logo.png" alt="logo du site Newelles"/></a>
             </div>
             <div class="title">
                     <h1>Newelles</h1>
@@ -35,7 +35,7 @@
                         if (isset($_SESSION['user'])) {
                             echo '<a href="index.php?action=disconnectUser"><img src="img/interface/deconnection.png" alt="se déconnecter"/></a>';
                         } else {
-                            echo '<a href="index.php?action=connection"><img src="img/interface/connection.png" alt="se connecter"/></a>';
+                            echo '<a href="index.php?action=userAccount"><img src="img/interface/connection.png" alt="se connecter"/></a>';
                         }
                     ?>
                 </nav>

@@ -1,135 +1,27 @@
 <?php 
 /**
- * Contrôleur de la partie admin.
+ * Contrôleur de la partie user.
  */
  
-class AdminController 
+class UserController 
 {
-
     /**
-     * Affiche la page d'administration.
-     * @return void
-     */
-    public function showAdmin() : void
-    {
-        // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
-
-        // On récupère les articles.
-        $articleManager = new ArticleManager();
-        $articles = $articleManager->getAllArticles();
-
-        // On affiche la page d'administration.
-        $view = new View("Administration");
-        $view->render("admin", [
-            'articles' => $articles
-        ]);
-    }
-    /**
-     * Affiche la page de monitoring.
-     * @return void
-     */
-
-    public function showStatsArticles() : void
-    {
-        // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
-        
-        // on affiche les données.
-        $articleStatsManager = new ArticleStatsManager();
-        $statsArticle = $articleStatsManager->extractStatsArticle();
-
-        // On affiche la page de monitoring.
-        $view = new View("Administration");
-        $view->render("monitoring", [
-            'statsArticle' => $statsArticle,
-        ]);
-    }
-
-    /**
-     * Affiche la page des statistiques globales
+     * Affichage du formulaire de création de compte
      *
      * @return void
      */
-
-    public function showStats() : void
+    public function displayCreateAccountForm($email, $password) : void
     {
-        // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
         
-        // on affiche les données.
-        $MonitoringManager = new MonitoringManager();
-        $stats = $MonitoringManager->extractStats();
-
-        // On affiche la page de monitoring.
-        $view = new View("Administration");
-        $view->render("statsGlobales", [
-            'stats' => $stats,
-        ]);
-    }
+        // On récupère les données du formulaire.
+        $userDatas = [        
+            'email' => $email,
+            'password' => $password,
+        ];
 
 
-   /**
-     * Affiche la page de gestion des commentaires.
-     * @return void
-     */
-
-     public function showCommentsArticles() : void
-     {
-         // On vérifie que l'utilisateur est connecté.
-         $this->checkIfUserIsConnected();
-         
-         // on affiche les données.
-         $idArticle = Utils::request("id", -1);
-         $commentManager = new CommentManager();
-         $comments = $commentManager->getAllCommentsByArticleId($idArticle);
- 
-         // On affiche la page de gestion des commentaires.
-         $view = new View("Administration");
-         $view->render("displaycomments", [
-             'comments' => $comments,
-         ]); 
-     }
-     
-   /**
-     * Action de suppression d'un commentaire.
-     * @return void
-     */
-
-     public function deleteComment() : void
-     {
-         $this->checkIfUserIsConnected();
- 
-         //on crée l'objet commentaire
-         $id = $_GET['id'];
-         $CommentManager = new CommentManager();
-         $comment = $CommentManager->getCommentById($id);
-
-
-         // On supprime l'article.
-         $result = $CommentManager->deleteComment($comment);
-
-
-        // On vérifie que la suppression a bien fonctionné.
-        if (!$result) {
-            throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
-        }
-
-         // On redirige vers la page d'administration.
-         Utils::redirect("admin");
-     }
- 
- 
-    /**
-     * Vérifie que l'utilisateur est connecté.
-     * @return void
-     */
-    private function checkIfUserIsConnected() : void
-    {
-        // On vérifie que l'utilisateur est connecté.
-        if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
-        }
+        $view = new View("CreateAccount");
+        $view->render("createAccountForm", ['userDatas' => $userDatas]);
     }
 
     /**
@@ -148,34 +40,115 @@ class AdminController
      */
     public function connectUser() : void 
     {
+        global $email, $password;
         // On récupère les données du formulaire.
-        $login = Utils::request("login");
+        $email = Utils::request("email");
         $password = Utils::request("password");
 
         // On vérifie que les données sont valides.
-        if (empty($login) || empty($password)) {
+        if (empty($email) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires. 1");
         }
 
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
-        $user = $userManager->getUserByLogin($login);
+        $user = $userManager->getUserByLogin($email);
         if (!$user) {
-            throw new Exception("L'utilisateur demandé n'existe pas.");
+            $this->displayCreateAccountForm($email, $password);
+            die;
         }
 
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            throw new Exception("Le mot de passe est incorrect : $hash");
+            $hash = password_hash($password, PASSWORD_BCRYPT);
+            throw new Exception("Le mot de passe est incorrect");
         }
 
         // On connecte l'utilisateur.
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user->getId();
 
-        // On redirige vers la page d'administration.
-        Utils::redirect("admin");
+        // On redirige vers la page compte utilisateur.
+        Utils::redirect("userAccount");
+    }
+
+
+    /**
+     * Affiche le compte user.
+     * @return void
+     */
+    public function displayUserAccount() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        // On affiche la page compte user.
+        $view = new View("userAccount");
+        $view->render("userAccount");
+    }
+  
+    /**
+     * Vérifie que l'utilisateur est connecté.
+     * @return void
+     */
+    private function checkIfUserIsConnected() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("connectionForm");
+        }
+    }
+
+    /**
+     * Méthode pour créer un utilisateur
+     *
+     * @return void
+     */    
+    public function createUser() : void 
+    {
+        // On récupère les données du formulaire.
+        $id = Utils::request("id", -1);
+        $email = Utils::request("email");
+        $rawPassword = Utils::request("password");
+        $name = Utils::request("name");
+        $firstName = Utils::request("firstName");
+        $stageName = Utils::request("stageName");
+        $bio = null;
+        $is_adm = false;
+        $usr_img = null;        
+
+        // On vérifie que les données sont valides.
+        if (empty($email) || empty($rawPassword)  || empty($name) || empty($firstName) || empty($stageName)) {
+            throw new Exception("Tous les champs sont obligatoires.");
+        }
+
+        // On vérifie que l'utilisateur existe.
+        $userManager = new UserManager();
+        $user = $userManager->getUserByLogin($email);
+        if ($user) {
+            throw new Exception("Un compte existe déjà avec cet e-mail.");
+        }
+
+        //on fait le hash pour le mot de passe
+        $password = password_hash($rawPassword, PASSWORD_BCRYPT);
+
+        // On crée l'objet user
+        $user = new User([
+            'id' => $id, // Si l'id vaut -1, l'utilisateur sera ajouté. Sinon, il sera modifié.
+            'name' => $name,
+            'first_name' => $firstName,
+            'stage_name' => $stageName,
+            'email' => $email,
+            'password' => $password
+        ]);
+
+        // On ajoute le user.
+        $userManager = new UserManager();
+        $userManager->addUser($user);
+
+
+        // On redirige vers la page de connexion
+        Utils::redirect("userAccount");
     }
 
     /**

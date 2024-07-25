@@ -22,12 +22,35 @@ try {
             $newelleController->showNewelle();
             break;
 
-        case 'detail':
-            $newelleController = new NewelleController();
-            $newelleController->showNewelle();
+        case 'userAccount':
+            $userController = new UserController();
+            $userController->displayUserAccount();
             break;
-    
 
+        case 'connectionForm':
+            $userController = new UserController();
+            $userController->displayConnectionForm();
+            break;
+        
+        case 'createAccountForm':
+            $userController = new UserController();
+            $userController->displayCreateAccountForm();
+            break;
+
+        case 'connectUser': 
+            $userController = new UserController();
+            $userController->connectUser();
+            break;
+        
+        case 'createUser': 
+            $userController = new UserController();
+            $userController->createUser();
+            break;
+
+        case 'disconnectUser':
+            $userController = new UserController();
+            $userController->disconnectUser();
+            break;
         
         default:
             throw new Exception("La page demandée n'existe pas.");
