@@ -158,10 +158,6 @@ tbody tr:nth-child(even) {
     background-color: var(--backgroundColor);
 }
 
-th.id, td.id, th.idNewelle, td.idNewelle {
-    display:none;
-}
-
 td.delete {
     font-weight: bold;
     text-decoration: underline;
@@ -242,10 +238,6 @@ article.home{
 
 /* Page de détail d'un newelle */
 
-article.detail{
-    width:100%;
-}
-
 
 .newelle-detail {
     display: flex;
@@ -273,13 +265,20 @@ article.detail{
     flex-direction: column;
     line-height: 1.3em;
     background-color: var(--backgroundNewelle);
-    padding:30px;
+    padding:30px 50px 30px 50px;
 }
 
-.material-symbols-outlined {
+.newelle-text p{
+    padding-bottom:10px;
+}
+
+
+.newelle-text .material-symbols-outlined {
     font-size: 180px!important;
     display:block;
     margin:-80px auto 10px auto;
+    color:var(--titleColor);
+    font-variation-settings: 'FILL' 1;
 }
 
 .newelle-text a{
@@ -394,6 +393,82 @@ article.detail{
     font-weight:bold;
 }
 
+/**
+ * Compte utilisateur
+*/
+.account nav{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width:95%;
+}
+.account{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width:100%;
+}
+
+.account-card{
+    display:flex;
+    flex-direction: column;
+    border-radius: 40px;
+    background-color: var(--headerPaleColor);
+    width:15%;
+    align-items: center;
+}
+
+.account-card-title{
+    border-bottom:solid 1px var(--titleColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:90%;
+}
+
+.account-card-title .material-symbols-outlined{
+    font-size:6em;
+    color:var(--titleColor);
+    margin-top:-10px;
+    padding:10px 0px 5px 0px;
+}
+
+.account-card-title h3{
+    font-size:2.2em;
+    text-align:center;
+    margin:0;
+    padding:10px 0px 0px 0px;
+}
+
+.account-card-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-card-list ul li{
+    text-align:center;
+    color:var(--titleColor);
+    font-size:1.2em;
+    border-bottom:1px solid var(--titleColor);
+    padding-bottom:20px;
+}
+
+.account-card-list ul li a:hover{
+    font-size:1.2em;
+}
+
+
+.account-card-list ul li:last-child{
+    border:none;
+}
+
+.account-card-list .material-symbols-outlined{
+    font-size:3em;
+    padding:5px 0px 5px 0px;
+}
 /** 
  * Footer global de la page.
  */

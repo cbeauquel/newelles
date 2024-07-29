@@ -44,8 +44,8 @@ class NewelleController
      */
     public function addNewelle() : void
     {
-        $view = new View("Ajouter une newelle");
-        $view->render("addNewelle");
+        $userController = new UserController();
+        $userController->showUpdateNewelleForm();
     }
 
     /**

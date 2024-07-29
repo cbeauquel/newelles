@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newelles</title>
     <link rel="stylesheet" href="./styles/MainStyle.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@1" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" />
 </head>
 
 <body>
@@ -31,12 +31,8 @@
             <div class="nav">
                 <nav>
                     <?php 
-                        // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
-                        if (isset($_SESSION['user'])) {
-                            echo '<a href="index.php?action=disconnectUser"><img src="img/interface/deconnection.png" alt="se déconnecter"/></a>';
-                        } else {
+                        // bouton de connexion et d'accès au compte utilisateur: 
                             echo '<a href="index.php?action=userAccount"><img src="img/interface/connection.png" alt="se connecter"/></a>';
-                        }
                     ?>
                 </nav>
             </div>

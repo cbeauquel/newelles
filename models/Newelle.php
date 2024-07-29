@@ -16,6 +16,7 @@ class Newelle extends AbstractEntity
     private string $genre = "";
     private int $duree = 0;
     private int $taille = 0;
+    private string $modifier = "";
 
 
 
@@ -250,5 +251,23 @@ class Newelle extends AbstractEntity
     public function getTaille() : int
     {
         return $this->taille;
+    }
+    
+    /**
+     * Setter pour le lien "modifier".
+     * @param string $modifier
+     */
+    public function setModifier(string $modifier) : void 
+    {
+        $this->modifier = $modifier;
+    }
+
+    /**
+     * Getter pour le lien modifier.
+     * @return string
+     */
+    public function getModifier() : string 
+    {
+        return $this->modifier;
     }
 }
