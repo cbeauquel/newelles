@@ -15,15 +15,21 @@
             </div>
             <div class="account-card-list">
                 <ul>
-                    <li><a href="index.php?action=displayProfil" title="voir le profil tel qu'il apparaît en public">
+                    <li><a href="index.php?action=displayProfile&id=<?= $_SESSION['idUser'] ?>" title="voir le profil tel qu'il apparaît en public">
                         <span class="material-symbols-outlined">visibility</span>
                         <br>Visualiser</a>
                     </li>
                     <li>
-                        <a href="index.php?action=updateProfil" title="Compléter ou modifier les informations du profil">    
+                        <a href="index.php?action=showUpdateProfileForm" title="Compléter ou modifier les informations du profil">    
                         <span class="material-symbols-outlined">person_edit</span>
                         <br>Compléter</a>
                     </li>
+                    <li>
+                        <a href="index.php?action=disconnectUser" title="Se déconnecter">    
+                        <span class="material-symbols-outlined">logout</span>
+                        <br>Se déconnecter</a>
+                    </li>
+
                 </ul>
             </div>          
         </div>

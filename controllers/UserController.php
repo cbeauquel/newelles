@@ -304,8 +304,6 @@ class UserController
             $audio = $path . basename($_FILES['audio']['name']);        
         }
 
-
-
         //on calcule la taille du texte envoyée (variable $content)
         $taille = str_word_count($content);
 
@@ -329,9 +327,12 @@ class UserController
         $newelleManager = new NewelleManager();
         $newelleManager->addOrUpdateNewelle($newelle);
 
-        // On redirige vers la page du compte utilisateur.
-        Utils::redirect("detail&id=" . $newelle->getId());
-
+        // On redirige vers la page de la newelle.
+        if ($id===-1){
+            Utils::redirect("home");
+        } else {
+            Utils::redirect("detail&id=" . $newelle->getId());
+        }    
     }
 
 
@@ -351,5 +352,128 @@ class UserController
        
         // On redirige vers la page d'administration.
         Utils::redirect("userAccount");
+    }
+
+    /**
+     * Méthode d'affichage du formulaire de mise à jour du profil utilisateur
+     *
+     * @return void
+     */
+    public function showUpdateProfileForm() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        // On récupère l'id du user.
+        $idUser = $_SESSION['idUser'];
+
+        // On récupère le profil
+        $userManager = new userManager();
+        $profile = $userManager->getUserById($idUser);
+
+
+        // On affiche la page de modification de la newelle.
+        $view = new View("Modification du profil");
+        $view->render("updateProfileForm", [
+            'profile' => $profile
+        ]);
+    }
+
+    /**
+     * Métode de mise à jour du profil utilisateur 
+     *
+     * @return void
+     */
+    public function updateProfile() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        // On récupère les données du formulaire.
+        $email = Utils::request("email");
+        $rawPassword = Utils::request("password");
+        $name = Utils::request("name");
+        $firstName = Utils::request("firstName");
+        $stageName = Utils::request("stageName");
+        $bio = Utils::request("bio");
+        $rawUsrImg = $_FILES['usrImg'];
+        $idAdmin = 0;
+        $idUser = $_SESSION['idUser'];
+
+        // On vérifie que les données sont valides.
+        if (empty($email) || empty($name) || empty($firstName) || empty($stageName)) {
+            throw new Exception("Tous les champs sont obligatoires. 5");
+        }
+
+        if (!isset($rawUsrImg) && $rawUsrImg['error']) 
+        {
+            throw new Exception("Une erreur est survenue avec le fichier image");
+        }
+
+        if ($rawUsrImg['size'] > 2000000) 
+        {
+            throw new Exception("L'image est trop lourde (supérieure à 2Mo)");
+        }
+
+        // On vérifie si l'image a été mise à jour, si ce n'est pas le cas on assigne la valeur existante à la variable $UsrImg
+        if (empty($rawUsrImg['name'])){
+            $usrImg = utils::request("currentImg");
+        } else {
+            // On vérifie que l'extension de l'image est valide.
+            $fileInfo = pathinfo($rawUsrImg['name']);
+            $extension = $fileInfo['extension'];
+            $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+            if (!in_array($extension, $allowedExtensions))
+            {
+                throw new Exception("L'envoi n'a pas pu être effectué, l'extension {$extension} n'est pas autorisé");
+            }
+
+            //On vérifie si le dossier uploads est manquant
+            $path = 'img/users/';
+            if (!is_dir($path)) {
+                throw new Exception("Erreur lors de l'enregistrement de l'image, dossier cible manquant");
+            }
+            move_uploaded_file($rawUsrImg['tmp_name'], $path . basename($rawUsrImg['name']));
+            $usrImg = $path . basename($rawUsrImg['name']);        
+        }
+
+        //on fait le hash pour le nouveau mot de passe
+        $password = password_hash($rawPassword, PASSWORD_BCRYPT);
+
+        // On crée l'objet User.
+        $profile = new User([
+            'email' => $email,
+            'password' => $password,
+            'name' => $name,
+            'first_name' => $firstName,
+            'stage_name' => $stageName,
+            'bio' => $bio,
+            'usr_img' => $usrImg,
+            'id' => $idUser,
+        ]);
+        // On ajoute la newelle.
+        $userManager = new UserManager();
+        $userManager->UpdateUser($profile);
+
+        // On redirige vers la page du compte utilisateur.
+        Utils::redirect("userAccount");
+    }
+
+    public function displayProfile() : void
+    {
+        //on récupère l'ID du profile       
+        $profileId = utils::request("id", -1);
+
+        //on récpère les données pour l'objet user
+        $userManager = new UserManager();
+        $profile = $userManager->getUserById($profileId);
+
+        if (!$profile) {
+            throw new Exception("Le profile demandé n'existe pas.");
+        }
+
+        //on récupère les newelles du profil sélectionné
+        $newelleManager = new NewelleManager();
+        $profileNewelles = $newelleManager->getAllNewellesByUser($profileId);
+        $view = new View($profile->getStageName());
+        $view->render("displayProfile", ['profile' => $profile, 'profileNewelles' => $profileNewelles]);
     }
 }

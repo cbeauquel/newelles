@@ -8,7 +8,10 @@
             <div class="meta-data">
                 <h2><?= $newelle->getTitle() ?></h2>
                 <ul>
-                    <li>Proposé par : <strong><?= htmlspecialchars($newelle->getStageName()) ?></strong></li>
+                    <li>Proposé par : 
+                    <strong><a href="index.php?action=displayProfile&id=<?= $newelle->getIdUser()?>" title="voir le profil de <?= $newelle->getStageName()?>"> 
+                    <?= htmlspecialchars($newelle->getStageName()) ?>
+                    </a></strong></li>
                     <li>Genre : <strong><?= htmlspecialchars($newelle->getGenre() )?></strong></li>
                     <li>Taille : <strong><?= htmlspecialchars($newelle->getTaille()) ?></strong></li>
                     <li>Durée : <strong><?= htmlspecialchars($newelle->getDuree()) ?></strong></li>

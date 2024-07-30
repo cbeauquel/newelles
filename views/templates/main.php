@@ -22,7 +22,7 @@
     <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
     tinymce.init({
-        selector: 'textarea#content',
+        selector: 'textarea',
         plugins: 'anchor autolink charmap emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags inlinecss markdown',
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         tinycomments_mode: 'embedded',
@@ -48,10 +48,14 @@
             </div>
             <div class="nav">
                 <nav>
+                    <a class="material-symbols-outlined" href="index.php?action=userAccount" 
                     <?php 
-                        // bouton de connexion et d'accès au compte utilisateur: 
-                            echo '<a href="index.php?action=userAccount"><img src="img/interface/connection.png" alt="se connecter"/></a>';
-                    ?>
+                    if (isset($_SESSION['user'])){
+                        echo "title=\"Compte utilisateur\"> face";
+                    } else {
+                       echo "title=\"Se connecter ou créer un compte\"> login";
+                    }?>
+                    </a>
                 </nav>
             </div>
         </div>

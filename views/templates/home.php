@@ -7,7 +7,7 @@
 <div class="newelleList">
     <h2>Les dernières Newelles</h2>
     <?php foreach($newelles as $newelle) { ?>
-        <article class="home">
+        <article class="home-newelles">
             <a href="index.php?action=detail&id=<?= $newelle->getId()?>" title="voir le détail">
                 <div class="newelle">
                     <div class="newelle-content">
@@ -24,6 +24,20 @@
                     </div>
                 </div>
                 </a>
+        </article>
+    <?php } ?>
+    <h2>Top 4 Newellers</h2>
+    <?php foreach($profiles as $profile) { ?>
+        <article class="home-profiles">
+            <a href="index.php?action=displayProfile&id=<?= $profile->getId()?>" title="voir le détail">
+                <div class="profile">
+                    <img class="profile-img" src="<?= $profile->getUsrImg() ?>" alt="Illustration du profil" />
+                    <div class="profile-content">
+                        <h3><?= $profile->getStageName() ?></h3>
+                        <p><?= strip_tags(($profile->getBio(150))) ?></p>                        
+                    </div>
+                </div>
+            </a>
         </article>
     <?php } ?>
 </div>

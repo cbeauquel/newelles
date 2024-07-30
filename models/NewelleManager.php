@@ -6,7 +6,7 @@
 class NewelleManager extends AbstractEntityManager 
 {
     /**
-     * Récupère toutes les newelles.
+     * Récupère les 6 dernières nouvelles.
      * @return array : un tableau d'objets Newelle.
      */
     public function getAllNewelles() : array
@@ -51,9 +51,9 @@ class NewelleManager extends AbstractEntityManager
      * @param int $idUser : l'idUser de la newelle.
      * @return array : un tableau d'objet newelles
      */
-    public function getAllNewellesByUser(int $idUser) : array
+    public function getAllNewellesByUser(int $idUser) : ?array
     {
-        $sql = "SELECT a. id_user, b. stage_name, a. date_creation, a. date_update, a. title, a. audio, a. nwl_img, a. genre, a. duree, a. taille, 
+        $sql = "SELECT a. id, a. id_user, b. stage_name, a. date_creation, a. date_update, a. content, a. title, a. audio, a. nwl_img, a. genre, a. duree, a. taille, 
         CONCAT('<a href=\"index.php?action=showUpdateNewelleForm&id=',a. `id`,'\">Modifier</a>') AS `Modifier`, 
         CONCAT('<a href=\"index.php?action=detail&id=',a. `id`,'\">Voir</a>') AS `Voir`, 
         CONCAT('<a href=\"index.php?action=deleteComment&id=',a. `id`,'\"','onclick=\'return confirm(\"Êtes-vous sûr de vouloir supprimer cette Newelle ?\")\'>Supprimer</a>') AS `Supprimer`
@@ -61,7 +61,7 @@ class NewelleManager extends AbstractEntityManager
         LEFT JOIN `users` b on a. `id_user` = b. `id`
         WHERE a. id_user = :id_user";
 
-
+        $newellesUser = [];
         $result = $this->db->query($sql, ['id_user' => $idUser]);
         while ($newelle = $result->fetch()) {
             $newellesUser[] = new Newelle($newelle);

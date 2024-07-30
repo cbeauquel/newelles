@@ -11,8 +11,11 @@ class NewelleController
         $newelleManager = new NewelleManager();
         $newelles = $newelleManager->getAllNewelles();
 
+        $userManager = new UserManager();
+        $profiles = $userManager->getAllProfiles();
+
         $view = new View("Accueil");
-        $view->render("home", ['newelles' => $newelles]);
+        $view->render("home", ['newelles' => $newelles, 'profiles' => $profiles]);
     }
 
     /**

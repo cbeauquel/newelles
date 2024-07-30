@@ -77,6 +77,21 @@ try {
             $userController->deleteNewelle();
             break;      
             
+        case 'showUpdateProfileForm':
+            $userController = new UserController();
+            $userController->showUpdateProfileForm();
+            break;      
+            
+        case 'updateProfile':
+            $userController = new UserController();
+            $userController->updateProfile();
+            break;   
+        
+        case 'displayProfile':
+            $userController = new UserController();
+            $userController->displayProfile();
+            break;   
+            
         default:
             throw new Exception("La page demandée n'existe pas.");
     }
