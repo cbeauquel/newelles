@@ -5,17 +5,23 @@
  */
 class Newelle extends AbstractEntity
 {
+    private const UNITE_TAILLE = ' mots';
+    private const UNITE_DUREE = ' mn';
     private int $idUser;
     private string $stageName;
-    private ?DateTime $dateCreation = null;   
+    private ?DateTime $dateCreation = null;
     private ?DateTime $dateUpdate = null;
     private string $title = "";
-    private string $audio = ""; 
+    private string $audio = "";
     private string $content = "";
     private string $nwlImg = "";
     private string $genre = "";
     private int $duree = 0;
     private int $taille = 0;
+    private string $modifier = "";
+    private string $voir = "";
+    private string $supprimer = "";
+
 
 
 
@@ -224,11 +230,11 @@ class Newelle extends AbstractEntity
     /**
      * getter pour la durée
      *
-     * @return integer
+     * @return string
      */
-    public function getDuree() : int
+    public function getDuree() : string
     {
-        return $this->duree;
+        return $this->duree . self::UNITE_DUREE;
     }
 
 
@@ -245,10 +251,64 @@ class Newelle extends AbstractEntity
     /**
      * getter pour la taille
      *
-     * @return integer
+     * @return string
      */
-    public function getTaille() : int
+    public function getTaille() : string
     {
-        return $this->taille;
+        return $this->taille . self::UNITE_TAILLE;
+    }
+    
+    /**
+     * Setter pour le lien "modifier".
+     * @param string $modifier
+     */
+    public function setModifier(string $modifier) : void 
+    {
+        $this->modifier = $modifier;
+    }
+
+    /**
+     * Getter pour le lien modifier.
+     * @return string
+     */
+    public function getModifier() : string 
+    {
+        return $this->modifier;
+    }
+        
+    /**
+     * Setter pour le lien "voir".
+     * @param string $voir
+     */
+    public function setVoir(string $voir) : void 
+    {
+        $this->voir = $voir;
+    }
+
+    /**
+     * Getter pour le lien voir.
+     * @return string
+     */
+    public function getVoir() : string 
+    {
+        return $this->voir;
+    }
+            
+    /**
+     * Setter pour le lien "supprimer".
+     * @param string $supprimerr
+     */
+    public function setSupprimer(string $supprimer) : void 
+    {
+        $this->supprimer = $supprimer;
+    }
+
+    /**
+     * Getter pour le lien voir.
+     * @return string
+     */
+    public function getSupprimer() : string 
+    {
+        return $this->supprimer;
     }
 }

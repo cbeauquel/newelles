@@ -117,7 +117,7 @@ header{
     padding:10px;
     margin-bottom: 30px;
     text-align:center;
-    font-size:1.1em;
+    font-size:1.3em;
 }
 
 /* Coeur de page.*/
@@ -150,16 +150,20 @@ th, td {
     text-align: center;
 }
 
+th.idUser, th.stageName, th.audio, th.content, th.nwlImg, th.id{
+    display:none;
+}    
+
+td.idUser, td.stageName, td.audio, td.content, td.nwlImg, td.id{
+    display:none;
+}    
+
 tbody tr:nth-child(odd) {
     background-color: var(--headerPaleColor);
 }
 
 tbody tr:nth-child(even) {
     background-color: var(--backgroundColor);
-}
-
-th.id, td.id, th.idNewelle, td.idNewelle {
-    display:none;
 }
 
 td.delete {
@@ -199,6 +203,8 @@ article.home{
     flex-direction:column;
     text-align: justify;
     width:70%;
+    text-overflow: hidden;
+
 }
 
 .newelle-img{
@@ -246,13 +252,23 @@ article.detail{
     width:100%;
 }
 
-
 .newelle-detail {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--headerPaleColor);
-    margin-top:20px
+    margin-top:20px;
+    width:100%;
+}
+audio{
+    background:none;
+    border:none;
+}
+.audio-player {
+    display: flex;
+    align-items: center;
+    background:none;
+    border:none;
 }
 
 .meta-data{
@@ -260,11 +276,16 @@ article.detail{
     padding:10px;
 }
 
+.detail-img{
+    width:100%;
+    padding:15px 5px 20px 5px;
+    object-fit:cover;
+}
+
 .meta-data li{
     font-size:1.2em;
     padding-bottom: 20px;;
 }
-
 
 .newelle-text{
     width:75%;
@@ -273,13 +294,23 @@ article.detail{
     flex-direction: column;
     line-height: 1.3em;
     background-color: var(--backgroundNewelle);
-    padding:30px;
+    padding:30px 50px 30px 50px;
 }
 
-.material-symbols-outlined {
+.newelle-text p{
+    padding-bottom:10px;
+}
+
+
+.newelle-text .material-symbols-outlined {
     font-size: 180px!important;
     display:block;
     margin:-80px auto 10px auto;
+    color:var(--titleColor);
+    font-variation-settings: 'FILL' 1;
+    border: none;
+    background: none;
+    cursor:pointer;
 }
 
 .newelle-text a{
@@ -394,6 +425,86 @@ article.detail{
     font-weight:bold;
 }
 
+/**
+ * Compte utilisateur
+*/
+.account nav{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width:95%;
+}
+.account{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width:100%;
+}
+
+.account-card{
+    display:flex;
+    flex-direction: column;
+    border-radius: 40px;
+    background-color: var(--headerPaleColor);
+    width:15%;
+    align-items: center;
+}
+
+.account-card-title{
+    border-bottom:solid 1px var(--titleColor);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:90%;
+}
+
+.account-card-title .material-symbols-outlined{
+    font-size:6em;
+    color:var(--titleColor);
+    margin-top:-10px;
+    padding:10px 0px 5px 0px;
+}
+
+.account-card-title h3{
+    font-size:2.2em;
+    text-align:center;
+    margin:0;
+    padding:10px 0px 0px 0px;
+}
+
+.account-card-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-card-list ul li{
+    text-align:center;
+    color:var(--titleColor);
+    font-size:1.2em;
+    border-bottom:1px solid var(--titleColor);
+    padding-bottom:20px;
+}
+
+.account-card-list ul li a:hover{
+    font-size:1.2em;
+}
+
+.account-card-list ul li:last-child{
+    border:none;
+}
+
+.account-card-list .material-symbols-outlined{
+    font-size:3em;
+    padding:5px 0px 5px 0px;
+}
+
+nav.nwlMngmt{
+   width:100%; 
+}
+
 /** 
  * Footer global de la page.
  */
@@ -442,16 +553,22 @@ form textarea {
 
 }
 
+form .currentImg{
+    max-width: 30%;
+    max-height: 300px;
+}
+
 form .formGrid {
     display: grid;
-    grid-template-columns: 200px minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
+    grid-template-columns: 300px minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
     gap: 10px; /* Espace entre les éléments de la grille */
 }
 
 form .formGrid .submit {
     grid-column: 2; /* Place l'élément dans la deuxième colonne (la dernière) */
-    grid-row: 7; /* Place l'élément dans la troisième rangée (la dernière) */
+    grid-row:9; /* Place l'élément dans la troisième rangée (la dernière) */
 }
+
 
 .submit {
     padding: 5px 10px;

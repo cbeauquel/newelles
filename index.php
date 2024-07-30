@@ -27,6 +27,11 @@ try {
             $userController->displayUserAccount();
             break;
 
+        case 'manageNewelles':
+            $userController = new UserController();
+            $userController->manageNewelles();
+            break;
+
         case 'connectionForm':
             $userController = new UserController();
             $userController->displayConnectionForm();
@@ -52,6 +57,26 @@ try {
             $userController->disconnectUser();
             break;
         
+        case 'addNewelle':
+            $newelleController = new NewelleController();
+            $newelleController->addNewelle();
+            break;
+
+        case 'showUpdateNewelleForm':
+            $userController = new UserController();
+            $userController->showUpdateNewelleForm();
+            break;
+
+        case 'updateNewelle':
+            $userController = new UserController();
+            $userController->updateNewelle();
+            break;  
+
+        case 'delete':
+            $userController = new UserController();
+            $userController->deleteNewelle();
+            break;      
+            
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

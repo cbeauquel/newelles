@@ -13,13 +13,13 @@
                     <div class="newelle-content">
                         <h3><?= $newelle->getTitle() ?></h3>
                         <p class="stagename">proposé par <?= $newelle->getStageName()?></p>
-                        <p><?= $newelle->getContent(500) ?></p>                        
+                        <p><?= strip_tags(($newelle->getContent(450))) ?></p>                        
                     </div>
                     <img class="newelle-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
                     <div class="newelle-footer">
                         <div class="info"><?= $newelle->getGenre() ?></div>
-                        <div class="info"><?= $newelle->getDuree() ?>&nbsp;mn</div>
-                        <div class="info"><?= $newelle->getTaille() ?>&nbsp;mots</div>
+                        <div class="info"><?= $newelle->getDuree() ?></div>
+                        <div class="info"><?= $newelle->getTaille() ?></div>
                         <span class="info"><?= ucfirst(Utils::convertDateToFrenchFormat($newelle->getDateCreation())) ?></span>                       
                     </div>
                 </div>

@@ -8,19 +8,29 @@
             <div class="meta-data">
                 <h2><?= $newelle->getTitle() ?></h2>
                 <ul>
-                    <li>Proposé par : <strong><?= $newelle->getStageName() ?></strong></li>
-                    <li>Genre : <strong><?= $newelle->getGenre() ?></strong></li>
-                    <li>Taille : <strong><?= $newelle->getTaille() ?>&nbsp;mots</strong></li>
-                    <li>Taille : <strong><?= $newelle->getDuree() ?>&nbsp;mn</strong></li>
+                    <li>Proposé par : <strong><?= htmlspecialchars($newelle->getStageName()) ?></strong></li>
+                    <li>Genre : <strong><?= htmlspecialchars($newelle->getGenre() )?></strong></li>
+                    <li>Taille : <strong><?= htmlspecialchars($newelle->getTaille()) ?></strong></li>
+                    <li>Durée : <strong><?= htmlspecialchars($newelle->getDuree()) ?></strong></li>
                     <li>Ajoutée le : <strong><?= ucfirst(Utils::convertDateToFrenchFormat($newelle->getDateCreation())) ?></strong></li>
                 </ul>
-                <img src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
+                <img class="detail-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
             </div>
-            <div class="newelle-text">
-                <a href="<?=$newelle->getAudio()?>" target="_blank" title="écoutez"><div class="material-symbols-outlined">play_circle</div></a>
+            <div class="newelle-text">            
+                <div class="audio-player">
+                    <audio id="audio" src="<?= $newelle->getAudio() ?>"></audio>
+                    <button class="material-symbols-outlined" id="playPauseButton">play_circle</button>
+                </div>
                 <p>
                     <?= $newelle->getContent() ?>
                 </p>
             </div>
         </div>
+        <?php if (isset($_SESSION['user'])){?>
+            <nav class="nwlMngmt">
+            <div class="nav">
+                <a class="submit" href="index.php?action=showUpdateNewelleForm&id=<?=$newelle->getId()?>" title="modifier une newelle">Modifier</a>
+            </div>
+            </nav>
+        <?php }?>
     </article>

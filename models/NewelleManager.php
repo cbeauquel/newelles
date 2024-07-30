@@ -14,7 +14,8 @@ class NewelleManager extends AbstractEntityManager
         $sql = "SELECT a.* , b. `stage_name`
         FROM newelle a
         LEFT JOIN `users` b on a. `id_user` = b. `id`
-        GROUP BY a. `id`
+        ORDER BY a. `id` DESC
+        LIMIT 6
         ";
         $result = $this->db->query($sql);
         $newelles = [];
@@ -43,6 +44,29 @@ class NewelleManager extends AbstractEntityManager
             return new Newelle($newelle);
         }
         return null;
+    }
+
+    /**
+     * Récupère les Newelles par son user.
+     * @param int $idUser : l'idUser de la newelle.
+     * @return array : un tableau d'objet newelles
+     */
+    public function getAllNewellesByUser(int $idUser) : array
+    {
+        $sql = "SELECT a. id_user, b. stage_name, a. date_creation, a. date_update, a. title, a. audio, a. nwl_img, a. genre, a. duree, a. taille, 
+        CONCAT('<a href=\"index.php?action=showUpdateNewelleForm&id=',a. `id`,'\">Modifier</a>') AS `Modifier`, 
+        CONCAT('<a href=\"index.php?action=detail&id=',a. `id`,'\">Voir</a>') AS `Voir`, 
+        CONCAT('<a href=\"index.php?action=deleteComment&id=',a. `id`,'\"','onclick=\'return confirm(\"Êtes-vous sûr de vouloir supprimer cette Newelle ?\")\'>Supprimer</a>') AS `Supprimer`
+        FROM newelle a
+        LEFT JOIN `users` b on a. `id_user` = b. `id`
+        WHERE a. id_user = :id_user";
+
+
+        $result = $this->db->query($sql, ['id_user' => $idUser]);
+        while ($newelle = $result->fetch()) {
+            $newellesUser[] = new Newelle($newelle);
+        }
+        return $newellesUser;
     }
 
     /**
@@ -87,15 +111,15 @@ class NewelleManager extends AbstractEntityManager
      */
     public function updateNewelle(Newelle $newelle) : void
     {
-        $sql = "UPDATE newelle SET title = :title, audio = :audio, content = :content, date_update = NOW(), nwl_img = :nwlimg, genre = :genre, duree = :duree, taille = :taille WHERE id = :id";
+        $sql = "UPDATE newelle SET title = :title, audio = :audio, content = :content, date_update = NOW(), nwl_img = :nwl_img, genre = :genre, duree = :duree, taille = :taille WHERE id = :id";
         $this->db->query($sql, [
             'title' => $newelle->getTitle(),
             'audio' => $newelle->getAudio(),
             'content' => $newelle->getContent(),
             'nwl_img' => $newelle->getNwlImg(),
-            'genre' => $genre->getGenre(),
-            'duree' => $duree->getDuree(),
-            'taille' => $taille->getTaille(),
+            'genre' => $newelle->getGenre(),
+            'duree' => $newelle->getDuree(),
+            'taille' => $newelle->getTaille(),
             'id' => $newelle->getId()
         ]);
     }
