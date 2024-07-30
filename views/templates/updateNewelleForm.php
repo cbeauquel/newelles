@@ -15,7 +15,7 @@
             <label class="duree-lbl" for="duree">Durée de la Newelle en mn</label>
             <input class="duree-input" type="text" name="duree" id="duree" value="<?= $newelle->getDuree() ?>" required>
             <label class="saisie-lbl">Saisissez votre Newelle ici</label>
-            <textarea class="saisie-input" id="content" name="content" cols="150" rows="200"><?= $newelle->getContent() ?></textarea>
+            <textarea class="saisie-input" id="rtf" name="content" cols="150" rows="200"><?= $newelle->getContent() ?></textarea>
             <?php if($newelle->getId() == -1) {?>
                 <label class="nwl-img-lbl" for="nwlImg">Insérez une image d'illustration (fichiers acceptés : jpg, png)</label>
                 <input class="nwl-img-input" type="file" name="nwlImg" id="nwlImg">

@@ -36,18 +36,18 @@ try {
             $userController = new UserController();
             $userController->displayConnectionForm();
             break;
-        
+
         case 'createAccountForm':
             $userController = new UserController();
             $userController->displayCreateAccountForm();
             break;
 
-        case 'connectUser': 
+        case 'connectUser':
             $userController = new UserController();
             $userController->connectUser();
             break;
-        
-        case 'createUser': 
+
+        case 'createUser':
             $userController = new UserController();
             $userController->createUser();
             break;
@@ -56,7 +56,7 @@ try {
             $userController = new UserController();
             $userController->disconnectUser();
             break;
-        
+
         case 'addNewelle':
             $newelleController = new NewelleController();
             $newelleController->addNewelle();
@@ -70,28 +70,33 @@ try {
         case 'updateNewelle':
             $userController = new UserController();
             $userController->updateNewelle();
-            break;  
+            break;
 
         case 'delete':
             $userController = new UserController();
             $userController->deleteNewelle();
-            break;      
-            
+            break;
+
         case 'showUpdateProfileForm':
             $userController = new UserController();
             $userController->showUpdateProfileForm();
-            break;      
-            
+            break;
+
         case 'updateProfile':
             $userController = new UserController();
             $userController->updateProfile();
-            break;   
-        
+            break;
+
         case 'displayProfile':
             $userController = new UserController();
             $userController->displayProfile();
-            break;   
-            
+            break;
+
+        case 'addFeedback':
+            $feedbackController = new FeedbackController();
+            $feedbackController->addFeedback();
+            break;
+
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

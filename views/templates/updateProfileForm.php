@@ -17,7 +17,7 @@
             <label for="stageName">Votre nom d'auteur</label>
             <input type="text" name="stageName" id="stageName" value="<?= $profile->getStageName() ?>" required>
             <label for="bio">Présentez-vous !</label>
-            <textarea class="saisie-input" id="bio" name="bio" cols="150" rows="100"><?= $profile->getBio() ?></textarea>
+            <textarea class="saisie-input" id="rtf" name="bio" cols="150" rows="100"><?= $profile->getBio() ?></textarea>
             <label for="currentImg">Votre photo de profil actuelle</label>
             <img class="current-img" src="<?= $profile->getUsrImg() ?>" alt="Image actuelle" />
             <input type="hidden" value="<?=$profile->getUsrImg() ?>" name="currentImg" id="currentImg">

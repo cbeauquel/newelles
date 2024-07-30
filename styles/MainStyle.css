@@ -367,41 +367,97 @@ audio{
 }
 
 /* Affichage des commentaires */
-.comments {
-    width: 100%;
-    margin-top: 30px;
+
+.feedbacks{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width:100%;
 }
 
-.commentsTitle {
-    color: var(--titleColor);
+.feedback .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;
+    font-size:2em;
+    color:orange;
 }
 
-.comments ul {
-    margin-bottom: 30px;
+
+.feedback li{
+    width:100%;
+    background-color: var(--backgroundNewelle);
+    border-bottom:dotted 1px var(--titleColor);
+    padding:20px 0px 20px 0px;
 }
 
-.comments li {
-    display: flex;
+h4.info{
+    padding: 20px 0px 10px 15px;
+    margin:0;
+    font-size:1em;
+    font-style:italic;
+    font-weight: normal;
+    text-align:left;
+}
+
+p.info{
+    padding:10px;
+    font-size:1em;
+} 
+
+p.content{
+    background-color: var(--backgroundColor);
+    padding:10px;
+    font-size:1em;
+} 
+
+.feedback-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+
+.feedback-form label{
+    padding:10px 0px 10px 0px;
+    text-align:center;
+}
+
+.feedback-form button{
+    margin:10px auto 10px auto;
+    padding:10px 20px 10px 20px;
+    border-radius:5px;
+}
+
+.rating {
     margin-bottom: 20px;
-}
-
-.comments .smiley {
     display: flex;
-    align-items: flex-start;
-    line-height: 0.7;
-    font-size: 60px;
-    color: var(--quoteColor);
-}
+    flex-direction: row-reverse; /* this is the magic */
+    justify-content: flex-end;
+    font-variation-settings: 'FILL' 1;
+    color: var(--titleColor);
+  }
 
-/* On redéfinit certaines parties du "info" pour l'affichage dans les commentaires */
-.detailComment .info {
-    margin: 5px 0 5px 0;
-    font-style: normal;
-}
-
-.detailComment .content {
-    margin: 5px 0 5px 0;
-}
+  .rating label.material-symbols-outlined{
+    font-size: 3em;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .rating label:hover,
+  .rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
+    color: orange;
+  }
+  
+  .rating input:checked ~ label {
+    color: orange;
+  }
 
 /* Page d'erreur */
 

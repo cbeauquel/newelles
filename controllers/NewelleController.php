@@ -34,11 +34,11 @@ class NewelleController
             throw new Exception("La newelle demandé n'existe pas.");
         }
 
-        // $commentManager = new CommentManager();
-        // $comments = $commentManager->getAllCommentsByNewelleId($id);
-
+        $feedbackManager = new FeedbackManager();
+        $feedbacks = $feedbackManager->getFeedbacksByNewelleId($id);
+        var_dump($id);
         $view = new View($newelle->getTitle());
-        $view->render("detailNewelle", ['newelle' => $newelle]);
+        $view->render("detailNewelle", ['newelle' => $newelle, 'feedbacks' => $feedbacks]);
     }
 
     /**
