@@ -70,8 +70,13 @@ try {
         case 'updateNewelle':
             $userController = new UserController();
             $userController->updateNewelle();
+            break;  
+
+        case 'delete':
+            $userController = new UserController();
+            $userController->deleteNewelle();
             break;      
-        
+            
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

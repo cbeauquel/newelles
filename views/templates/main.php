@@ -16,6 +16,24 @@
     <title>Newelles</title>
     <link rel="stylesheet" href="./styles/MainStyle.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" />
+    <!-- Place the first <script> tag in your HTML's <head> -->
+    <script src="https://cdn.tiny.cloud/1/dcvenw2y0g3iby40929n5t6szarz1lw6is0467eq3u0gehmm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
+    <script>
+    tinymce.init({
+        selector: 'textarea#content',
+        plugins: 'anchor autolink charmap emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags inlinecss markdown',
+        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+        mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+        ],
+        ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
+    });
+    </script>
 </head>
 
 <body>
@@ -53,3 +71,21 @@
 
 </body>
 </html>
+<script>
+        var audio = document.getElementById('audio');
+        var playPauseButton = document.getElementById('playPauseButton');
+
+        playPauseButton.addEventListener('click', function() {
+            if (audio.paused) {
+                audio.play();
+                playPauseButton.textContent = 'Pause';
+            } else {
+                audio.pause();
+                playPauseButton.textContent = 'play_circle';
+            }
+        });
+
+        audio.addEventListener('ended', function() {
+            playPauseButton.textContent = 'play_circle';
+        });
+    </script>

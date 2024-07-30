@@ -234,11 +234,10 @@ class UserController
         $taille = Utils::request("taille");
         $duree = Utils::request("duree");
         $content = Utils::request("content");
-        $nwlImg = Utils::request("nwlImg");
 
         // On vérifie que les données sont valides.
         if (empty($title) || empty($content)) {
-            throw new Exception("Tous les champs sont obligatoires. 2");
+            throw new Exception("Tous les champs sont obligatoires. 3");
         }
         
         if (!isset($_FILES['nwlImg']) && $_FILES['nwlImg']['error']) 
@@ -246,28 +245,72 @@ class UserController
             throw new Exception("Une erreur est survenue avec le fichier image");
         }
 
-
         if ($_FILES['nwlImg']['size'] > 2000000) 
         {
-            throw new Exception("L'image est trop lourde (supérieur à 2Mo)");
+            throw new Exception("L'image est trop lourde (supérieure à 2Mo)");
         }
 
-        // On vérifie que l'extension de l'image est valide.
-        $fileInfo = pathinfo($_FILES['nwlImg']['name']);
-        $extension = $fileInfo['extension'];
-        $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
-        if (!in_array($extension, $allowedExtensions))
+        // On vérifie si l'image a été mise à jour, si ce n'est pas le cas on assigne la valeur existante à la variable $nwlImg
+        if ($id != -1 && empty($_FILES['nwlImg']['name'])){
+            $nwlImg = utils::request("currentImg");
+        } else {
+            // On vérifie que l'extension de l'image est valide.
+            $fileInfo = pathinfo($_FILES['nwlImg']['name']);
+            $extension = $fileInfo['extension'];
+            $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
+            if (!in_array($extension, $allowedExtensions))
+            {
+                throw new Exception("L'envoi n'a pas pu être effectué, l'extension {$extension} n'est pas autorisé");
+            }
+
+            //On vérifie si le dossier uploads est manquant
+            $path = 'img/content/';
+            if (!is_dir($path)) {
+                throw new Exception("Erreur lors de l'enregistrement de l'image, dossier cible manquant");
+            }
+            move_uploaded_file($_FILES['nwlImg']['tmp_name'], $path . basename($_FILES['nwlImg']['name']));
+            $nwlImg = $path . basename($_FILES['nwlImg']['name']);        
+        }
+
+        //on vérifie les données audio 
+        if (!isset($_FILES['audio']) && $_FILES['audio']['error']) 
         {
-            throw new Exception("L'envoi n'a pas pu être effectué, l'extension {$extension} n'est pas autorisé");
+            throw new Exception("Une erreur est survenue avec le fichier audio");
         }
 
-        //On vérifie si le dossier uploads est manquant
-        $path = 'img/users/';
-        if (!is_dir($path)) {
-            throw new Exception("Erreur lors de l'enregistrement de l'image, dossier cible manquant");
+        if ($_FILES['audio']['size'] > 8000000) 
+        {
+            throw new Exception("La piste audio est trop lourde (supérieure à 8Mo)");
         }
 
-        $nwlImg = move_uploaded_file($_FILES['nwlImg']['tmp_name'], $path . basename($_FILES['nwlImg']['name']));
+        if ($id != -1 && empty($_FILES['audio']['name'])){
+            $nwlImg = utils::request("currentAudio");
+        } else {
+            // On vérifie que l'extension de l'image est valide.
+            $fileInfo = pathinfo($_FILES['audio']['name']);
+            $extension = $fileInfo['extension'];
+            $allowedExtensions = ['mp3', 'wmv'];
+            if (!in_array($extension, $allowedExtensions))
+            {
+                throw new Exception("L'envoi n'a pas pu être effectué, l'extension {$extension} n'est pas autorisée");
+            }
+
+            //On vérifie si le dossier uploads est manquant
+            $path = 'audio/';
+            if (!is_dir($path)) {
+                throw new Exception("Erreur lors de l'enregistrement du son, dossier cible manquant");
+            }
+            move_uploaded_file($_FILES['audio']['tmp_name'], $path . basename($_FILES['audio']['name']));
+            $audio = $path . basename($_FILES['audio']['name']);        
+        }
+
+
+
+        //on calcule la taille du texte envoyée (variable $content)
+        $taille = str_word_count($content);
+
+        // on s 'assure que le champs "durée" est bien un entier 
+        $duree = preg_replace('/\D/', '', $duree);
 
         // On crée l'objet Newelle.
         $newelle = new Newelle([
@@ -279,6 +322,7 @@ class UserController
             'duree' => $duree,
             'id_user' => $_SESSION['idUser'],
             'nwl_img' => $nwlImg,
+            'audio' => $audio
         ]);
 
         // On ajoute la newelle.
@@ -286,7 +330,8 @@ class UserController
         $newelleManager->addOrUpdateNewelle($newelle);
 
         // On redirige vers la page du compte utilisateur.
-        Utils::redirect("userAccount");
+        Utils::redirect("detail&id=" . $newelle->getId());
+
     }
 
 

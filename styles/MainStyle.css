@@ -117,7 +117,7 @@ header{
     padding:10px;
     margin-bottom: 30px;
     text-align:center;
-    font-size:1.1em;
+    font-size:1.3em;
 }
 
 /* Coeur de page.*/
@@ -149,6 +149,14 @@ th, td {
     padding: 8px;
     text-align: center;
 }
+
+th.idUser, th.stageName, th.audio, th.content, th.nwlImg, th.id{
+    display:none;
+}    
+
+td.idUser, td.stageName, td.audio, td.content, td.nwlImg, td.id{
+    display:none;
+}    
 
 tbody tr:nth-child(odd) {
     background-color: var(--headerPaleColor);
@@ -195,6 +203,8 @@ article.home{
     flex-direction:column;
     text-align: justify;
     width:70%;
+    text-overflow: hidden;
+
 }
 
 .newelle-img{
@@ -238,13 +248,27 @@ article.home{
 
 /* Page de détail d'un newelle */
 
+article.detail{
+    width:100%;
+}
 
 .newelle-detail {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--headerPaleColor);
-    margin-top:20px
+    margin-top:20px;
+    width:100%;
+}
+audio{
+    background:none;
+    border:none;
+}
+.audio-player {
+    display: flex;
+    align-items: center;
+    background:none;
+    border:none;
 }
 
 .meta-data{
@@ -252,11 +276,16 @@ article.home{
     padding:10px;
 }
 
+.detail-img{
+    width:100%;
+    padding:15px 5px 20px 5px;
+    object-fit:cover;
+}
+
 .meta-data li{
     font-size:1.2em;
     padding-bottom: 20px;;
 }
-
 
 .newelle-text{
     width:75%;
@@ -279,6 +308,9 @@ article.home{
     margin:-80px auto 10px auto;
     color:var(--titleColor);
     font-variation-settings: 'FILL' 1;
+    border: none;
+    background: none;
+    cursor:pointer;
 }
 
 .newelle-text a{
@@ -460,7 +492,6 @@ article.home{
     font-size:1.2em;
 }
 
-
 .account-card-list ul li:last-child{
     border:none;
 }
@@ -469,6 +500,11 @@ article.home{
     font-size:3em;
     padding:5px 0px 5px 0px;
 }
+
+nav.nwlMngmt{
+   width:100%; 
+}
+
 /** 
  * Footer global de la page.
  */
@@ -517,16 +553,22 @@ form textarea {
 
 }
 
+form .currentImg{
+    max-width: 30%;
+    max-height: 300px;
+}
+
 form .formGrid {
     display: grid;
-    grid-template-columns: 200px minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
+    grid-template-columns: 300px minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
     gap: 10px; /* Espace entre les éléments de la grille */
 }
 
 form .formGrid .submit {
     grid-column: 2; /* Place l'élément dans la deuxième colonne (la dernière) */
-    grid-row: 7; /* Place l'élément dans la troisième rangée (la dernière) */
+    grid-row:9; /* Place l'élément dans la troisième rangée (la dernière) */
 }
+
 
 .submit {
     padding: 5px 10px;
