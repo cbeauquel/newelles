@@ -51,7 +51,7 @@
                     <a class="material-symbols-outlined" href="index.php?action=userAccount" 
                     <?php 
                     if (isset($_SESSION['user'])){
-                        echo "title=\"Compte utilisateur\"> face";
+                        echo "title=\"Compte utilisateur\"> account_circle";
                     } else {
                        echo "title=\"Se connecter ou créer un compte\"> login";
                     }?>
@@ -69,7 +69,7 @@
     </main>
     
     <footer>
-        <a href="index.php?action=apropos">À propos&nbsp;</a>
+        <a href="index.php?action=connectionFormAdmin">À propos&nbsp;</a>
         <p>Copyright © Newelles 2024 - Neobook -</p>
     </footer>
 

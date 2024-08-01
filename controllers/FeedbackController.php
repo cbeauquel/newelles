@@ -32,7 +32,5 @@ class FeedbackController
         Utils::redirect("detail&id=" . $nwlId);
     }
 
-
-
-
+ 
 }

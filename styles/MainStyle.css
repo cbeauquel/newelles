@@ -19,6 +19,7 @@
     --headerColor: #38302b;
     --headerPaleColor: #eeece1;
     --titleColor: #38302b;
+    --linkColor: #df6811;
 }
 
 /**
@@ -72,6 +73,7 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
+    font-weight:bold;
 }
 
 
@@ -141,6 +143,7 @@ main {
 table {
     margin: 20px auto;
     border-collapse: collapse;
+    width:100%;
 }
 
 thead {
@@ -152,6 +155,19 @@ th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    font-size:1.2em;
+}
+
+td a{
+    text-decoration:underline;
+}
+
+td a:hover{
+    color:var(--linkColor);
+}
+
+tr {
+    height:40px;
 }
 
 th.idUser, th.stageName, th.audio, th.content, th.nwlImg, th.id{
@@ -247,6 +263,16 @@ article.home-newelles{
     border-right: 1px solid var(--titleColor);
 }
 
+a.button{
+    padding:15px;
+    background-color: var(--titleColor);
+    border-radius:5px;
+    color:var(--headerPaleColor);
+    display:block;
+    margin:auto;
+
+}
+
 /* affichage du top 4 profiles */
 /* Affichage des newelles */
 
@@ -268,10 +294,11 @@ article.home-profiles{
 
 .profile-img{
     width:40%;
-    padding:15px 15px 20px 15px;
+    padding:15px 0px 20px 15px;
     object-fit:cover;
     height:250px;
     border-radius:50px 0px 0px 50px;
+    border-right: dotted 1px var(--titleColor);
 }
 .profile-content {
     display:flex;
@@ -322,17 +349,32 @@ audio{
 .meta-data{
     width:25%;
     padding:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .detail-img{
-    width:100%;
+    width:80%;
     padding:15px 5px 20px 5px;
-    object-fit:cover;
+    object-fit:scale-down;
+    display:block;
+    max-height:400px;
 }
 
 .meta-data li{
     font-size:1.2em;
     padding-bottom: 20px;;
+}
+
+.meta-data a{
+    font-size:0.9em;
+    padding-top: 10px;
+    text-decoration:underline;
+}
+
+.meta-data a:hover{
+    color:var(--linkColor);
 }
 
 .newelle-text{
@@ -402,6 +444,12 @@ h4.info{
 p.info{
     padding:10px;
     font-size:1em;
+} 
+
+p.no-comment{
+    padding:10px;
+    font-size:1em;
+    background-color:var(--backgroundColor);
 } 
 
 p.content{

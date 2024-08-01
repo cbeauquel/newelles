@@ -32,7 +32,8 @@
                 <input type="hidden" value="<?= $newelle->getAudio() ?>" name="currentAudio" id="currentAudio">
                 <label class="audio-lbl" for="audio">Insérez une nouvelle piste audio pour votre Newelle (mp3)</label>
                 <input class="audio-input" type="file" name="audio" id="audio">
-            <?php } ?>
+                <input type="hidden" name="idUser" value="<?= $newelle->getIdUser() ?>">
+            <?php } ?>           
             <input type="hidden" name="action" value="updateNewelle">
             <input type="hidden" name="id" value="<?= $newelle->getId() ?>">
             <button class="submit"><?= $newelle->getId() == -1 ? "Ajouter" : "Modifier" ?></button>

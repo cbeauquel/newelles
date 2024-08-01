@@ -16,6 +16,11 @@ try {
             $newelleController = new NewelleController();
             $newelleController->showHome();
             break;
+        
+        case 'displayAllNewelles':
+            $newelleController = new NewelleController();
+            $newelleController->displayAllNewelles();
+            break;
 
         case 'detail':
             $newelleController = new NewelleController();
@@ -63,18 +68,18 @@ try {
             break;
 
         case 'showUpdateNewelleForm':
-            $userController = new UserController();
-            $userController->showUpdateNewelleForm();
+            $newelleController = new NewelleController();
+            $newelleController->showUpdateNewelleForm();
             break;
 
         case 'updateNewelle':
-            $userController = new UserController();
-            $userController->updateNewelle();
+            $newelleController = new NewelleController();
+            $newelleController->updateNewelle();
             break;
 
         case 'delete':
-            $userController = new UserController();
-            $userController->deleteNewelle();
+            $newelleController = new NewelleController();
+            $newelleController->deleteNewelle();
             break;
 
         case 'showUpdateProfileForm':
@@ -95,6 +100,26 @@ try {
         case 'addFeedback':
             $feedbackController = new FeedbackController();
             $feedbackController->addFeedback();
+            break;
+
+        case 'displayFeedbacks':
+            $userController = new UserController();
+            $userController->displayFeedbacks();
+            break;
+
+        case 'connectionFormAdmin':
+            $adminController = new AdminController();
+            $adminController->displayConnectionFormAdmin();
+            break;
+    
+        case 'connectAdmin':
+            $adminController = new AdminController();
+            $adminController->connectAdmin();
+            break;
+        
+        case 'displayAdmin':
+            $adminController = new AdminController();
+            $adminController->displayAdmin();
             break;
 
         default:

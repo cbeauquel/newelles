@@ -21,7 +21,13 @@ class FeedbackManager extends AbstractEntityManager
         ]);
     }
 
-    public function getFeedbacksByNewelleId($id):array
+    /**
+     * Méthode pour récupérer les feedbacks pour affichage par newelle
+     *
+     * @param integer $id
+     * @return array
+     */
+    public function getFeedbacksByNewelleId(int $id):array
     {
         $sql="SELECT * FROM feedback WHERE nwl_id = :nwl_id ORDER BY date_comment DESC";
 
@@ -32,5 +38,21 @@ class FeedbackManager extends AbstractEntityManager
             $feedbacks[] = new Feedback($feedback);
         }
         return $feedbacks;
+    }
+
+    public function getFeedbacksByUserId($id):array
+    {
+        $sql="SELECT a. * 
+              FROM `feedback` a
+              LEFT JOIN `newelle` b on a. `nwl_id` = b. `id`        
+              WHERE b. `id_user` = :id_user ORDER BY a. `nwl_id`";
+
+        $result = $this->db->query($sql, ['id_user' => $id]);
+        $userFeedbacks = [];
+
+        while ($userFeedback = $result->fetch()) {
+            $userFeedbacks[] = new Feedback($userFeedback);
+        }
+        return $userFeedbacks;
     }
 }

@@ -9,9 +9,10 @@
                 <h2><?= $newelle->getTitle() ?></h2>
                 <ul>
                     <li>Proposé par : 
-                    <strong><a href="index.php?action=displayProfile&id=<?= $newelle->getIdUser()?>" title="voir le profil de <?= $newelle->getStageName()?>"> 
-                    <?= htmlspecialchars($newelle->getStageName()) ?>
-                    </a></strong></li>
+                    <?= htmlspecialchars($newelle->getStageName()) ?><br>
+                    <em><a href="index.php?action=displayProfile&id=<?= $newelle->getIdUser()?>" title="voir le profil de <?= $newelle->getStageName()?>"> 
+                    Voir les Newelles de ce Neweller.
+                    </a></em></li>
                     <li>Genre : <strong><?= htmlspecialchars($newelle->getGenre() )?></strong></li>
                     <li>Taille : <strong><?= htmlspecialchars($newelle->getTaille()) ?></strong></li>
                     <li>Durée : <strong><?= htmlspecialchars($newelle->getDuree()) ?></strong></li>
@@ -24,7 +25,7 @@
                     <div class="feedback">
                         <?php 
                             if (empty($feedbacks)) {
-                                echo '<p class="info">Aucun commentaire pour cette Newelle.</p>';
+                                echo '<p class="no-comment">Aucun commentaire pour cette Newelle.</p>';
                             } else {
                                 echo '<ul>';
                                 foreach ($feedbacks as $feedback){
@@ -70,13 +71,16 @@
                     </form>
                 </div>
             </div>
-            <div class="newelle-text">            
+            <div class="newelle-text">    
+                <?php if(!empty($newelle->getAudio()))
+                { ?>        
                 <div class="audio-player">
                     <audio id="audio" src="<?= $newelle->getAudio() ?>"></audio>
                     <button class="material-symbols-outlined" id="playPauseButton">play_circle</button>
                 </div>
+                <?php } ?>
                 <p>
-                    <?= $newelle->getContent() ?>
+                    <?= utils::displayTextPerPage($newelle->getContent(), 2000) ?>
                 </p>
             </div>
         </div>

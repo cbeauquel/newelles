@@ -1,4 +1,4 @@
-Site de mise en ligne de compositions littéraires audio et texte
+# Site de mise en ligne de compositions littéraires audio et texte
 
 Pour utiliser ce projet :
 - Commencez par faire un fork sur le projet d'origine

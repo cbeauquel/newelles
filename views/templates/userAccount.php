@@ -11,12 +11,12 @@
         <div class="account-card">
             <div class="account-card-title">
                 <h3>Profil</h3>
-                <span class="material-symbols-outlined">face</span>
+                <span class="material-symbols-outlined">id_card</span>
             </div>
             <div class="account-card-list">
                 <ul>
                     <li><a href="index.php?action=displayProfile&id=<?= $_SESSION['idUser'] ?>" title="voir le profil tel qu'il apparaît en public">
-                        <span class="material-symbols-outlined">visibility</span>
+                        <span class="material-symbols-outlined">tv_signin</span>
                         <br>Visualiser</a>
                     </li>
                     <li>
