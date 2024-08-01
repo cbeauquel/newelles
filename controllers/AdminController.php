@@ -92,9 +92,12 @@ class AdminController extends UserController
         // On vérifie que l'admin est connecté.
         utils::checkIfUserIsConnected();
 
+        $adminManager = new AdminManager();
+        $adminNewelles = $adminManager->manageNewelles();
+
         // On affiche la page compte user.
         $view = new View("Page d'administration");
-        $view->renderAdmin("adminStats");
+        $view->renderAdmin("adminNewelles", ['adminNewelles' => $adminNewelles]);
     }
 
     /**
@@ -151,6 +154,7 @@ class AdminController extends UserController
 
         // On récupère l'id de la newelle s'il existe.
         $id = Utils::request("id");
+
         // On récupère la newelle associée.
         $newelleManager = new NewelleManager();
         $newelle = $newelleManager->getNewelleById($id);
@@ -196,8 +200,10 @@ class AdminController extends UserController
 
     public function adminStats(){
         $this->checkIfAdminIsConnected();
+        $monitoringManager = new MonitoringManager();
+        $stats = $monitoringManager->extractStats();
 
         $view = new View("Gestion des Stats");
-        $view->renderAdmin("adminStats");         
+        $view->renderAdmin("adminStats", ['stats' =>$stats]);         
     }
 }

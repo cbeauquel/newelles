@@ -3,7 +3,12 @@
      * Affichage du compte utilisteur
      */
 ?>
-<p>Gestion des Stats</p>
+<h3>Gestion des Stats</h3>
+    <div class="stats">
+        <?php
+            utils::createTable($stats);
+        ?>
+    </div>
 
 
 
