@@ -8,6 +8,18 @@
 class Utils 
 {
     /**
+     * Vérifie que l'utilisateur est connecté.
+     * @return void
+     */
+    public static function checkIfUserIsConnected() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        if (!isset($_SESSION['user'])) {
+            Utils::redirect("connectionForm");
+        }
+    }
+
+    /**
      * Convertit une date vers le format de type "Samedi 15 juillet 2023" en francais.
      * @param DateTime $date : la date à convertir.
      * @return string : la date convertie.
@@ -73,6 +85,41 @@ class Utils
         }
         
         return $finalString;
+    }
+
+    /**
+     * Méthode statique qui pagine un texte en fonction d'un nombre de mots
+     *
+     * @param string $text
+     * @param integer $wordsPerPage
+     * @return void
+     */
+    private static function splitTextIntoPages(string $text, int $wordsPerPage) :array
+    {
+        $nbWords = str_word_count($text);
+        $words = explode(' ', $text);
+        $pages = [];
+
+        for ($i = 0; $i < $nbWords; $i += $wordsPerPage) {
+            $pages[] = implode(' ', array_slice($words, $i, $wordsPerPage));
+        }
+
+        return $pages;
+    }
+
+    public static function displayTextPerPage(string $text, int $wordsPerPage) :void
+    {
+        $pages = self::splitTextIntoPages($text, $wordsPerPage);
+        $totalPages = count($pages);
+        if (!isset($_GET['page']) || $currentPage < 1) {
+            $currentPage = 1;
+        } elseif ($currentPage > $totalPages){
+            $currentPage = $totalPages;
+        } else {
+            $currentPage = (int)$_GET['page'];
+        }
+        // on inclut le html du tableau
+        include_once('views/templates/pagination.php');
     }
 
     /**
@@ -154,4 +201,6 @@ class Utils
 
          return null;
      }
+
+     
 }

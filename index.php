@@ -16,6 +16,11 @@ try {
             $newelleController = new NewelleController();
             $newelleController->showHome();
             break;
+        
+        case 'displayAllNewelles':
+            $newelleController = new NewelleController();
+            $newelleController->displayAllNewelles();
+            break;
 
         case 'detail':
             $newelleController = new NewelleController();
@@ -36,18 +41,18 @@ try {
             $userController = new UserController();
             $userController->displayConnectionForm();
             break;
-        
+
         case 'createAccountForm':
             $userController = new UserController();
             $userController->displayCreateAccountForm();
             break;
 
-        case 'connectUser': 
+        case 'connectUser':
             $userController = new UserController();
             $userController->connectUser();
             break;
-        
-        case 'createUser': 
+
+        case 'createUser':
             $userController = new UserController();
             $userController->createUser();
             break;
@@ -56,27 +61,67 @@ try {
             $userController = new UserController();
             $userController->disconnectUser();
             break;
-        
+
         case 'addNewelle':
             $newelleController = new NewelleController();
             $newelleController->addNewelle();
             break;
 
         case 'showUpdateNewelleForm':
-            $userController = new UserController();
-            $userController->showUpdateNewelleForm();
+            $newelleController = new NewelleController();
+            $newelleController->showUpdateNewelleForm();
             break;
 
         case 'updateNewelle':
-            $userController = new UserController();
-            $userController->updateNewelle();
-            break;  
+            $newelleController = new NewelleController();
+            $newelleController->updateNewelle();
+            break;
 
         case 'delete':
+            $newelleController = new NewelleController();
+            $newelleController->deleteNewelle();
+            break;
+
+        case 'showUpdateProfileForm':
             $userController = new UserController();
-            $userController->deleteNewelle();
-            break;      
-            
+            $userController->showUpdateProfileForm();
+            break;
+
+        case 'updateProfile':
+            $userController = new UserController();
+            $userController->updateProfile();
+            break;
+
+        case 'displayProfile':
+            $userController = new UserController();
+            $userController->displayProfile();
+            break;
+
+        case 'addFeedback':
+            $feedbackController = new FeedbackController();
+            $feedbackController->addFeedback();
+            break;
+
+        case 'displayFeedbacks':
+            $userController = new UserController();
+            $userController->displayFeedbacks();
+            break;
+
+        case 'connectionFormAdmin':
+            $adminController = new AdminController();
+            $adminController->displayConnectionFormAdmin();
+            break;
+    
+        case 'connectAdmin':
+            $adminController = new AdminController();
+            $adminController->connectAdmin();
+            break;
+        
+        case 'displayAdmin':
+            $adminController = new AdminController();
+            $adminController->displayAdmin();
+            break;
+
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

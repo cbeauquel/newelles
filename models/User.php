@@ -2,7 +2,7 @@
 
 /**
  * Entité User : un user est défini par
- * un id, un email, un password, un prénom (firstname), un nom (name), une bio, un statut (admin oui/non) et une image de profil.
+ * un id, un email, un password, un prénom (firstname), un nom (name), une bio et une image de profil.
  */ 
 class User extends AbstractEntity 
 {
@@ -12,7 +12,6 @@ class User extends AbstractEntity
     private string $stageName;
     private string $name;
     private ?string $bio;
-    private bool $isAdmin = false;
     private ?string $usrImg;
 
     /**
@@ -121,24 +120,6 @@ class User extends AbstractEntity
     public function getBio() : ?string 
     {
         return $this->bio;
-    }
-
-    /**
-     * Setter pour la isadmin.
-     * @param bool $isAdmin
-     */
-    public function setIsAdmin(bool $isAdmin) : void 
-    {
-        $this->isAdmin = $isAdmin;
-    }
-
-    /**
-     * Getter pour la isadmin.
-     * @return bool
-     */
-    public function getIsAdmin() : bool 
-    {
-        return $this->isAdmin;
     }
 
     /**

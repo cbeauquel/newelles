@@ -4,9 +4,7 @@
  */
  
 class UserController 
-{
-
-    
+{  
     /**
      * Méthode pour créer un utilisateur
      *
@@ -58,7 +56,6 @@ class UserController
         // On ajoute le user.
         $userManager = new UserManager();
         $userManager->addUser($user);
-
 
         // On redirige vers la page de connexion
         Utils::redirect("userAccount");
@@ -152,32 +149,21 @@ class UserController
     public function displayUserAccount() : void
     {
         // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
+        utils::checkIfUserIsConnected();
 
         // On affiche la page compte user.
         $view = new View("userAccount");
         $view->render("userAccount");
+        var_dump($_SESSION);
     }
   
-    /**
-     * Vérifie que l'utilisateur est connecté.
-     * @return void
-     */
-    private function checkIfUserIsConnected() : void
-    {
-        // On vérifie que l'utilisateur est connecté.
-        if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
-        }
-    }
-
     /**
      * Affichage de la page de gestion des newelles.
      * @return void
      */
     public function manageNewelles() : void 
     {
-        $this->checkIfUserIsConnected();
+        utils::checkIfUserIsConnected();
 
         $userId = $_SESSION['idUser'];
         // On récupère la newelle associée.
@@ -191,71 +177,71 @@ class UserController
         ]);
     }
 
+ 
     /**
-     * Affichage du formulaire d'ajout d'une newelle.
+     * Méthode d'affichage du formulaire de mise à jour du profil utilisateur
+     *
      * @return void
      */
-    public function showUpdateNewelleForm() : void 
+    public function showUpdateProfileForm() : void
     {
-        $this->checkIfUserIsConnected();
+        utils::checkIfUserIsConnected();
 
-        // On récupère l'id de la newelle s'il existe.
-        $id = Utils::request("id", -1);
+        // On récupère l'id du user.
+        $idUser = $_SESSION['idUser'];
 
-        // On récupère la newelle associée.
-        $newelleManager = new NewelleManager();
-        $newelle = $newelleManager->getNewelleById($id);
+        // On récupère le profil
+        $userManager = new userManager();
+        $profile = $userManager->getUserById($idUser);
 
-        // Si la newelle n'existe pas, on en crée une vide. 
-        if (!$newelle) {
-            $newelle = new Newelle();
-        }
 
         // On affiche la page de modification de la newelle.
-        $view = new View("Modification d'une newelle");
-        $view->render("updateNewelleForm", [
-            'newelle' => $newelle
+        $view = new View("Modification du profil");
+        $view->render("updateProfileForm", [
+            'profile' => $profile
         ]);
     }
 
     /**
-     * Ajout et modification d'une newelle. 
-     * On sait si une newelle est ajoutée car l'id vaut -1.
+     * Métode de mise à jour du profil utilisateur 
+     *
      * @return void
      */
-    public function updateNewelle() : void 
+    public function updateProfile() : void
     {
-        $this->checkIfUserIsConnected();
+        utils::checkIfUserIsConnected();
 
         // On récupère les données du formulaire.
-        $id = Utils::request("id", -1);
-        $title = Utils::request("title");
-        $genre = Utils::request("genre");
-        $taille = Utils::request("taille");
-        $duree = Utils::request("duree");
-        $content = Utils::request("content");
+        $email = Utils::request("email");
+        $name = Utils::request("name");
+        $firstName = Utils::request("firstName");
+        $stageName = Utils::request("stageName");
+        $bio = Utils::request("bio");
+        $rawUsrImg = $_FILES['usrImg'];
+        $idAdmin = 0;
+        $idUser = $_SESSION['idUser'];
 
         // On vérifie que les données sont valides.
-        if (empty($title) || empty($content)) {
-            throw new Exception("Tous les champs sont obligatoires. 3");
+        if (empty($email) || empty($name) || empty($firstName) || empty($stageName)) {
+            throw new Exception("Tous les champs sont obligatoires. 5");
         }
-        
-        if (!isset($_FILES['nwlImg']) && $_FILES['nwlImg']['error']) 
+
+        if (!isset($rawUsrImg) && $rawUsrImg['error']) 
         {
             throw new Exception("Une erreur est survenue avec le fichier image");
         }
 
-        if ($_FILES['nwlImg']['size'] > 2000000) 
+        if ($rawUsrImg['size'] > 2000000) 
         {
             throw new Exception("L'image est trop lourde (supérieure à 2Mo)");
         }
 
-        // On vérifie si l'image a été mise à jour, si ce n'est pas le cas on assigne la valeur existante à la variable $nwlImg
-        if ($id != -1 && empty($_FILES['nwlImg']['name'])){
-            $nwlImg = utils::request("currentImg");
+        // On vérifie si l'image a été mise à jour, si ce n'est pas le cas on assigne la valeur existante à la variable $UsrImg
+        if (empty($rawUsrImg['name'])){
+            $usrImg = utils::request("currentImg");
         } else {
             // On vérifie que l'extension de l'image est valide.
-            $fileInfo = pathinfo($_FILES['nwlImg']['name']);
+            $fileInfo = pathinfo($rawUsrImg['name']);
             $extension = $fileInfo['extension'];
             $allowedExtensions = ['jpg', 'jpeg', 'gif', 'png'];
             if (!in_array($extension, $allowedExtensions))
@@ -264,92 +250,60 @@ class UserController
             }
 
             //On vérifie si le dossier uploads est manquant
-            $path = 'img/content/';
+            $path = 'img/users/';
             if (!is_dir($path)) {
                 throw new Exception("Erreur lors de l'enregistrement de l'image, dossier cible manquant");
             }
-            move_uploaded_file($_FILES['nwlImg']['tmp_name'], $path . basename($_FILES['nwlImg']['name']));
-            $nwlImg = $path . basename($_FILES['nwlImg']['name']);        
+            move_uploaded_file($rawUsrImg['tmp_name'], $path . basename($rawUsrImg['name']));
+            $usrImg = $path . basename($rawUsrImg['name']);        
         }
 
-        //on vérifie les données audio 
-        if (!isset($_FILES['audio']) && $_FILES['audio']['error']) 
-        {
-            throw new Exception("Une erreur est survenue avec le fichier audio");
-        }
-
-        if ($_FILES['audio']['size'] > 8000000) 
-        {
-            throw new Exception("La piste audio est trop lourde (supérieure à 8Mo)");
-        }
-
-        if ($id != -1 && empty($_FILES['audio']['name'])){
-            $nwlImg = utils::request("currentAudio");
-        } else {
-            // On vérifie que l'extension de l'image est valide.
-            $fileInfo = pathinfo($_FILES['audio']['name']);
-            $extension = $fileInfo['extension'];
-            $allowedExtensions = ['mp3', 'wmv'];
-            if (!in_array($extension, $allowedExtensions))
-            {
-                throw new Exception("L'envoi n'a pas pu être effectué, l'extension {$extension} n'est pas autorisée");
-            }
-
-            //On vérifie si le dossier uploads est manquant
-            $path = 'audio/';
-            if (!is_dir($path)) {
-                throw new Exception("Erreur lors de l'enregistrement du son, dossier cible manquant");
-            }
-            move_uploaded_file($_FILES['audio']['tmp_name'], $path . basename($_FILES['audio']['name']));
-            $audio = $path . basename($_FILES['audio']['name']);        
-        }
-
-
-
-        //on calcule la taille du texte envoyée (variable $content)
-        $taille = str_word_count($content);
-
-        // on s 'assure que le champs "durée" est bien un entier 
-        $duree = preg_replace('/\D/', '', $duree);
-
-        // On crée l'objet Newelle.
-        $newelle = new Newelle([
-            'id' => $id, // Si l'id vaut -1, la newelle sera ajoutée. Sinon, elle sera modifiée.
-            'title' => $title,
-            'content' => $content,
-            'genre' => $genre,
-            'taille' => $taille,
-            'duree' => $duree,
-            'id_user' => $_SESSION['idUser'],
-            'nwl_img' => $nwlImg,
-            'audio' => $audio
+        // On crée l'objet User.
+        $profile = new User([
+            'email' => $email,
+            'name' => $name,
+            'first_name' => $firstName,
+            'stage_name' => $stageName,
+            'bio' => $bio,
+            'usr_img' => $usrImg,
+            'id' => $idUser,
         ]);
-
         // On ajoute la newelle.
-        $newelleManager = new NewelleManager();
-        $newelleManager->addOrUpdateNewelle($newelle);
+        $userManager = new UserManager();
+        $userManager->UpdateUser($profile);
 
         // On redirige vers la page du compte utilisateur.
-        Utils::redirect("detail&id=" . $newelle->getId());
-
+        Utils::redirect("userAccount");
     }
 
-
-    /**
-     * Suppression d'une newelle.
-     * @return void
-     */
-    public function deleteNewelle() : void
+    public function displayProfile() : void
     {
-        $this->checkIfUserIsConnected();
+        //on récupère l'ID du profile       
+        $profileId = utils::request("id", -1);
 
-        $id = Utils::request("id", -1);
+        //on récpère les données pour l'objet user
+        $userManager = new UserManager();
+        $profile = $userManager->getUserById($profileId);
 
-        // On supprime la newelle.
+        if (!$profile) {
+            throw new Exception("Le profile demandé n'existe pas.");
+        }
+
+        //on récupère les newelles du profil sélectionné
         $newelleManager = new NewelleManager();
-        $newelleManager->deleteNewelle($id);
-       
-        // On redirige vers la page d'administration.
-        Utils::redirect("userAccount");
+        $profileNewelles = $newelleManager->getAllNewellesByUser($profileId);
+        $view = new View($profile->getStageName());
+        $view->render("displayProfile", ['profile' => $profile, 'profileNewelles' => $profileNewelles]);
+    }
+
+    public function displayFeedbacks():void
+    {
+        utils::checkIfUserIsConnected();
+        $id = $_SESSION['idUser'];
+        // on récupère les feedbacks groupés par newelle et filtrés par utilisateur
+        $feedbackManager = new FeedbackManager();
+        $userFeedbacks = $feedbackManager->getFeedbacksByUserId($id);
+        $view = new View("Affichage des feedbacks");
+        $view->render("displayFeedbacks", ['userFeedbacks' => $userFeedbacks]);
     }
 }

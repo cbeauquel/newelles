@@ -12,7 +12,7 @@ class Newelle extends AbstractEntity
     private ?DateTime $dateCreation = null;
     private ?DateTime $dateUpdate = null;
     private string $title = "";
-    private string $audio = "";
+    private ?string $audio = "";
     private string $content = "";
     private string $nwlImg = "";
     private string $genre = "";
@@ -134,18 +134,18 @@ class Newelle extends AbstractEntity
 
     /**
      * Setter pour le lien vers l'audio.
-     * @param string $audio
+     * @param ?string $audio
      */
-    public function setAudio(string $audio) : void 
+    public function setAudio(?string $audio) : void 
     {
         $this->audio = $audio;
     }
 
     /**
      * Getter pour le lien vers l'audio.
-     * @return string
+     * @return ?string
      */
-    public function getAudio() : string 
+    public function getAudio() : ?string 
     {
         return $this->audio;
     }

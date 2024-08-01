@@ -19,6 +19,7 @@
     --headerColor: #38302b;
     --headerPaleColor: #eeece1;
     --titleColor: #38302b;
+    --linkColor: #df6811;
 }
 
 /**
@@ -72,6 +73,7 @@ ul {
 a {
     text-decoration: none;
     color: inherit;
+    font-weight:bold;
 }
 
 
@@ -109,6 +111,10 @@ header{
     padding:30px;
 }
 
+.header > .nav  .material-symbols-outlined{
+    font-size:5em;
+}
+
 .signature{
     background-color: var(--headerColor);
     color: var(--headerPaleColor);
@@ -117,7 +123,7 @@ header{
     padding:10px;
     margin-bottom: 30px;
     text-align:center;
-    font-size:1.3em;
+    font-size:1.5em;
 }
 
 /* Coeur de page.*/
@@ -137,6 +143,7 @@ main {
 table {
     margin: 20px auto;
     border-collapse: collapse;
+    width:100%;
 }
 
 thead {
@@ -148,6 +155,19 @@ th, td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    font-size:1.2em;
+}
+
+td a{
+    text-decoration:underline;
+}
+
+td a:hover{
+    color:var(--linkColor);
+}
+
+tr {
+    height:40px;
 }
 
 th.idUser, th.stageName, th.audio, th.content, th.nwlImg, th.id{
@@ -171,10 +191,8 @@ td.delete {
     text-decoration: underline;
     color:var(--titleColor);
 }
-
+/*****Home Page**********/
 /* Affichage des newelles */
-
-
 .newelleList {
     display: flex;
     flex-direction: row;
@@ -183,7 +201,7 @@ td.delete {
     width: 100%;
 }
 
-article.home{
+article.home-newelles{
     width:33%;
 }
 
@@ -204,7 +222,6 @@ article.home{
     text-align: justify;
     width:70%;
     text-overflow: hidden;
-
 }
 
 .newelle-img{
@@ -246,6 +263,64 @@ article.home{
     border-right: 1px solid var(--titleColor);
 }
 
+a.button{
+    padding:15px;
+    background-color: var(--titleColor);
+    border-radius:5px;
+    color:var(--headerPaleColor);
+    display:block;
+    margin:auto;
+
+}
+
+/* affichage du top 4 profiles */
+/* Affichage des newelles */
+
+article.home-profiles{
+    width:24%;
+}
+
+.profile {
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    margin:10px;
+    justify-content:space-around;
+    background-color: var(--headerPaleColor);
+    height:250px;
+    border-radius:50px;
+    padding-right:15px;
+}
+
+.profile-img{
+    width:40%;
+    padding:15px 0px 20px 15px;
+    object-fit:cover;
+    height:250px;
+    border-radius:50px 0px 0px 50px;
+    border-right: dotted 1px var(--titleColor);
+}
+.profile-content {
+    display:flex;
+    flex-direction:column;
+    text-align: justify;
+    width:60%;
+    text-overflow: hidden;
+}
+
+.profile-content > h3 {
+    color: var(--headerColor);
+    width:100%;
+    padding:10px 0 10px 10px;
+}
+
+.profile-content > p {
+    margin-bottom: 10px;
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+
 /* Page de détail d'un newelle */
 
 article.detail{
@@ -274,17 +349,32 @@ audio{
 .meta-data{
     width:25%;
     padding:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .detail-img{
-    width:100%;
+    width:80%;
     padding:15px 5px 20px 5px;
-    object-fit:cover;
+    object-fit:scale-down;
+    display:block;
+    max-height:400px;
 }
 
 .meta-data li{
     font-size:1.2em;
     padding-bottom: 20px;;
+}
+
+.meta-data a{
+    font-size:0.9em;
+    padding-top: 10px;
+    text-decoration:underline;
+}
+
+.meta-data a:hover{
+    color:var(--linkColor);
 }
 
 .newelle-text{
@@ -319,41 +409,103 @@ audio{
 }
 
 /* Affichage des commentaires */
-.comments {
-    width: 100%;
-    margin-top: 30px;
+
+.feedbacks{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width:100%;
 }
 
-.commentsTitle {
-    color: var(--titleColor);
+.feedback .material-symbols-outlined {
+    font-variation-settings: 'FILL' 1;
+    font-size:2em;
+    color:orange;
 }
 
-.comments ul {
-    margin-bottom: 30px;
+
+.feedback li{
+    width:100%;
+    background-color: var(--backgroundNewelle);
+    border-bottom:dotted 1px var(--titleColor);
+    padding:20px 0px 20px 0px;
 }
 
-.comments li {
-    display: flex;
+h4.info{
+    padding: 20px 0px 10px 15px;
+    margin:0;
+    font-size:1em;
+    font-style:italic;
+    font-weight: normal;
+    text-align:left;
+}
+
+p.info{
+    padding:10px;
+    font-size:1em;
+} 
+
+p.no-comment{
+    padding:10px;
+    font-size:1em;
+    background-color:var(--backgroundColor);
+} 
+
+p.content{
+    background-color: var(--backgroundColor);
+    padding:10px;
+    font-size:1em;
+} 
+
+.feedback-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width:100%;
+}
+
+.feedback-form label{
+    padding:10px 0px 10px 0px;
+    text-align:center;
+}
+
+.feedback-form button{
+    margin:10px auto 10px auto;
+    padding:10px 20px 10px 20px;
+    border-radius:5px;
+}
+
+.rating {
     margin-bottom: 20px;
-}
-
-.comments .smiley {
     display: flex;
-    align-items: flex-start;
-    line-height: 0.7;
-    font-size: 60px;
-    color: var(--quoteColor);
-}
+    flex-direction: row-reverse; /* this is the magic */
+    justify-content: flex-end;
+    font-variation-settings: 'FILL' 1;
+    color: var(--titleColor);
+  }
 
-/* On redéfinit certaines parties du "info" pour l'affichage dans les commentaires */
-.detailComment .info {
-    margin: 5px 0 5px 0;
-    font-style: normal;
-}
-
-.detailComment .content {
-    margin: 5px 0 5px 0;
-}
+  .rating label.material-symbols-outlined{
+    font-size: 3em;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .rating label:hover,
+  .rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
+    color: orange;
+  }
+  
+  .rating input:checked ~ label {
+    color: orange;
+  }
 
 /* Page d'erreur */
 
@@ -505,6 +657,15 @@ nav.nwlMngmt{
    width:100%; 
 }
 
+/**
+*Affichage du profil utilisateur
+*/
+h3.profile-display{
+    text-align:center;
+    border-bottom:solid 3px var(--titleColor);
+}
+
+
 /** 
  * Footer global de la page.
  */
@@ -553,7 +714,7 @@ form textarea {
 
 }
 
-form .currentImg{
+form .current-img{
     max-width: 30%;
     max-height: 300px;
 }
@@ -566,7 +727,7 @@ form .formGrid {
 
 form .formGrid .submit {
     grid-column: 2; /* Place l'élément dans la deuxième colonne (la dernière) */
-    grid-row:9; /* Place l'élément dans la troisième rangée (la dernière) */
+    grid-row:10; /* Place l'élément dans la troisième rangée (la dernière) */
 }
 
 
