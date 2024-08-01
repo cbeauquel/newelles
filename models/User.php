@@ -13,6 +13,8 @@ class User extends AbstractEntity
     private string $name;
     private ?string $bio;
     private ?string $usrImg;
+    private string $modifier = "";
+    private string $supprimer = "";
 
     /**
      * Setter pour l'email.
@@ -138,5 +140,41 @@ class User extends AbstractEntity
     public function getUsrImg() : ?string 
     {
         return $this->usrImg;
+    }
+  
+    /**
+     * Setter pour le lien "modifier".
+     * @param string $modifier
+     */
+    public function setModifier(string $modifier) : void 
+    {
+        $this->modifier = $modifier;
+    }
+
+    /**
+     * Getter pour le lien modifier.
+     * @return string
+     */
+    public function getModifier() : string 
+    {
+        return $this->modifier;
+    }
+        
+    /**
+     * Setter pour le lien "supprimer".
+     * @param string $supprimerr
+     */
+    public function setSupprimer(string $supprimer) : void 
+    {
+        $this->supprimer = $supprimer;
+    }
+
+    /**
+     * Getter pour le lien voir.
+     * @return string
+     */
+    public function getSupprimer() : string 
+    {
+        return $this->supprimer;
     }
 }

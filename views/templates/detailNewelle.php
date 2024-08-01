@@ -61,8 +61,8 @@
                                 <label class="material-symbols-outlined" for="thumbup3">Thumb_Up</label>
                                 <input type="radio" id="thumbup2" name="rating" value="2">
                                 <label class="material-symbols-outlined" for="thumbup2">Thumb_Up</label>
-                                <input type="radio" id="thumbup1" name="rating" value="1">
-                                <label class="material-symbols-outlined" for="thumbup1">Thumb_Up</label>
+                                <input type="radio" id="thumbup1" name="rating" value="1" checked>
+                                <label class="material-symbols-outlined" for="thumbup1" >Thumb_Up</label>
                             </div>
                         <label for="nickname">Indiquez un pseudo</label>
                         <input type="text" id="nickname" name="nickname" placeholder="Votre pseudo">

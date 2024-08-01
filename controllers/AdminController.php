@@ -53,7 +53,7 @@ class AdminController extends UserController
         }
         // On connecte l'utilisateur.
         $_SESSION['admin'] = $admin;
-        $_SESSION['idadmin'] = $admin->getId();
+        $_SESSION['idAdmin'] = $admin->getId();
         
         // On redirige vers la page compte utilisateur.
         Utils::redirect("displayAdmin");
@@ -90,10 +90,114 @@ class AdminController extends UserController
     public function displayAdmin() : void
     {
         // On vérifie que l'admin est connecté.
-        $this->checkIfAdminIsConnected();
+        utils::checkIfUserIsConnected();
 
         // On affiche la page compte user.
         $view = new View("Page d'administration");
-        $view->render("admin");
+        $view->renderAdmin("adminStats");
+    }
+
+    /**
+     * Méthode d'affichage du formulaire de mise à jour du profil utilisateur
+     *
+     * @return void
+     */
+    public function adminUpdateProfileForm() : void
+    {
+        $this->checkIfAdminIsConnected();
+
+        $idUser = utils::request('id');
+
+        // On récupère le profil
+        $userManager = new userManager();
+        $profile = $userManager->getUserById($idUser);
+
+        // On affiche la page de modification de la newelle.
+        $view = new View("Modification du profil");
+        $view->renderAdmin("updateProfileForm", ['profile' => $profile]);         
+    }
+
+    public function adminNewellers(){
+
+        $this->checkIfAdminIsConnected();
+
+        $adminManager = new AdminManager();
+        $newellers = $adminManager->manageNewellers();
+
+        // On affiche la page 
+        $view = new View("Gestion des Newellers");
+        $view->renderAdmin("adminNewellers", ['newellers' => $newellers]);   
+    }
+
+    public function adminProfileDelete(){
+
+        $this->checkIfAdminIsConnected();
+
+        $id = Utils::request("id");
+
+        $adminUser = new AdminUser();
+        $adminUser->deleteUser($id);
+
+        Utils::redirect("adminNewellers");
+    }
+
+    /**
+     * Affichage du formulaire de modif d'une newelle 
+     * @return void
+     */
+    public function adminUpdateNewelleForm() : void 
+    {
+        $this->checkIfAdminIsConnected();
+
+        // On récupère l'id de la newelle s'il existe.
+        $id = Utils::request("id");
+        // On récupère la newelle associée.
+        $newelleManager = new NewelleManager();
+        $newelle = $newelleManager->getNewelleById($id);
+
+        // On affiche la page de modification de la newelle.
+        $view = new View("Modification d'une newelle");
+        $view->renderAdmin("updateNewelleForm", ['newelle' => $newelle]);
+    }
+
+    public function adminNewelles(){
+        $this->checkIfAdminIsConnected();
+
+        $adminManager = new AdminManager();
+        $adminNewelles = $adminManager->manageNewelles();
+
+        // On affiche la page 
+        $view = new View("Gestion des Newelles");
+        $view->renderAdmin("adminNewelles", ['adminNewelles' => $adminNewelles]);   
+    }
+
+    public function adminFeedbacks(){
+        $this->checkIfAdminIsConnected();
+
+        $adminManager = new AdminManager();
+        $adminFeedbacks = $adminManager->manageFeedbacks();
+
+        // On affiche la page 
+        $view = new View("Gestion des Feedbacks");
+        $view->renderAdmin("adminFeedbacks", ['adminFeedbacks' => $adminFeedbacks]);         
+    }
+
+    public function adminFeedbackDelete(){
+
+        $this->checkIfAdminIsConnected();
+
+        $id = Utils::request("id");
+
+        $feedbackManager = new FeedbackManager();
+        $feedbackManager->deleteFeedback($id);
+
+        Utils::redirect("adminFeedbacks");
+    }
+
+    public function adminStats(){
+        $this->checkIfAdminIsConnected();
+
+        $view = new View("Gestion des Stats");
+        $view->renderAdmin("adminStats");         
     }
 }

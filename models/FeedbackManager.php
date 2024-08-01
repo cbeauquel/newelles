@@ -55,4 +55,16 @@ class FeedbackManager extends AbstractEntityManager
         }
         return $userFeedbacks;
     }
+
+    
+    /**
+     * Supprime un Feedback.
+     * @param int $id : l'id du feedback à supprimer.
+     * @return void
+     */
+    public function deleteFeedback(int $id) : void
+    {
+        $sql = "DELETE FROM feedback WHERE id = :id";
+        $this->db->query($sql, ['id' => $id]);
+    }
 }

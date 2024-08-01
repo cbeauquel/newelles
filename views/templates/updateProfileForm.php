@@ -23,6 +23,7 @@
             <input type="hidden" value="<?=$profile->getUsrImg() ?>" name="currentImg" id="currentImg">
             <label class="nwl-img-lbl" for="usrImg">Insérez une nouvelle image d'illustration (fichiers acceptés : jpg, png)</label>
             <input class="nwl-img-input" type="file" name="usrImg" id="usrImg">
+            <input type="hidden" value="<?=$profile->getId() ?>" name="id" id="id">
             <input type="hidden" name="action" value="updateProfile">          
             <button class="submit">Modifier</button>
         </div>

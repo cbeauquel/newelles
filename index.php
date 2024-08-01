@@ -107,6 +107,11 @@ try {
             $userController->displayFeedbacks();
             break;
 
+        case 'disconnectAdmin':
+            $adminController = new AdminController();
+            $adminController->disconnectAdmin();
+            break;
+
         case 'connectionFormAdmin':
             $adminController = new AdminController();
             $adminController->displayConnectionFormAdmin();
@@ -120,6 +125,46 @@ try {
         case 'displayAdmin':
             $adminController = new AdminController();
             $adminController->displayAdmin();
+            break;
+        
+        case 'adminNewellers':
+            $adminController = new AdminController();
+            $adminController->adminNewellers();
+            break;
+        
+        case 'adminUpdateProfileForm':
+            $adminController = new AdminController();
+            $adminController->adminUpdateProfileForm();
+            break;
+
+        case 'adminProfileDelete':
+            $adminController = new AdminController();
+            $adminController->adminProfileDelete();
+            break;
+        
+        case 'adminNewelles':
+            $adminController = new AdminController();
+            $adminController->adminNewelles();
+            break;
+
+        case 'adminUpdateNewelleForm':
+            $adminController = new AdminController();
+            $adminController->adminUpdateNewelleForm();
+            break;
+     
+        case 'adminFeedbacks':
+            $adminController = new AdminController();
+            $adminController->adminFeedbacks();
+            break;
+
+        case 'adminFeedbackDelete':
+        $adminController = new AdminController();
+        $adminController->adminFeedbackDelete();
+        break;
+    
+        case 'adminStats':
+            $adminController = new AdminController();
+            $adminController->adminStats();
             break;
 
         default:

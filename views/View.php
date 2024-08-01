@@ -39,6 +39,25 @@ class View
     }
     
     /**
+     * Cette méthode retourne une page complète pour la partie admin. 
+     * @param string $viewPath : le chemin de la vue demandée par le controlleur. 
+     * @param array $params : les paramètres que le controlleur a envoyé à la vue.
+     * @return string
+     */
+    public function renderAdmin(string $viewName, array $params = []) : void 
+    {
+        // On s'occupe de la vue envoyée
+        $viewPath = $this->buildViewPath($viewName);
+        
+        // Les deux variables ci-dessous sont utilisées dans le "main.php" qui est le template principal.
+        $content = $this->_renderViewFromTemplate($viewPath, $params);
+        $title = $this->title;
+        ob_start();
+        require(ADMIN_VIEW_PATH);
+        echo ob_get_clean();
+    }
+
+    /**
      * Coeur de la classe, c'est ici qu'est généré ce que le controlleur a demandé. 
      * @param $viewPath : le chemin de la vue demandée par le controlleur.
      * @param array $params : les paramètres que le controlleur a envoyés à la vue.

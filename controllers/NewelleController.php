@@ -13,7 +13,6 @@ class NewelleController
 
         $userManager = new UserManager();
         $profiles = $userManager->getAllProfiles();
-
         $view = new View("Accueil");
         $view->render("home", ['newelles' => $newelles, 'profiles' => $profiles]);
     }
@@ -199,7 +198,7 @@ class NewelleController
             'genre' => $genre,
             'taille' => $taille,
             'duree' => $duree,
-            'id_user' => $_SESSION['idUser'],
+            'id_user' => $idUser,
             'nwl_img' => $nwlImg,
             'audio' => $audio,
         ]);
@@ -209,9 +208,11 @@ class NewelleController
         $newelleManager->addOrUpdateNewelle($newelle);
 
         // On redirige vers la page de la newelle.
-        if ($id==="-1"){
+        if ($_SESSION['admin']){
+            Utils::redirect("adminNewelles");
+        } elseif ($id==="-1"){
             Utils::redirect("home");
-        } else {
+        } else { 
             Utils::redirect("detail&id=" . $newelle->getId());
         }    
     }
@@ -231,7 +232,11 @@ class NewelleController
         $newelleManager->deleteNewelle($id);
        
         // On redirige vers la page d'administration.
+        if ($_SESSION['admin']){
+            Utils::redirect("adminNewelles");
+        } else {
         Utils::redirect("userAccount");
+        }
     }
     
     /**
