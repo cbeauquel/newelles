@@ -4,7 +4,7 @@
      */
 ?>
 <h3>Gestion des Newelles</h3>
-    <div class="newelles">
+    <div class="admin-newelles">
         <?php
             utils::createTable($adminNewelles);
         ?>

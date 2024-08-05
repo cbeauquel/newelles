@@ -4,7 +4,7 @@
      */
 ?>
 <h3>Gestion des Stats</h3>
-    <div class="stats">
+    <div class="admin-stats">
         <?php
             utils::createTable($stats);
         ?>

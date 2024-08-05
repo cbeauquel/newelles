@@ -6,9 +6,11 @@
  */
  class Monitoring extends AbstractEntity 
  {
-    private string $pageTracked;
-    private string $views;
-    //private int $nwlId;
+    private string $pageTracked = "";
+    private string $views = "";
+    private string $ipAdress = "";
+    private string $date = "";
+
 
 
     /**
@@ -48,24 +50,39 @@
         return $this->views;
     }
 
-    // /**
-    //  * Setter pour la propriété nwlID (id de la newelle)
-    //  *
-    //  * @param integer $nwlId
-    //  * @return void
-    //  */
-    // public function setNwlId(int $nwlId):void
-    // {
-    //     $this->nwlId = $nwlId;
-    // }
+    /**
+     * Setter pour l'adresse IP du visiteur
+     * @param string $ipAdress
+     */
+    public function setIpAdress(string $ipAdress) : void 
+    {
+        $this->ipAdress = $ipAdress;
+    }
 
-    // /**
-    //  * Getter pour la propriété nwlId (id de la newelle)
-    //  *
-    //  * @return integer
-    //  */
-    // public function getNwlId():int
-    // {
-    //     return $this->nwlId;
-    // }
+    /**
+     * Getter pour l'adresse IP du visiteur
+     * @return string
+     */
+    public function getIpAdress() : string
+    {
+        return $this->ipAdress;
+    }
+    
+    /**
+     * Setter pour la date de connection. 
+     */
+    public function setDate(string $date) : void 
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * Getter pour la date de création.
+     * @return string
+     */
+    public function getDate() : string
+    {
+        return $this->date;
+    }
+
  }

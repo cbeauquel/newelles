@@ -85,7 +85,7 @@ class AdminManager extends UserManager
      */
     public function ManageFeedbacks() : ?array
     {
-        $sql = "SELECT b. title, a. *, c. stage_name,
+        $sql = "SELECT b. title AS `nwlTitle`, a. *, c. stage_name,
         CONCAT('<a href=\"index.php?action=adminFeedbackDelete&id=',a. `id`,'\"','onclick=\'return confirm(\"Êtes-vous sûr de vouloir supprimer ce Feedback ?\")\'>Supprimer</a>') AS `Supprimer`
         FROM `feedback` a
         LEFT JOIN `newelle` b on a. `nwl_id` = b. `id`

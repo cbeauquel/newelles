@@ -104,13 +104,19 @@ class NewelleController
 
         // On récupère les données du formulaire.
         $id = Utils::request("id", -1);
-        $idUser =  Utils::request("idUser");
         $title = Utils::request("title");
         $genre = Utils::request("genre");
         $duree = Utils::request("duree");
         $content = Utils::request("content");
         $nwlImg = $_FILES['nwlImg'];
         $audio = $_FILES['audio'];
+
+        //si c'est un ajout de newelle (id = -1) alors l'id Utilisateur est récupéré dans la session
+        if ($id === "-1") {
+            $idUser = $_SESSION['idUser'];
+        } else {
+            $idUser = utils::request("idUser");
+        }
 
 
         // On vérifie que les données sont valides.
@@ -148,7 +154,6 @@ class NewelleController
             move_uploaded_file($nwlImg['tmp_name'], $path . basename($nwlImg['name']));
             $nwlImg = $path . basename($nwlImg['name']);        
         }
-        var_dump($id);
 
         //on vérifie les données audio 
         if (!isset($audio) && $audio['error']) 

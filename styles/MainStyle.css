@@ -170,14 +170,6 @@ tr {
     height:40px;
 }
 
-th.idUser, th.stageName, th.audio, th.content, th.nwlImg, th.id{
-    display:none;
-}    
-
-td.idUser, td.stageName, td.audio, td.content, td.nwlImg, td.id{
-    display:none;
-}    
-
 tbody tr:nth-child(odd) {
     background-color: var(--headerPaleColor);
 }
@@ -193,7 +185,7 @@ td.delete {
 }
 /*****Home Page**********/
 /* Affichage des newelles */
-.newelleList {
+.newelle-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -492,6 +484,10 @@ p.content{
     border-radius:5px;
 }
 
+.h-captcha{
+    margin-top:10px;
+}
+
 .rating {
     margin-bottom: 20px;
     display: flex;
@@ -543,55 +539,6 @@ p.content{
     font-weight: bold;
 }
 
-/**
- * Partie admin
- */ 
-
-.adminNewelle, .adminComment {
-    margin-bottom: 20px;
-    background-color: var(--commentPaleColor);
-    color: white;
-}
-
-.newelleLine {
-    display: flex; 
-}
-
-.newelleLine div {
-    display: flex;
-    align-items: center;
-}
-
-.newelleLine .title {
-    font-weight: bold;
-    min-width: 200px;
-    width: 200px;
-}
-
-.newelleLine .content {
-    flex-grow: 1;
-}
-
-.newelleLine > div {
-    padding: 20px;
-    border: 1px solid var(--backgroundColor);
-}
-
-.commentLine {
-    display:grid;
-    grid-template-columns: 150px 600px 200px 150px;
-}
-
-.commentLine .pseudo, .commentLine .content, .commentLine .date, .commentLine .supprimer{
-    height:100px;
-    padding:20px;
-    border:solid 1px #ddd;
-    text-align:center;
-}
-
-.commentLine .pseudo{
-    font-weight:bold;
-}
 
 /**
  * Compte utilisateur
@@ -672,6 +619,12 @@ p.content{
 nav.nwlMngmt{
    width:100%; 
 }
+
+table.manageNewelles th.idUser, table.manageNewelles th.stageName, table.manageNewelles th.audio, table.manageNewelles th.content, table.manageNewelles th.nwlImg, table.manageNewelles th.id, 
+table.manageNewelles td.idUser, table.manageNewelles td.stageName, table.manageNewelles td.audio, table.manageNewelles td.content, table.manageNewelles td.nwlImg, table.manageNewelles td.id 
+{
+    display:none;
+}    
 
 /**
 *Affichage du profil utilisateur
@@ -848,11 +801,18 @@ main.admin h2{
     background-color: var(--backgroundNewelle);
 }
 
-th.id, td.id, th.stageName, td.stageName {
-    display:table-cell;
-}
 
-th.password, th.bio, th.audio, th.usrImg, td.password, td.bio, td.audio, td.usrImg{
+/**masque les cellules "password, bio, audio, usr_img, nwl_img, content dans la section "newellers" du back office*/
+table.adminNewellers th.password, table.adminNewellers th.bio, table.adminNewellers th.audio, table.adminNewellers th.usrImg,  table.adminNewellers th.nwlImg, table.adminNewellers th.content, 
+table.adminNewellers td.password, table.adminNewellers td.bio, table.adminNewellers td.audio, table.adminNewellers td.usrImg,  table.adminNewellers td.nwlImg, table.adminNewellers td.content
+{
     display:none;
 }   
+
+/**masque les cellules**/
+table.adminNewelles th.audio, table.adminNewelles th.content, table.adminNewelles th.nwlImg, 
+table.adminNewelles td.audio, table.adminNewelles td.content, table.adminNewelles td.nwlImg
+{
+    display:none;
+}    
 

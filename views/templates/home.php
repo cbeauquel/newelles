@@ -4,7 +4,7 @@
      */
 ?>
 
-<div class="newelleList">
+<div class="newelle-list">
     <h2>Les 6 dernières Newelles</h2>
     <?php foreach($newelles as $newelle) { ?>
         <article class="home-newelles">

@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" />
     <!-- Place the first <script> tag in your HTML's <head> -->
     <script src="https://cdn.tiny.cloud/1/dcvenw2y0g3iby40929n5t6szarz1lw6is0467eq3u0gehmm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
     <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
     tinymce.init({
@@ -34,6 +33,7 @@
         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
     });
     </script>
+    <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
 </head>
 
 <body>

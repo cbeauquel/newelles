@@ -154,7 +154,6 @@ class UserController
         // On affiche la page compte user.
         $view = new View("userAccount");
         $view->render("userAccount");
-        var_dump($_SESSION);
     }
   
     /**

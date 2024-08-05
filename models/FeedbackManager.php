@@ -39,8 +39,13 @@ class FeedbackManager extends AbstractEntityManager
         }
         return $feedbacks;
     }
-
-    public function getFeedbacksByUserId($id):array
+    /**
+     * Méthode de récupération des feedbacks par utilisateur
+     *
+     * @param int $id
+     * @return array
+     */
+    public function getFeedbacksByUserId(int $id):array
     {
         $sql="SELECT a. * 
               FROM `feedback` a
@@ -56,7 +61,6 @@ class FeedbackManager extends AbstractEntityManager
         return $userFeedbacks;
     }
 
-    
     /**
      * Supprime un Feedback.
      * @param int $id : l'id du feedback à supprimer.

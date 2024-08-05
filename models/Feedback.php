@@ -5,8 +5,9 @@
  */
 class Feedback extends AbstractEntity
 {
-    private int $nwlId;
-    private string $nickName;
+    private int $nwlId = 0;
+    private string $nwlTitle = "";
+    private string $nickName = "";
     private int $thumbUp = 0;
     private string $comment = "";
     private ?DateTime $dateComment = null;
@@ -32,6 +33,24 @@ class Feedback extends AbstractEntity
     public function getNwlId():int
     {
         return $this->nwlId;
+    }
+
+    /**
+     * Setter pour le titre de la newelle commentée.
+     * @param string $nwlTitle
+     */
+    public function setNwlTitle(string $nwlTitle) : void 
+    {
+        $this->nwlTitle = $nwlTitle;
+    }
+
+    /**
+     * Getter pour le titre de la newelle commentée..
+     * @return string
+     */
+    public function getNwlTitle() : string 
+    {
+        return $this->nwlTitle;
     }
 
     /**

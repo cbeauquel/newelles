@@ -15,7 +15,7 @@
             </div>
         </div>
     </article>
-    <div class="newelleList">
+    <div class="newelle-list">
     <?php 
     if (!empty($profileNewelles))
         {?>

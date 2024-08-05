@@ -6,13 +6,13 @@
  */ 
 class User extends AbstractEntity 
 {
-    private string $email;
-    private string $password;
-    private string $firstName;
-    private string $stageName;
-    private string $name;
-    private ?string $bio;
-    private ?string $usrImg;
+    private string $email = "";
+    private string $password = "";
+    private string $firstName = "";
+    private string $stageName = "";
+    private string $name = "";
+    private ?string $bio = "";
+    private ?string $usrImg = "";
     private string $modifier = "";
     private string $supprimer = "";
 

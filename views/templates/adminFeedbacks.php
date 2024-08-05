@@ -4,7 +4,7 @@
      */
 ?>
 <h3>Gestion des Feedbacks</h3>
-    <div class="newellers">
+    <div class="admin-feedbacks">
         <?php
             utils::createTable($adminFeedbacks);
         ?>

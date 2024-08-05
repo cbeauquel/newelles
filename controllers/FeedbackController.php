@@ -11,11 +11,28 @@ class FeedbackController
         $rating = (int)utils::request('rating');
         $nickName = utils::request('nickname');
         $nwlId = utils::request('nwlId');
+        $hCaptcha = utils::request('h-captcha-response');
 
         if (empty($comment) || empty($rating) || empty($nickName))
         {
             throw new exception("Tous les champs sont obligatoires. 3");
         }
+
+        // on vérifie les données du captcha
+        if(isset($hCaptcha) && !empty($hCaptcha))
+        {
+              $secret = H_CAPTCHA;
+              $verifyResponse = file_get_contents('https://hcaptcha.com/siteverify?secret='.$secret.'&response='.$hCaptcha.'&remoteip='.$_SERVER['REMOTE_ADDR']);
+              $responseData = json_decode($verifyResponse);
+              if($responseData->success)
+              {
+                  $succMsg = 'Your request have submitted successfully.';
+              }
+              else
+              {
+                  $errMsg = 'Robot verification failed, please try again.';
+              }
+         }
 
         //on crée l'objet feedback
         $feedback = new Feedback([

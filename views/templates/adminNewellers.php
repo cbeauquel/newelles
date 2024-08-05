@@ -4,7 +4,7 @@
      */
 ?>
 <h3>Gestion des Newellers</h3>
-    <div class="newellers">
+    <div class="admin-newellers">
         <?php
             utils::createTable($newellers);
         ?>

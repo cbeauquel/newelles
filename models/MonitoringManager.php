@@ -55,7 +55,7 @@ class MonitoringManager extends AbstractEntityManager
      */
     public function extractStats() : array 
     {
-        $sql = "SELECT CONCAT_WS(' ',`page_tracked`,`nwl_id`) as `pageTracked`, COUNT(`id`) as `views`
+        $sql = "SELECT id, CONCAT_WS(' ',`page_tracked`,`nwl_id`) as `pageTracked`, COUNT(`id`) as `views`, `ip_adress`, `date`
                 FROM `connections`
                 WHERE MONTH(`date`) = MONTH(CURRENT_DATE)
                     AND YEAR(`date`) = YEAR(CURRENT_DATE)
