@@ -5,11 +5,14 @@
  */
 class Feedback extends AbstractEntity
 {
-    private int $nwlId;
-    private string $nickName;
+    private int $nwlId = 0;
+    private string $nwlTitle = "";
+    private string $nickName = "";
     private int $thumbUp = 0;
     private string $comment = "";
     private ?DateTime $dateComment = null;
+    private string $supprimer = "";
+
 
     /**
      * Setter pour la propriété nwlID (id de la newelle)
@@ -30,6 +33,24 @@ class Feedback extends AbstractEntity
     public function getNwlId():int
     {
         return $this->nwlId;
+    }
+
+    /**
+     * Setter pour le titre de la newelle commentée.
+     * @param string $nwlTitle
+     */
+    public function setNwlTitle(string $nwlTitle) : void 
+    {
+        $this->nwlTitle = $nwlTitle;
+    }
+
+    /**
+     * Getter pour le titre de la newelle commentée..
+     * @return string
+     */
+    public function getNwlTitle() : string 
+    {
+        return $this->nwlTitle;
     }
 
     /**
@@ -117,5 +138,24 @@ class Feedback extends AbstractEntity
     public function getDateComment() : DateTime 
     {
         return $this->dateComment;
+    }
+
+               
+    /**
+     * Setter pour le lien "supprimer".
+     * @param string $supprimerr
+     */
+    public function setSupprimer(string $supprimer) : void 
+    {
+        $this->supprimer = $supprimer;
+    }
+
+    /**
+     * Getter pour le lien voir.
+     * @return string
+     */
+    public function getSupprimer() : string 
+    {
+        return $this->supprimer;
     }
 }

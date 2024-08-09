@@ -1,4 +1,5 @@
-<table>
+<table class="<?= utils::request('action'); ?>"
+>
     <thead>
         <tr>
             <?php foreach ($headers as $header): ?>

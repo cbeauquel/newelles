@@ -170,14 +170,6 @@ tr {
     height:40px;
 }
 
-th.idUser, th.stageName, th.audio, th.content, th.nwlImg, th.id{
-    display:none;
-}    
-
-td.idUser, td.stageName, td.audio, td.content, td.nwlImg, td.id{
-    display:none;
-}    
-
 tbody tr:nth-child(odd) {
     background-color: var(--headerPaleColor);
 }
@@ -193,7 +185,7 @@ td.delete {
 }
 /*****Home Page**********/
 /* Affichage des newelles */
-.newelleList {
+.newelle-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -323,6 +315,33 @@ article.home-profiles{
 
 /* Page de détail d'un newelle */
 
+.newelle-text .material-symbols-outlined {
+    font-size: 180px!important;
+    display:block;
+    margin:-80px auto 10px auto;
+    color:var(--titleColor);
+    font-variation-settings: 'FILL' 1;
+    border: none;
+    background: none;
+    cursor:pointer;
+}
+
+.newelle-text a{
+    display:inline;
+    text-align:center;
+}
+
+audio{
+    background:none;
+    border:none;
+}
+.audio-player {
+    display: flex;
+    align-items: center;
+    background:none;
+    border:none;
+}
+
 article.detail{
     width:100%;
 }
@@ -334,16 +353,6 @@ article.detail{
     background-color: var(--headerPaleColor);
     margin-top:20px;
     width:100%;
-}
-audio{
-    background:none;
-    border:none;
-}
-.audio-player {
-    display: flex;
-    align-items: center;
-    background:none;
-    border:none;
 }
 
 .meta-data{
@@ -391,22 +400,21 @@ audio{
     padding-bottom:10px;
 }
 
-
-.newelle-text .material-symbols-outlined {
-    font-size: 180px!important;
-    display:block;
-    margin:-80px auto 10px auto;
-    color:var(--titleColor);
-    font-variation-settings: 'FILL' 1;
-    border: none;
-    background: none;
-    cursor:pointer;
+.pagination{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size:1.5em;
 }
 
-.newelle-text a{
-    display:inline;
-    text-align:center;
+.pagination a{
+    text-decoration: underline;
 }
+
+.pagination a:hover{
+    color:var(--linkColor);
+}
+
 
 /* Affichage des commentaires */
 
@@ -476,6 +484,10 @@ p.content{
     border-radius:5px;
 }
 
+.h-captcha{
+    margin-top:10px;
+}
+
 .rating {
     margin-bottom: 20px;
     display: flex;
@@ -527,55 +539,6 @@ p.content{
     font-weight: bold;
 }
 
-/**
- * Partie admin
- */ 
-
-.adminNewelle, .adminComment {
-    margin-bottom: 20px;
-    background-color: var(--commentPaleColor);
-    color: white;
-}
-
-.newelleLine {
-    display: flex; 
-}
-
-.newelleLine div {
-    display: flex;
-    align-items: center;
-}
-
-.newelleLine .title {
-    font-weight: bold;
-    min-width: 200px;
-    width: 200px;
-}
-
-.newelleLine .content {
-    flex-grow: 1;
-}
-
-.newelleLine > div {
-    padding: 20px;
-    border: 1px solid var(--backgroundColor);
-}
-
-.commentLine {
-    display:grid;
-    grid-template-columns: 150px 600px 200px 150px;
-}
-
-.commentLine .pseudo, .commentLine .content, .commentLine .date, .commentLine .supprimer{
-    height:100px;
-    padding:20px;
-    border:solid 1px #ddd;
-    text-align:center;
-}
-
-.commentLine .pseudo{
-    font-weight:bold;
-}
 
 /**
  * Compte utilisateur
@@ -657,6 +620,20 @@ nav.nwlMngmt{
    width:100%; 
 }
 
+/** On masque les colonnes inutiles*/
+table.manageNewelles th.idUser, table.manageNewelles th.stageName, table.manageNewelles th.audio, table.manageNewelles th.content, table.manageNewelles th.nwlImg, table.manageNewelles th.id, 
+table.manageNewelles td.idUser, table.manageNewelles td.stageName, table.manageNewelles td.audio, table.manageNewelles td.content, table.manageNewelles td.nwlImg, table.manageNewelles td.id 
+{
+    display:none;
+}    
+
+/** On masque les colonnes inutiles de gestion des feedbacks*/
+table.displayFeedbacks th.nwlId, table.displayFeedbacks th.supprimer,  
+table.displayFeedbacks td.nwlId, table.displayFeedbacks td.supprimer
+{
+    display:none;
+}  
+
 /**
 *Affichage du profil utilisateur
 */
@@ -697,6 +674,10 @@ form h2 {
 form label {
     font-weight: bold;
     font-size: 1.2em;
+}
+
+form.folded-corner{
+    border-radius:0px 50px 0px 50px;
 }
 
 form input {
@@ -747,4 +728,103 @@ form .formGrid .submit {
     justify-content: center;
     gap:20px;
 }
+
+/*****************ADMIN**************************/
+.header-admin {
+    display: flex;
+    position:fixed;
+    flex-direction: row;
+    width: 100%;
+    background-color: var(--backgroundNewelle); 
+}
+
+
+.header-admin > .logo{
+    width:5%;
+    padding:5px;
+}
+
+.header-admin > .title{
+    width:95%;
+}
+
+.header-admin > .title h1{
+    font-size:2em;
+    padding:5px;
+}
+
+
+.header-admin > .nav {
+    display: flex;
+    justify-content: flex-end;
+    width:5%;
+    padding:5px;
+}
+
+.header-admin > .nav .material-symbols-outlined{
+    font-size:2.5em;
+}
+main.admin{
+    width:100%;
+    background-color: var(--backgroundNewelle);
+    margin:0 50px 50px 50px;
+}
+
+main.admin h2{
+    background : none;
+    border:none;
+    text-align: center;
+    color:var(--headerPaleColor);
+}
+
+.main-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width:100%;
+    margin-top:50px;
+}
+
+.left-bar{
+    position:fixed;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    align-items:flex-start;
+    background-color: var(--headerColor);
+    color:var(--headerPaleColor);
+    padding-left:50px;
+    width:15%;
+}
+
+.left-bar ul li{
+    font-size:1.5em;
+    padding:30px 0px 30px 0px;
+}
+
+.left-bar ul li a:hover{
+    color:var(--linkColor);
+}
+
+.content {
+    margin-left:15%;
+    padding:30px;
+    width: 85%;
+    background-color: var(--backgroundNewelle);
+}
+
+
+/**masque les cellules "password, bio, audio, usr_img, nwl_img, content dans la section "newellers" du back office*/
+table.adminNewellers th.password, table.adminNewellers th.bio, table.adminNewellers th.audio, table.adminNewellers th.usrImg,  table.adminNewellers th.nwlImg, table.adminNewellers th.content, 
+table.adminNewellers td.password, table.adminNewellers td.bio, table.adminNewellers td.audio, table.adminNewellers td.usrImg,  table.adminNewellers td.nwlImg, table.adminNewellers td.content
+{
+    display:none;
+}   
+
+/**masque les cellules**/
+table.adminNewelles th.audio, table.adminNewelles th.content, table.adminNewelles th.nwlImg, 
+table.adminNewelles td.audio, table.adminNewelles td.content, table.adminNewelles td.nwlImg
+{
+    display:none;
+}    
 

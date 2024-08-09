@@ -94,4 +94,15 @@ class UserManager extends AbstractEntityManager
         ]);
     }
 
+    /**
+     * Supprime un Neweller.
+     * @param int $id : l'id du neweller à supprimer.
+     * @return void
+     */
+    public function deleteUser(int $id) : void
+    {
+        $sql = "DELETE FROM users WHERE id = :id";
+        $this->db->query($sql, ['id' => $id]);
+    }
+
 }    

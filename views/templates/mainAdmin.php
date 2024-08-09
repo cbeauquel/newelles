@@ -1,6 +1,6 @@
 <?php 
 /**
- * Ce fichier est le template principal qui "contient" ce qui aura été généré par les autres vues.  
+ * Ce fichier est le template admin principal qui "contient" ce qui aura été généré par les autres vues.  
  * 
  * Les variables qui doivent impérativement être définie sont : 
  *      $title string : le titre de la page.
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" />
     <!-- Place the first <script> tag in your HTML's <head> -->
     <script src="https://cdn.tiny.cloud/1/dcvenw2y0g3iby40929n5t6szarz1lw6is0467eq3u0gehmm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
     <!-- Place the following <script> and <textarea> tags your HTML's <body> -->
     <script>
     tinymce.init({
@@ -33,13 +34,12 @@
         ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
     });
     </script>
-    <script src='https://www.hCaptcha.com/1/api.js' async defer></script>
 </head>
 
 <body>
 
     <header>
-        <div class="header">
+        <div class="header-admin">
             <div class="logo">
                 <a href="index.php" title="retour à l'accueil"><img src="img/interface/newel_logo.png" alt="logo du site Newelles"/></a>
             </div>
@@ -48,50 +48,41 @@
             </div>
             <div class="nav">
                 <nav>
-                    <a class="material-symbols-outlined" 
+                    <a class="material-symbols-outlined" href="index.php?action=disconnectAdmin" 
                     <?php 
-                    if (isset($_SESSION['user'])){
-                        echo "href=\"index.php?action=userAccount\" title=\"Compte utilisateur\"> account_circle";
-                    } elseif (isset($_SESSION['admin'])) {
-                       echo "href=\"index.php?action=displayAdmin\"title=\Compte Administrateur\">admin_panel_settings";
+                    if (isset($_SESSION['admin'])){
+                        echo "title=\"Compte utilisateur\"> admin_panel_settings";
                     } else {
-                       echo "href=\"index.php?action=userAccount\" title=\"Se connecter ou créer un compte\">login";
-                    }?>
+                       echo "title=\"Se connecter ou créer un compte\"> login";
+                    } ?>
                     </a>
                 </nav>
             </div>
         </div>
-        <div class="signature">
-            <p>Écoutez, lisez, partagez des histoires originales !</p>
-        </div>
     </header>
 
-    <main>    
-        <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
+    <main class="admin">
+        <div class="main-container">
+            <div class="left-bar">
+            <h2>Page admin</h2>
+                <nav>
+                    <ul>
+                        <li><a href ="index.php?action=adminNewellers" title="Gestion des Newellers">Newellers</a></li>
+                        <li><a href ="index.php?action=adminNewelles" title="Gestion des Newelles">Newelles</a></li>
+                        <li><a href ="index.php?action=adminFeedbacks" title="Gestion des Feedbacks">Feedbacks</a></li>
+                        <li><a href ="index.php?action=adminStats" title="Gestion des statistiques">Stats</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="content">
+                <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
+            </div>
     </main>
     
     <footer>
-        <a href="index.php?action=showApropos">À propos&nbsp;</a>
+        <a href="index.php?action=connectionFormAdmin">Administrateur&nbsp;</a>
         <p>Copyright © Newelles 2024 - Neobook -</p>
     </footer>
 
 </body>
 </html>
-<script>
-        var audio = document.getElementById('audio');
-        var playPauseButton = document.getElementById('playPauseButton');
-
-        playPauseButton.addEventListener('click', function() {
-            if (audio.paused) {
-                audio.play();
-                playPauseButton.textContent = 'Pause';
-            } else {
-                audio.pause();
-                playPauseButton.textContent = 'play_circle';
-            }
-        });
-
-        audio.addEventListener('ended', function() {
-            playPauseButton.textContent = 'play_circle';
-        });
-    </script>

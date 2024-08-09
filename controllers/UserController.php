@@ -150,11 +150,14 @@ class UserController
     {
         // On vérifie que l'utilisateur est connecté.
         utils::checkIfUserIsConnected();
+        $userId = $_SESSION['idUser'];
+   
+        $feedbackManager = new FeedbackManager();
+        $thumbupsCount = $feedbackManager->countThumbupsByUserId($userId);
 
         // On affiche la page compte user.
         $view = new View("userAccount");
-        $view->render("userAccount");
-        var_dump($_SESSION);
+        $view->render("userAccount", ['thumbupsCount' => $thumbupsCount]);
     }
   
     /**
@@ -194,12 +197,9 @@ class UserController
         $userManager = new userManager();
         $profile = $userManager->getUserById($idUser);
 
-
         // On affiche la page de modification de la newelle.
         $view = new View("Modification du profil");
-        $view->render("updateProfileForm", [
-            'profile' => $profile
-        ]);
+        $view->render("updateProfileForm", ['profile' => $profile]);         
     }
 
     /**
@@ -209,6 +209,7 @@ class UserController
      */
     public function updateProfile() : void
     {
+       
         utils::checkIfUserIsConnected();
 
         // On récupère les données du formulaire.
@@ -219,7 +220,7 @@ class UserController
         $bio = Utils::request("bio");
         $rawUsrImg = $_FILES['usrImg'];
         $idAdmin = 0;
-        $idUser = $_SESSION['idUser'];
+        $idUser = utils::request("id");
 
         // On vérifie que les données sont valides.
         if (empty($email) || empty($name) || empty($firstName) || empty($stageName)) {
@@ -273,7 +274,11 @@ class UserController
         $userManager->UpdateUser($profile);
 
         // On redirige vers la page du compte utilisateur.
-        Utils::redirect("userAccount");
+        if ($_SESSION['admin']){
+            Utils::redirect("adminNewellers");
+        } else {
+        Utils::redirect("userAccount"); 
+        }
     }
 
     public function displayProfile() : void

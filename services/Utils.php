@@ -14,8 +14,8 @@ class Utils
     public static function checkIfUserIsConnected() : void
     {
         // On vérifie que l'utilisateur est connecté.
-        if (!isset($_SESSION['user'])) {
-            Utils::redirect("connectionForm");
+        if (!isset($_SESSION['admin']) && !isset($_SESSION['user'])) {     
+         utils::redirect('connectionForm');
         }
     }
 
@@ -111,6 +111,7 @@ class Utils
     {
         $pages = self::splitTextIntoPages($text, $wordsPerPage);
         $totalPages = count($pages);
+        $currentPage = 1;
         if (!isset($_GET['page']) || $currentPage < 1) {
             $currentPage = 1;
         } elseif ($currentPage > $totalPages){

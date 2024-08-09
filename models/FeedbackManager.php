@@ -29,7 +29,10 @@ class FeedbackManager extends AbstractEntityManager
      */
     public function getFeedbacksByNewelleId(int $id):array
     {
-        $sql="SELECT * FROM feedback WHERE nwl_id = :nwl_id ORDER BY date_comment DESC";
+        $sql="SELECT * 
+              FROM feedback 
+              WHERE nwl_id = :nwl_id 
+              ORDER BY date_comment DESC";
 
         $result = $this->db->query($sql, ['nwl_id' => $id]);
         $feedbacks = [];
@@ -39,10 +42,15 @@ class FeedbackManager extends AbstractEntityManager
         }
         return $feedbacks;
     }
-
-    public function getFeedbacksByUserId($id):array
+    /**
+     * Méthode de récupération des feedbacks par utilisateur
+     *
+     * @param int $id
+     * @return array
+     */
+    public function getFeedbacksByUserId(int $id):array
     {
-        $sql="SELECT a. * 
+        $sql="SELECT a. *, b. title AS Nwl_Title
               FROM `feedback` a
               LEFT JOIN `newelle` b on a. `nwl_id` = b. `id`        
               WHERE b. `id_user` = :id_user ORDER BY a. `nwl_id`";
@@ -54,5 +62,28 @@ class FeedbackManager extends AbstractEntityManager
             $userFeedbacks[] = new Feedback($userFeedback);
         }
         return $userFeedbacks;
+    }
+
+    public function countThumbupsByUserId(int $id):string
+    {
+        $sql="SELECT SUM(`thumb_up`) 
+              FROM `feedback` a
+              left join newelle b ON a. nwl_id = b. id
+              where b. `id_user` = :id_user";
+        $result = $this->db->query($sql, ['id_user' => $id]);
+        $thumbupsCount = $result->fetch();
+        return $thumbupsCount['SUM(`thumb_up`)'];
+    }
+
+
+    /**
+     * Supprime un Feedback.
+     * @param int $id : l'id du feedback à supprimer.
+     * @return void
+     */
+    public function deleteFeedback(int $id) : void
+    {
+        $sql = "DELETE FROM feedback WHERE id = :id";
+        $this->db->query($sql, ['id' => $id]);
     }
 }

@@ -61,12 +61,13 @@
                                 <label class="material-symbols-outlined" for="thumbup3">Thumb_Up</label>
                                 <input type="radio" id="thumbup2" name="rating" value="2">
                                 <label class="material-symbols-outlined" for="thumbup2">Thumb_Up</label>
-                                <input type="radio" id="thumbup1" name="rating" value="1">
-                                <label class="material-symbols-outlined" for="thumbup1">Thumb_Up</label>
+                                <input type="radio" id="thumbup1" name="rating" value="1" checked>
+                                <label class="material-symbols-outlined" for="thumbup1" >Thumb_Up</label>
                             </div>
                         <label for="nickname">Indiquez un pseudo</label>
                         <input type="text" id="nickname" name="nickname" placeholder="Votre pseudo">
                         <input type="hidden" id="nwlId" name="nwlId" value="<?= $newelle->getId() ?>">
+                        <div class="h-captcha" data-sitekey="86a4d0e6-4e9e-422a-9c1e-c25e6cdcba62"></div>
                         <button class="submit">Soumettre</button>
                     </form>
                 </div>
@@ -84,7 +85,8 @@
                 </p>
             </div>
         </div>
-        <?php if (isset($_SESSION['user'])){?>
+        <?php 
+        if (isset($_SESSION['idUser']) && $_SESSION['idUser'] === $newelle->getIdUser()) {?>
             <nav class="nwlMngmt">
             <div class="nav">
                 <a class="submit" href="index.php?action=showUpdateNewelleForm&id=<?=$newelle->getId()?>" title="modifier une newelle">Modifier</a>

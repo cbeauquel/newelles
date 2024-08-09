@@ -4,7 +4,7 @@
      */
 ?>
 
-<div class="newelleList">
+<div class="newelle-list">
     <h2>Gestion des Newelles</h2>
     <?php 
     if (empty($newellesUser))

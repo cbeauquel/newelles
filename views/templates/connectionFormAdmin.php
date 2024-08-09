@@ -5,8 +5,8 @@
 ?>
 
 <div class="connection-form">
-    <form action="index.php?action=connectAdmin" method="post" class="foldedCorner">
-        <h2>Connexion</h2>
+    <form action="index.php?action=connectAdmin" method="post" class="folded-corner">
+        <h2>Connexion Administrateur</h2>
         <div class="formGrid">
             <label for="email">e-mail</label>
             <input type="text" name="email" id="email" required>

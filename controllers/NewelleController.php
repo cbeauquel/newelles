@@ -13,7 +13,6 @@ class NewelleController
 
         $userManager = new UserManager();
         $profiles = $userManager->getAllProfiles();
-
         $view = new View("Accueil");
         $view->render("home", ['newelles' => $newelles, 'profiles' => $profiles]);
     }
@@ -105,13 +104,19 @@ class NewelleController
 
         // On récupère les données du formulaire.
         $id = Utils::request("id", -1);
-        $idUser =  Utils::request("idUser");
         $title = Utils::request("title");
         $genre = Utils::request("genre");
         $duree = Utils::request("duree");
         $content = Utils::request("content");
         $nwlImg = $_FILES['nwlImg'];
         $audio = $_FILES['audio'];
+
+        //si c'est un ajout de newelle (id = -1) alors l'id Utilisateur est récupéré dans la session
+        if ($id === "-1") {
+            $idUser = $_SESSION['idUser'];
+        } else {
+            $idUser = utils::request("idUser");
+        }
 
 
         // On vérifie que les données sont valides.
@@ -149,7 +154,6 @@ class NewelleController
             move_uploaded_file($nwlImg['tmp_name'], $path . basename($nwlImg['name']));
             $nwlImg = $path . basename($nwlImg['name']);        
         }
-        var_dump($id);
 
         //on vérifie les données audio 
         if (!isset($audio) && $audio['error']) 
@@ -199,7 +203,7 @@ class NewelleController
             'genre' => $genre,
             'taille' => $taille,
             'duree' => $duree,
-            'id_user' => $_SESSION['idUser'],
+            'id_user' => $idUser,
             'nwl_img' => $nwlImg,
             'audio' => $audio,
         ]);
@@ -209,9 +213,11 @@ class NewelleController
         $newelleManager->addOrUpdateNewelle($newelle);
 
         // On redirige vers la page de la newelle.
-        if ($id==="-1"){
+        if ($_SESSION['admin']){
+            Utils::redirect("adminNewelles");
+        } elseif ($id==="-1"){
             Utils::redirect("home");
-        } else {
+        } else { 
             Utils::redirect("detail&id=" . $newelle->getId());
         }    
     }
@@ -231,7 +237,11 @@ class NewelleController
         $newelleManager->deleteNewelle($id);
        
         // On redirige vers la page d'administration.
+        if ($_SESSION['admin']){
+            Utils::redirect("adminNewelles");
+        } else {
         Utils::redirect("userAccount");
+        }
     }
     
     /**

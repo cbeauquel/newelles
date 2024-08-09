@@ -65,7 +65,7 @@
                     </li>
                     <li>
                         <span class="material-symbols-outlined">bookmark_heart</span>
-                        <br>"200" coups de cœur 
+                        <br><?= $thumbupsCount; ?> coups de pouce
                     </li>
                 </ul>
             </div>          

@@ -4,7 +4,7 @@
      */
 ?>
 
-<div class="newelleList">
+<div class="newelle-list">
     <h2>Les 6 dernières Newelles</h2>
     <?php foreach($newelles as $newelle) { ?>
         <article class="home-newelles">
@@ -35,7 +35,7 @@
                     <img class="profile-img" src="<?= $profile->getUsrImg() ?>" alt="Illustration du profil" />
                     <div class="profile-content">
                         <h3><?= $profile->getStageName() ?></h3>
-                        <p><?= strip_tags(($profile->getBio(150))) ?></p>                        
+                        <p><?= strip_tags(($profile->getBio(250))) ?></p>                        
                     </div>
                 </div>
             </a>
