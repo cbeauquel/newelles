@@ -71,7 +71,7 @@
     </main>
     
     <footer>
-        <a href="index.php?action=connectionFormAdmin">À propos&nbsp;</a>
+        <a href="index.php?action=showApropos">À propos&nbsp;</a>
         <p>Copyright © Newelles 2024 - Neobook -</p>
     </footer>
 

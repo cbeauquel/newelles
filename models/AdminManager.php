@@ -100,4 +100,35 @@ class AdminManager extends UserManager
         return $adminFeedbacks;
     }
 
+    public function getNewellesCount(): int{
+        $sql = "SELECT COUNT('id') AS `Number of Newelles`
+                FROM newelle";
+        $nbNewelles = 0;
+        $nbNewelles = $this->db->query($sql);
+
+        return $nbNewelles;
+    }
+
+    public function getNewellersCount(): int{
+        $sql = "SELECT COUNT('id') AS `Number of Newellers`
+                FROM users";
+        $nbNewellers = 0;
+        $nbNewellers = $this->db->query($sql);
+
+        return $nbNewellers;
+    }
+
+    public function getPopularNewelle(): int{
+        $sql = "SELECT a. `title`, COUNT('b. `id`'), AVG('b. `thumb_up`')
+                FROM `newelle` a
+                LEFT JOIN `feedback` b ON a. `id` = b. `nwl_id`
+                group by a. `id`
+                LIMIT 1 ";
+        $nbNewellers = 0;
+        $nbNewellers = $this->db->query($sql);
+
+        return $nbNewellers;
+    }
+
+
 }

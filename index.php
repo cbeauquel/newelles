@@ -134,6 +134,12 @@ try {
             $adminController->adminNewellers();
             break;
         
+        case 'showApropos':
+            $newelleController = new NewelleController();
+            $newelleController->showApropos();
+            break;
+
+
         case 'adminUpdateProfileForm':
             $adminController = new AdminController();
             $adminController->adminUpdateProfileForm();

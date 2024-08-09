@@ -5,7 +5,7 @@
 ?>
 
 <div class="connection-form">
-    <form action="index.php?action=connectAdmin" method="post" class="foldedCorner">
+    <form action="index.php?action=connectAdmin" method="post" class="folded-corner">
         <h2>Connexion Administrateur</h2>
         <div class="formGrid">
             <label for="email">e-mail</label>

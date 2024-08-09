@@ -620,11 +620,19 @@ nav.nwlMngmt{
    width:100%; 
 }
 
+/** On masque les colonnes inutiles*/
 table.manageNewelles th.idUser, table.manageNewelles th.stageName, table.manageNewelles th.audio, table.manageNewelles th.content, table.manageNewelles th.nwlImg, table.manageNewelles th.id, 
 table.manageNewelles td.idUser, table.manageNewelles td.stageName, table.manageNewelles td.audio, table.manageNewelles td.content, table.manageNewelles td.nwlImg, table.manageNewelles td.id 
 {
     display:none;
 }    
+
+/** On masque les colonnes inutiles de gestion des feedbacks*/
+table.displayFeedbacks th.nwlId, table.displayFeedbacks th.supprimer,  
+table.displayFeedbacks td.nwlId, table.displayFeedbacks td.supprimer
+{
+    display:none;
+}  
 
 /**
 *Affichage du profil utilisateur
@@ -666,6 +674,10 @@ form h2 {
 form label {
     font-weight: bold;
     font-size: 1.2em;
+}
+
+form.folded-corner{
+    border-radius:0px 50px 0px 50px;
 }
 
 form input {

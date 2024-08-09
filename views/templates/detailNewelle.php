@@ -86,8 +86,7 @@
             </div>
         </div>
         <?php 
-;
-        if ($_SESSION['idUser'] === $newelle->getIdUser()) {?>
+        if (isset($_SESSION['idUser']) && $_SESSION['idUser'] === $newelle->getIdUser()) {?>
             <nav class="nwlMngmt">
             <div class="nav">
                 <a class="submit" href="index.php?action=showUpdateNewelleForm&id=<?=$newelle->getId()?>" title="modifier une newelle">Modifier</a>

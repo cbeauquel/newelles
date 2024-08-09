@@ -150,10 +150,14 @@ class UserController
     {
         // On vérifie que l'utilisateur est connecté.
         utils::checkIfUserIsConnected();
+        $userId = $_SESSION['idUser'];
+   
+        $feedbackManager = new FeedbackManager();
+        $thumbupsCount = $feedbackManager->countThumbupsByUserId($userId);
 
         // On affiche la page compte user.
         $view = new View("userAccount");
-        $view->render("userAccount");
+        $view->render("userAccount", ['thumbupsCount' => $thumbupsCount]);
     }
   
     /**

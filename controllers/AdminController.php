@@ -53,10 +53,10 @@ class AdminController extends UserController
         }
         // On connecte l'utilisateur.
         $_SESSION['admin'] = $admin;
-        $_SESSION['idAdmin'] = $admin->getId();
+        $_SESSION['idUser'] = $admin->getId();
         
         // On redirige vers la page compte utilisateur.
-        Utils::redirect("displayAdmin");
+        Utils::redirect("adminNewelles");
     }
         /**
      * Déconnexion de l'utilisateur.
@@ -97,7 +97,7 @@ class AdminController extends UserController
 
         // On affiche la page compte user.
         $view = new View("Page d'administration");
-        $view->renderAdmin("adminNewelles", ['adminNewelles' => $adminNewelles]);
+        $view->renderAdmin("displayAdmin");
     }
 
     /**

@@ -119,8 +119,16 @@ class User extends AbstractEntity
      * Getter pour la bio.
      * @return string
      */
-    public function getBio() : ?string 
+    public function getBio(int $length = -1) : ?string 
     {
+        if ($length > 0) {
+            // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
+            $bio = mb_substr($this->bio, 0, $length);
+            if (strlen($this->bio) > $length) {
+                $bio .= "...";
+            }
+            return $bio;
+        }
         return $this->bio;
     }
 
