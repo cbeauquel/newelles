@@ -39,16 +39,14 @@ body {
 h1 {
     display: flex;
     justify-content: center;
-    padding: 30px;
-    font-family: 'Lily Script One', system-ui;
-    font-size: 48px;
-    color: var(--titleColor);
+    font-family: "Comfortaa", sans-serif;
+    font-size:1em;
 }
 
 h2 {
     width: 100%;
     margin: 20px 0;
-    font-size: 25px;
+    font-size: 1.5em;
     font-family: "Comfortaa", sans-serif;
     color: var(--headerColor);
     background-color: var(--headerPaleColor);
@@ -59,7 +57,7 @@ h2 {
 
 h3 {
     width: 100%;
-    font-size: 20px;
+    font-size: 1.2em;
     font-family: "Comfortaa", sans-serif;
     font-weight:700;
     color: var(--headerColor);
@@ -89,6 +87,7 @@ header{
     flex-direction: row;
     width: 100%;
     background-color: var(--backgroundNewelle); 
+    border-bottom: solid 2px var(--titleColor);
 }
 
 .logo img{
@@ -97,18 +96,28 @@ header{
 
 .header > .logo{
     width:10%;
-    padding:30px;
+    padding:10px 30px 10px 30px;
 }
 
 .header > .title{
     width:80%;
 }
 
+.title p{
+    display: flex;
+    justify-content: center;
+    padding:10px 30px 10px 30px;
+    font-family: 'Lily Script One', system-ui;
+    font-size: 48px;
+    color: var(--titleColor);
+    font-weight:bold;
+}
+
 .header > .nav {
     display: flex;
     justify-content: flex-end;
     width:10%;
-    padding:30px;
+    padding:10px 30px 10px 30px;
 }
 
 .header > .nav  .material-symbols-outlined{
@@ -121,9 +130,10 @@ header{
     font-family: "Comfortaa", sans-serif;
     font-weight: 600;
     padding:10px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
     text-align:center;
     font-size:1.5em;
+    width:100%;
 }
 
 /* Coeur de page.*/
@@ -131,7 +141,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 95%;
+    width: 100%;
     margin: 0 50px 100px 50px;
 }
 
@@ -183,6 +193,7 @@ td.delete {
     text-decoration: underline;
     color:var(--titleColor);
 }
+
 /*****Home Page**********/
 /* Affichage des newelles */
 .newelle-list {
@@ -190,7 +201,7 @@ td.delete {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content:flex-start;
-    width: 100%;
+    width: 95%;
 }
 
 article.home-newelles{
@@ -222,12 +233,6 @@ article.home-newelles{
     object-fit:cover;
     height:250px;
     border-radius:0 50px 0 0;
-}
-
-.newelle-content > h2 {
-    color: var(--headerColor);
-    width:100%;
-    padding:10px 0 10px 10px;
 }
 
 .newelle-content > p {
@@ -269,7 +274,7 @@ a.button{
 /* Affichage des newelles */
 
 article.home-profiles{
-    width:24%;
+    width:25%;
 }
 
 .profile {
@@ -300,11 +305,6 @@ article.home-profiles{
     text-overflow: hidden;
 }
 
-.profile-content > h3 {
-    color: var(--headerColor);
-    width:100%;
-    padding:10px 0 10px 10px;
-}
 
 .profile-content > p {
     margin-bottom: 10px;
@@ -316,9 +316,9 @@ article.home-profiles{
 /* Page de détail d'un newelle */
 
 .newelle-text .material-symbols-outlined {
-    font-size: 180px!important;
+    font-size: 150px!important;
     display:block;
-    margin:-80px auto 10px auto;
+    margin:-60px auto 10px auto;
     color:var(--titleColor);
     font-variation-settings: 'FILL' 1;
     border: none;
@@ -335,6 +335,7 @@ audio{
     background:none;
     border:none;
 }
+
 .audio-player {
     display: flex;
     align-items: center;
@@ -361,6 +362,26 @@ article.detail{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.meta-data h1{
+    width: 100%;
+    margin: 20px 0;
+    font-size: 1.5em;
+    color: var(--headerColor);
+    border-bottom: 3px solid var(--titleColor);
+    text-align:center;
+    padding:5px;
+}
+
+.meta-data h2{
+    font-size: 1.3em;
+}
+
+.meta-data h3{
+    margin:30px 0px 0px 0px;
+    background-color: var(--headerColor);
+    color:var(--backgroundColor);
 }
 
 .detail-img{
@@ -428,7 +449,7 @@ article.detail{
 
 .feedback .material-symbols-outlined {
     font-variation-settings: 'FILL' 1;
-    font-size:2em;
+    font-size:1.5em;
     color:orange;
 }
 
@@ -441,7 +462,7 @@ article.detail{
 }
 
 h4.info{
-    padding: 20px 0px 10px 15px;
+    padding: 20px 5px 10px 15px;
     margin:0;
     font-size:1em;
     font-style:italic;
@@ -452,6 +473,10 @@ h4.info{
 p.info{
     padding:10px;
     font-size:1em;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap:10px;
 } 
 
 p.no-comment{
@@ -498,7 +523,7 @@ p.content{
   }
 
   .rating label.material-symbols-outlined{
-    font-size: 3em;
+    font-size: 2em;
   }
   
   .rating input {
@@ -662,8 +687,8 @@ footer {
  */
  form {
     width: 100%;
-    margin-top: 30px;
-    padding: 20px;
+    margin-top: 0px;
+    padding: 0px 20px 20px 0px;
     background-color: var(--headerPaleColor);
 }
 
@@ -673,7 +698,7 @@ form h2 {
 }
 form label {
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 form.folded-corner{
@@ -704,6 +729,7 @@ form .formGrid {
     display: grid;
     grid-template-columns: 300px minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
     gap: 10px; /* Espace entre les éléments de la grille */
+    padding-left:10px;
 }
 
 form .formGrid .submit {
@@ -729,6 +755,41 @@ form .formGrid .submit {
     gap:20px;
 }
 
+.connection-form{
+    margin-top:30px;
+}
+
+.connection-form h1{
+    font-size:1.3em;
+    padding:10px;
+}
+
+.create-form p{
+    padding:15px 0px;
+}
+
+.create-form h1{
+    padding:15px 0px;
+    font-size:1.5em;
+}
+
+
+.create-form form{
+    border-radius:50px;
+}
+
+/**************A PROPOS**************************/
+.propos{
+    width:60%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.propos p{
+    padding-bottom:20px;
+}
+
 /*****************ADMIN**************************/
 .header-admin {
     display: flex;
@@ -748,11 +809,10 @@ form .formGrid .submit {
     width:95%;
 }
 
-.header-admin > .title h1{
-    font-size:2em;
-    padding:5px;
+.header-admin > .title p{
+    font-size:1.75em;
+    margin-left:15%;
 }
-
 
 .header-admin > .nav {
     display: flex;
@@ -764,17 +824,19 @@ form .formGrid .submit {
 .header-admin > .nav .material-symbols-outlined{
     font-size:2.5em;
 }
+
 main.admin{
     width:100%;
     background-color: var(--backgroundNewelle);
     margin:0 50px 50px 50px;
 }
 
-main.admin h2{
+main.admin h1{
     background : none;
     border:none;
     text-align: center;
     color:var(--headerPaleColor);
+    font-size:1.5em;
 }
 
 .main-container{
@@ -793,7 +855,7 @@ main.admin h2{
     align-items:flex-start;
     background-color: var(--headerColor);
     color:var(--headerPaleColor);
-    padding-left:50px;
+    padding:20px 0px 0px 50px;
     width:15%;
 }
 
@@ -806,13 +868,51 @@ main.admin h2{
     color:var(--linkColor);
 }
 
-.content {
+.admin .content {
     margin-left:15%;
-    padding:30px;
+    padding:0px 30px 0px 30px;
     width: 85%;
     background-color: var(--backgroundNewelle);
 }
 
+.stats-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap:20px;
+    flex-wrap: wrap;
+    width:100%;
+    padding:10px;
+}
+
+.stat{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    width:26%;
+    height:400px;
+    border-radius:400px;
+    background-color: var(--headerPaleColor);
+    padding:10px;
+    margin:5px;
+    border:dotted 1px var(--headerColor);
+}
+
+.stat p{
+    text-align:center;
+    padding:0;
+    margin:10px 0px 0px 0px;
+    font-weight:bold;
+    font-size:1.5em;
+}
+
+.stat h3{
+    text-align:center;
+    text-decoration:underline;
+    font-style:italic;
+    font-size:1.3em;
+}
 
 /**masque les cellules "password, bio, audio, usr_img, nwl_img, content dans la section "newellers" du back office*/
 table.adminNewellers th.password, table.adminNewellers th.bio, table.adminNewellers th.audio, table.adminNewellers th.usrImg,  table.adminNewellers th.nwlImg, table.adminNewellers th.content, 
@@ -822,8 +922,8 @@ table.adminNewellers td.password, table.adminNewellers td.bio, table.adminNewell
 }   
 
 /**masque les cellules**/
-table.adminNewelles th.audio, table.adminNewelles th.content, table.adminNewelles th.nwlImg, 
-table.adminNewelles td.audio, table.adminNewelles td.content, table.adminNewelles td.nwlImg
+table.adminNewelles th.audio, table.adminNewelles th.content, table.adminNewelles th.nwlImg, table.adminNewelles th.id, table.adminNewelles th.dateUpdate,
+table.adminNewelles td.audio, table.adminNewelles td.content, table.adminNewelles td.nwlImg, table.adminNewelles td.id, table.adminNewelles td.dateUpdate
 {
     display:none;
 }    

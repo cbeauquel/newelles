@@ -3,7 +3,7 @@
      * Affichage du compte utilisteur
      */
 ?>
-<h3>Gestion des Feedbacks</h3>
+<h2>Gestion des Feedbacks</h2>
     <div class="admin-feedbacks">
         <?php
             utils::createTable($adminFeedbacks);

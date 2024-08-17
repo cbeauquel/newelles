@@ -23,7 +23,7 @@
     <script>
     tinymce.init({
         selector: 'textarea#rtf',
-        plugins: 'anchor autolink charmap emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags inlinecss markdown',
+        plugins: 'anchor autolink charmap emoticons image link lists media searchreplace table visualblocks wordcount  linkchecker',
         toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
@@ -44,7 +44,7 @@
                 <a href="index.php" title="retour à l'accueil"><img src="img/interface/newel_logo.png" alt="logo du site Newelles"/></a>
             </div>
             <div class="title">
-                    <h1>Newelles</h1>
+                    <p>Newelles</p>
             </div>
             <div class="nav">
                 <nav>
@@ -64,7 +64,7 @@
     <main class="admin">
         <div class="main-container">
             <div class="left-bar">
-            <h2>Page admin</h2>
+                <a href="index.php?action=displayAdmin"><h1>Page admin</h1></a>
                 <nav>
                     <ul>
                         <li><a href ="index.php?action=adminNewellers" title="Gestion des Newellers">Newellers</a></li>
@@ -77,11 +77,11 @@
             <div class="content">
                 <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
             </div>
+        </div>
     </main>
     
     <footer>
-        <a href="index.php?action=connectionFormAdmin">Administrateur&nbsp;</a>
-        <p>Copyright © Newelles 2024 - Neobook -</p>
+        <p>Administrateur - Copyright © Newelles 2024 - Neobook -</p>
     </footer>
 
 </body>

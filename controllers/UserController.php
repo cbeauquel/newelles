@@ -155,9 +155,15 @@ class UserController
         $feedbackManager = new FeedbackManager();
         $thumbupsCount = $feedbackManager->countThumbupsByUserId($userId);
 
+        $userManager = new UserManager();      
+        $displayUser = $userManager->getUserById($userId);
+
         // On affiche la page compte user.
+        if (is_null($thumbupsCount)){
+            $thumbupsCount = 0;
+        }
         $view = new View("userAccount");
-        $view->render("userAccount", ['thumbupsCount' => $thumbupsCount]);
+        $view->render("userAccount", ['thumbupsCount' => $thumbupsCount, 'displayUser' => $displayUser]);
     }
   
     /**

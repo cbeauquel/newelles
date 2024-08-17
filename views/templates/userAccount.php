@@ -4,7 +4,7 @@
      */
 ?>
 
-<h2>Mon compte Newelles</h2>
+<h2>Bonjour <?= $displayUser->getStageName(); ?></h2>
 
 <div class="account">
     <nav>

@@ -4,12 +4,12 @@
      */
 ?>
 
-<div class="connection-form">
+<div class="create-form">
 <p>Vous ne semblez pas avoir de compte.<br>
          Si vous souhaitez publier une Newelle, vous pouvez créer un compte en remplissant les champs ci-dessous : </p>
 
     <form action="index.php?action=createUser" method="post" class="foldedCorner">
-        <h2>Créer un compte</h2>
+        <h1>Créer un compte</h1>
         <div class="formGrid">
             <label for="email">email</label>
             <input type="text" name="email" id="email" required value="<?=$userDatas['email'] ?>">

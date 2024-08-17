@@ -6,7 +6,7 @@
     <article class="detail">
         <div class="newelle-detail">
             <div class="meta-data">
-                <h2><?= $profile->getStageName() ?></h2>
+                <h1><?= $profile->getStageName() ?></h1>
                 <img class="detail-img" src="<?= $profile->getUsrImg() ?>" alt="Illustration du profil" />
 
             </div>
@@ -19,7 +19,7 @@
     <?php 
     if (!empty($profileNewelles))
         {?>
-        <h3 class="profile-display">Les Newelles de <?=$profile->getStageName() ?></h3>
+        <h2 class="profile-display">Les Newelles de <?=$profile->getStageName() ?></h2>
         <?php
         foreach($profileNewelles as $profileNewelle) { ?>
             <article class="home-newelles">
@@ -42,7 +42,7 @@
             </article>
         <?php } 
         } else {?>
-            <h3 class="profile-display"><?= $profile->getStageName()?> n'a pas encore publié de Newelles.</h3><?php
+            <h2 class="profile-display"><?= $profile->getStageName()?> n'a pas encore publié de Newelles.</h3><?php
         }?>
     </div>    
 

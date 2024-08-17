@@ -64,15 +64,22 @@ class FeedbackManager extends AbstractEntityManager
         return $userFeedbacks;
     }
 
-    public function countThumbupsByUserId(int $id):string
+    /**
+     * Méthode qui affiche le nombre de coups de pouces dans le compte utilisateur
+     *
+     * @param integer $id
+     * @return string|null
+     */
+    public function countThumbupsByUserId(int $id):?string
     {
         $sql="SELECT SUM(`thumb_up`) 
               FROM `feedback` a
               left join newelle b ON a. nwl_id = b. id
               where b. `id_user` = :id_user";
         $result = $this->db->query($sql, ['id_user' => $id]);
-        $thumbupsCount = $result->fetch();
-        return $thumbupsCount['SUM(`thumb_up`)'];
+        $thumbups = $result->fetch();
+        $thumbupsCount = $thumbups['SUM(`thumb_up`)'];
+        return $thumbupsCount;
     }
 
 

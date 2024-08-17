@@ -93,11 +93,23 @@ class AdminController extends UserController
         utils::checkIfUserIsConnected();
 
         $adminManager = new AdminManager();
-        $adminNewelles = $adminManager->manageNewelles();
+        $bestNewelle = $adminManager->getPopularNewelle();
+        $bestNeweller = $adminManager->getBestNeweller();
+        $bestReader = $adminManager->getBestReader();
+        $nbNewellers = $adminManager->getNewellersCount();
+        $nbNewelles = $adminManager->getNewellesCount();
+        $nbFeedbacks = $adminManager->getFeedbacksCount();       
 
         // On affiche la page compte user.
         $view = new View("Page d'administration");
-        $view->renderAdmin("displayAdmin");
+        $view->renderAdmin("displayAdmin", [
+            'bestNewelle' => $bestNewelle, 
+            'bestNeweller' => $bestNeweller, 
+            'bestReader' => $bestReader, 
+            'nbNewellers' => $nbNewellers, 
+            'nbNewelles' => $nbNewelles,
+            'nbFeedbacks' => $nbFeedbacks,
+        ]);
     }
 
     /**
@@ -120,6 +132,11 @@ class AdminController extends UserController
         $view->renderAdmin("updateProfileForm", ['profile' => $profile]);         
     }
 
+    /**
+     * Méthode pour afficher la page d'administration des newellers
+     *
+     * @return void
+     */
     public function adminNewellers(){
 
         $this->checkIfAdminIsConnected();
@@ -132,6 +149,11 @@ class AdminController extends UserController
         $view->renderAdmin("adminNewellers", ['newellers' => $newellers]);   
     }
 
+    /**
+     * Méthode pour la suppression d'un profil neweller
+     *
+     * @return void
+     */
     public function adminProfileDelete(){
 
         $this->checkIfAdminIsConnected();
@@ -164,6 +186,11 @@ class AdminController extends UserController
         $view->renderAdmin("updateNewelleForm", ['newelle' => $newelle]);
     }
 
+    /**
+     * Méthode d'administration des newelles
+     *
+     * @return void
+     */
     public function adminNewelles(){
         $this->checkIfAdminIsConnected();
 
@@ -175,6 +202,11 @@ class AdminController extends UserController
         $view->renderAdmin("adminNewelles", ['adminNewelles' => $adminNewelles]);   
     }
 
+    /**
+     * Méthode d'administration des feedbacks
+     *
+     * @return void
+     */
     public function adminFeedbacks(){
         $this->checkIfAdminIsConnected();
 
@@ -186,6 +218,11 @@ class AdminController extends UserController
         $view->renderAdmin("adminFeedbacks", ['adminFeedbacks' => $adminFeedbacks]);         
     }
 
+    /**
+     * Méthode permettant de supprimer des feedbacks en tant qu'admin
+     *
+     * @return void
+     */
     public function adminFeedbackDelete(){
 
         $this->checkIfAdminIsConnected();
@@ -198,6 +235,11 @@ class AdminController extends UserController
         Utils::redirect("adminFeedbacks");
     }
 
+    /**
+     * Méthode qui permet d'afficher des statistiques de consultation du site
+     *
+     * @return void
+     */
     public function adminStats(){
         $this->checkIfAdminIsConnected();
         $monitoringManager = new MonitoringManager();

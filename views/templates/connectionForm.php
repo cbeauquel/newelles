@@ -6,7 +6,7 @@
 
 <div class="connection-form">
     <form action="index.php?action=connectUser" method="post" class="folded-corner">
-        <h2>Connexion</h2>
+        <h1>Connexion</h1>
         <div class="formGrid">
             <label for="email">e-mail</label>
             <input type="text" name="email" id="email" required>
