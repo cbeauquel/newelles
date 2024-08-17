@@ -68,7 +68,7 @@ class AdminManager extends UserManager
         CONCAT('<a href=\"index.php?action=detail&id=',a. `id`,'\">Voir</a>') AS `Voir`, 
         CONCAT('<a href=\"index.php?action=delete&id=',a. `id`,'\"','onclick=\'return confirm(\"Êtes-vous sûr de vouloir supprimer cette Newelle ?\")\'>Supprimer</a>') AS `Supprimer`
         FROM `newelle` a
-        LEFT JOIN `users` b on a. `id_user` = b. `id`
+        LEFT JOIN `users` b ON a. `id_user` = b. `id`
         ORDER BY a. `id_user`";
 
         $adminNewelles = [];
@@ -88,8 +88,8 @@ class AdminManager extends UserManager
         $sql = "SELECT b. title AS `nwlTitle`, a. *, c. stage_name,
         CONCAT('<a href=\"index.php?action=adminFeedbackDelete&id=',a. `id`,'\"','onclick=\'return confirm(\"Êtes-vous sûr de vouloir supprimer ce Feedback ?\")\'>Supprimer</a>') AS `Supprimer`
         FROM `feedback` a
-        LEFT JOIN `newelle` b on a. `nwl_id` = b. `id`
-        LEFT JOIN `users` c on b. `id_user` = c. `id`
+        LEFT JOIN `newelle` b ON a. `nwl_id` = b. `id`
+        LEFT JOIN `users` c ON b. `id_user` = c. `id`
         ORDER BY b. `id`";
 
         $adminFeedbacks = [];
@@ -100,35 +100,123 @@ class AdminManager extends UserManager
         return $adminFeedbacks;
     }
 
-    public function getNewellesCount(): int{
+    /**
+     * Méthode permettant de récupérer le nombre de newelles
+     *
+     * @return integer
+     */
+    public function getNewellesCount(): array
+    {
         $sql = "SELECT COUNT('id') AS `Number of Newelles`
                 FROM newelle";
         $nbNewelles = 0;
-        $nbNewelles = $this->db->query($sql);
+        $result = $this->db->query($sql);
+        $nbNewelles = $result->fetch();
 
         return $nbNewelles;
     }
 
-    public function getNewellersCount(): int{
+    /**
+     * Méthode permettant d'afficher le nombre de newellers
+     *
+     * @return integer
+     */
+    public function getNewellersCount(): array
+    {
         $sql = "SELECT COUNT('id') AS `Number of Newellers`
                 FROM users";
         $nbNewellers = 0;
-        $nbNewellers = $this->db->query($sql);
+        $result = $this->db->query($sql);
+        $nbNewellers = $result->fetch();
 
         return $nbNewellers;
     }
 
-    public function getPopularNewelle(): int{
-        $sql = "SELECT a. `title`, COUNT('b. `id`'), AVG('b. `thumb_up`')
-                FROM `newelle` a
-                LEFT JOIN `feedback` b ON a. `id` = b. `nwl_id`
-                group by a. `id`
-                LIMIT 1 ";
-        $nbNewellers = 0;
-        $nbNewellers = $this->db->query($sql);
+    public function getFeedbacksCount():array
+    {
+        $sql = "SELECT COUNT('id') AS `Number of Feedbacks`
+                FROM feedback";
+        $nbFeedbacks = 0;
+        $result = $this->db->query($sql);
+        $nbFeedbacks = $result->fetch();
 
-        return $nbNewellers;
+        return $nbFeedbacks;
+
     }
 
+    /**
+     * Méthode permettant de récupérer la newelle la plus consultée
+     *
+     * @return integer
+     */
+    public function getPopularNewelle():array
+    {
+        $sql = "SELECT `title`, `nwl_id`, `pouces`, `views`, `commentaires`
+                FROM(
+                    SELECT b. `title` AS `title`, a. `nwl_id` AS `nwl_id`, round(avg(a. `thumb_up`),1) AS `pouces`, count(distinct(c. `id`)) AS `views`, count(distinct(a. `id`)) AS `commentaires`
+                    FROM `feedback` a 
+                    LEFT JOIN `newelle` b ON a. `nwl_id` = b. `id`
+                    LEFT JOIN `connections` c ON b. `id` = c. `nwl_id`
+                    GROUP BY a. `nwl_id`
+                    ORDER BY `pouces` DESC) AS `moyennes`
+                limit 1";
+
+        $result = $this->db->query($sql);
+        $bestNewelle = [];
+
+        $bestNewelle = $result->fetch();
+
+        return $bestNewelle;
+    }
+
+    /**
+     * Méthode pour afficher le neweller le plus actif (celui ayant publié le plus de newelles)
+     *
+     * @return array
+     */
+    public function getBestNeweller():array
+    {
+        $sql = "SELECT `stagename`, `newelles`, `pouces`, `views`, `commentaires` 
+                FROM( 
+                    SELECT d. `stage_name` AS `stagename`, count(distinct(b. `id`)) AS `newelles`, round(avg(a. `thumb_up`),1) AS `pouces`, count(distinct(c. `id`)) AS `views`, count(distinct(a. `id`)) AS `commentaires` 
+                    FROM `feedback` a 
+                    LEFT JOIN `newelle` b ON a. `nwl_id` = b. `id` 
+                    LEFT JOIN `connections` c ON b. `id` = c. `nwl_id` 
+                    LEFT JOIN `users` d ON b. `id_user` = d. `id` 
+                    GROUP BY d. `stage_name` 
+                    ORDER BY `newelles` DESC) AS `moyennes` 
+                    LIMIT 1";
+
+        $result = $this->db->query($sql);
+        $bestNeweller = [];
+
+        $bestNeweller = $result->fetch();
+
+        return $bestNeweller;
+    }
+
+    /**
+     * Méthode permettant d'afficher le lecteur le plus actif (nombre de feedbacks publiés)
+     *
+     * @return array
+     */
+    public function getBestReader():array
+    {
+        $sql = "SELECT `nickname`, `newelles`, `pouces`, `commentaires`
+                FROM( 
+                    SELECT a.`nick_name` AS `nickname`, COUNT(DISTINCT(b.`id`)) AS `newelles`, SUM(a. thumb_up) AS `pouces`, COUNT(DISTINCT(a.`id`)) AS `commentaires`
+                    FROM `feedback` a 
+                    LEFT JOIN `newelle` b ON a. `nwl_id` = b. `id` 
+                    GROUP BY `nickname`
+                    ORDER BY `newelles` DESC) AS `moyennes` 
+                    LIMIT 1";
+
+        $result = $this->db->query($sql);
+        $bestReader = [];
+
+        $bestReader = $result->fetch();
+
+        return $bestReader;
+    }
 
 }

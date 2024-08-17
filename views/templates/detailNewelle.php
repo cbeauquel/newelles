@@ -6,7 +6,7 @@
     <article class="detail">
         <div class="newelle-detail">
             <div class="meta-data">
-                <h2><?= $newelle->getTitle() ?></h2>
+                <h1><?= $newelle->getTitle() ?></h1>
                 <ul>
                     <li>Proposé par : 
                     <?= htmlspecialchars($newelle->getStageName()) ?><br>
@@ -21,7 +21,7 @@
                 <img class="detail-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
 
                 <div class="feedbacks">
-                    <h3>Les commentaires à propos de cette Newelle</h3>
+                    <h2>Les commentaires à propos de cette Newelle</h2>
                     <div class="feedback">
                         <?php 
                             if (empty($feedbacks)) {
@@ -35,11 +35,11 @@
                                                                       . htmlspecialchars($feedback->getNickName()) . ' a écrit :</h3>';
                                     echo '      <p class="content">' .htmlspecialchars($feedback->getComment()) . '</p>';
                                     if ($feedback->getThumbUp() > 0){
-                                    echo '      <p class="info">et a donné :</p>';
+                                    echo '      <p class="info"> ';
                                     for ($i = 0; $i < $feedback->getThumbUp(); $i++){
                                         echo '  <span class="material-symbols-outlined">Thumb_Up</span>'; }
     
-                                    echo '   <p class="info">coups de pouce</p></div>'; }
+                                    echo '   coups de pouce</p></div>'; }
                                     echo '</li>';
                                 }               
                                 echo '</ul>';

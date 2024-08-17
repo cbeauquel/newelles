@@ -3,7 +3,7 @@
      * Affichage du compte utilisteur
      */
 ?>
-<h3>Gestion des Newelles</h3>
+<h2>Gestion des Newelles</h2>
     <div class="admin-newelles">
         <?php
             utils::createTable($adminNewelles);
