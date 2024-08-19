@@ -1,0 +1,110 @@
+@media (max-width: 1440px){
+    /**
+    * Header
+    */
+
+    .header > .logo{
+        width:15%;
+        padding:10px 30px 10px 30px;
+    }
+
+    /*****Home Page**********/
+    /* Affichage des newelles */
+    article.home-newelles{
+        width:50%;
+    }
+
+    /* affichage du top 4 profiles */
+    /* Affichage des newelles */
+
+    article.home-profiles{
+        width:50%;
+    }
+
+    /**
+    * Compte utilisateur
+    */
+    .account-card{
+        display:flex;
+        flex-direction: column;
+        border-radius: 40px;
+        background-color: var(--headerPaleColor);
+        width:30%;
+        align-items: center;
+    }
+}
+@media (max-width: 1024px){
+    /**
+    * Header
+    */
+
+    .header > .logo{
+        width:25%;
+        padding:10px 30px 10px 30px;
+    }
+
+    /*****Home Page**********/
+    /* Affichage des newelles */
+    article.home-newelles{
+        width:50%;
+    }
+    .newelle {
+        height:400px;
+    }
+
+    .newelle-content {
+        height:348px;
+    }
+
+    /* affichage du top 4 profiles */
+    /* Affichage des newelles */
+
+    article.home-profiles{
+        width:50%;
+    }
+
+    /**
+    * Compte utilisateur
+    */
+    .account-card{
+        display:flex;
+        flex-direction: column;
+        border-radius: 40px;
+        background-color: var(--headerPaleColor);
+        width:32%;
+        align-items: center;
+    }
+
+    /* Page de détail d'un newelle */
+    .newelle-detail {
+        flex-direction: column reverse;
+        background-color: var(--headerPaleColor);
+        margin-top:20px;
+        width:100%;
+    }
+
+    .feedbacks{
+        display:none;
+    }
+
+    .feedbacks-mobile{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width:100%;
+    }
+
+    .newelle-text{
+        width:100%;
+        padding:30px 15px 30px 15px;
+    }
+
+    .meta-data{
+        width:100%;
+        padding:10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

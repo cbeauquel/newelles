@@ -1,0 +1,53 @@
+@media (max-width: 768px){
+    /**
+    * Header
+    */
+
+    .header > .logo{
+        display:none;
+    }
+
+    /*****Home Page**********/
+    /* Affichage des newelles */
+    article.home-newelles{
+        width:100%;
+    }
+
+    /* affichage du top 4 profiles */
+    /* Affichage des newelles */
+
+    article.home-profiles{
+        width:100%;
+    }
+
+    /**
+    * Compte utilisateur
+    */
+
+    .account-card{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    
+}
+
+@media (max-width: 550px){
+    /*****Home Page**********/
+    /* Affichage des newelles */
+    .newelle {
+        height:400px;
+    }
+
+    .newelle-content {
+        height:348px;
+    }
+
+    /**
+    * Compte utilisateur
+    */
+    .account-card{
+        margin-bottom:10px;
+    }  
+   
+}

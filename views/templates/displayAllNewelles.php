@@ -12,8 +12,8 @@
                 <div class="newelle">
                     <div class="newelle-content">
                         <h3><?= $newelle->getTitle() ?></h3>
-                        <p class="stagename">proposé par <?= $newelle->getStageName()?></p>
-                        <p><?= strip_tags(($newelle->getContent(450))) ?></p>                        
+                        <p class="stagename">par <?= $newelle->getStageName()?></p>
+                        <p class="extrait"><?= strip_tags(($newelle->getContent(510))) ?></p>                        
                     </div>
                     <img class="newelle-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
                     <div class="newelle-footer">
