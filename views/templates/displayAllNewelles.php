@@ -13,7 +13,7 @@
                     <div class="newelle-content">
                         <h3><?= $newelle->getTitle() ?></h3>
                         <p class="stagename">par <?= $newelle->getStageName()?></p>
-                        <p class="extrait"><?= strip_tags(($newelle->getContent(510))) ?></p>                        
+                        <p class="extrait"><?= utils::format($newelle->getContent(),1,295) ?></p>                        
                     </div>
                     <img class="newelle-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
                     <div class="newelle-footer">

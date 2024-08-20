@@ -42,11 +42,18 @@
 
     <header>
         <div class="header">
-            <div class="logo">
+            <!-- <div class="logo">
                 <a href="index.php" title="retour à l'accueil"><img src="img/interface/newel_logo.png" alt="logo du site Newelles"/></a>
-            </div>
+            </div> -->
             <div class="title">
                     <a href="index.php" title="retour à l'accueil"><p>Newelles</p></a>
+            </div>
+            <div class="search">
+                <form method="post" action="index.php?action=search">
+                    <input type="text" name="keyword" id="keyword"  placeholder="recherchez une newelle ou un neweller !">
+                    <input type="submit" value="Rechercher" id="submit">
+                    <button class="material-symbols-outlined" type="submit">search</button>
+                </form>
             </div>
             <div class="nav">
                 <nav>

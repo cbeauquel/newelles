@@ -3,9 +3,12 @@
     * Header
     */
 
-    .header > .logo{
-        width:15%;
-        padding:10px 30px 10px 30px;
+    .header .title{
+        width:25%;
+    }
+
+    .search #submit{
+        width:25%;
     }
 
     /*****Home Page**********/
@@ -37,11 +40,32 @@
     /**
     * Header
     */
-
-    .header > .logo{
-        width:25%;
-        padding:10px 30px 10px 30px;
+    .header .title{
+        width:30%;
     }
+
+    .header > .nav {
+        width:10%;
+    }
+
+    .search #submit{
+        display:none;
+    }
+    
+     .search button.material-symbols-outlined {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color:var(--headerColor);    
+        border:solid 1px var(--headerPaleColor);
+        color:var(--backgroundColor);
+        cursor: pointer;
+        border-radius:0 30px 30px 0;
+        height:60px;
+        font-size:2em;
+        padding:0 10px;
+    }
+
 
     /*****Home Page**********/
     /* Affichage des newelles */
