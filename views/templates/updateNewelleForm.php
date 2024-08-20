@@ -12,16 +12,18 @@
             <input class="title-input" type="text" name="title" id="title" value="<?= $newelle->getTitle() ?>" required>
             <label class="genre-lbl" for="genre">Genre de la Newelle</label>
             <input class="genre-input" type="text" name="genre" id="genre" value="<?= $newelle->getGenre() ?>" required>
-            <label class="duree-lbl" for="duree">Durée de la Newelle en mn</label>
-            <input class="duree-input" type="text" name="duree" id="duree" value="<?= $newelle->getDuree() ?>" required>
             <label class="saisie-lbl">Saisissez votre Newelle ici</label>
             <textarea class="saisie-input" id="rtf" name="content" cols="150" rows="200"><?= $newelle->getContent() ?></textarea>
             <?php if($newelle->getId() == -1) {?>
+                <label class="duree-lbl" for="duree">Durée de la Newelle en mn</label>
+                <input class="duree-input" type="text" name="duree" id="duree" value="0">
                 <label class="nwl-img-lbl" for="nwlImg">Insérez une image d'illustration (fichiers acceptés : jpg, png)</label>
                 <input class="nwl-img-input" type="file" name="nwlImg" id="nwlImg">
                 <label class="audio-lbl" for="audio">Insérez la piste audio de votre Newelle (mp3)</label>
                 <input class="audio-input" type="file" name="audio" id="audio">
             <?php } else {?>
+                <label class="duree-lbl" for="duree">Durée de la Newelle en mn</label>
+                <input class="duree-input" type="text" name="duree" id="duree" value="<?= $newelle->getDuree() ?>">
                 <label class="current-img-lbl" for="currentImg">Image actuelle :</label>
                 <img class="current-img" src="<?=$newelle->getNwlImg() ?>" alt="Image actuelle" />
                 <input type="hidden" value="<?=$newelle->getNwlImg() ?>" name="currentImg" id="currentImg">

@@ -28,7 +28,7 @@
                         <div class="newelle-content">
                             <h3><?= $profileNewelle->getTitle() ?></h3>
                             <p class="stagename">proposé par <?= $profileNewelle->getStageName()?></p>
-                            <p><?= strip_tags(($profileNewelle->getContent(450))) ?></p>                        
+                            <p class="extrait"><?= strip_tags(($profileNewelle->getContent(450))) ?></p>                        
                         </div>
                         <img class="newelle-img" src="<?= $profileNewelle->getNwlImg() ?>" alt="Illustration de la newelle" />
                         <div class="newelle-footer">

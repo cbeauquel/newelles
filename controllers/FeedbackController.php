@@ -30,8 +30,12 @@ class FeedbackController
               }
               else
               {
-                  $errMsg = 'Robot verification failed, please try again.';
+                throw new exception("La vérification n\' a pas aboutie, recommencez le captcha.");
               }
+         }
+         else
+         {
+           throw new exception("Vous devez remplir le captcha.");
          }
 
         //on crée l'objet feedback

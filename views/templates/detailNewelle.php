@@ -3,10 +3,11 @@
      * Affichage de Liste des newelles. 
      */
 ?>
-    <article class="detail">
+    <div class="detail">
         <div class="newelle-detail">
-            <div class="meta-data">
-                <h1><?= $newelle->getTitle() ?></h1>
+            <h1><?= $newelle->getTitle() ?></h1>
+            <sidebar class="meta-data">
+                <h2>Informations sur la newelle</h2>
                 <ul>
                     <li>Proposé par : 
                     <?= htmlspecialchars($newelle->getStageName()) ?><br>
@@ -15,8 +16,11 @@
                     </a></em></li>
                     <li>Genre : <strong><?= htmlspecialchars($newelle->getGenre() )?></strong></li>
                     <li>Taille : <strong><?= htmlspecialchars($newelle->getTaille()) ?></strong></li>
-                    <li>Durée : <strong><?= htmlspecialchars($newelle->getDuree()) ?></strong></li>
-                    <li>Ajoutée le : <strong><?= ucfirst(Utils::convertDateToFrenchFormat($newelle->getDateCreation())) ?></strong></li>
+                    <?php
+                        if ($newelle->getDuree() >= 1){
+                        echo '<li>Durée : <strong>' . htmlspecialchars($newelle->getDuree()) . ' </strong></li>';
+                    } ?>
+                        <li>Ajoutée le : <strong><?= ucfirst(Utils::convertDateToFrenchFormat($newelle->getDateCreation())) ?></strong></li>
                 </ul>
                 <img class="detail-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle" />
 
@@ -31,8 +35,8 @@
                                 foreach ($feedbacks as $feedback){
                                     echo '<li>';
                                     echo '  <div class="detailFeedback">';
-                                    echo '      <h4 class="info">Le ' . Utils::convertDateToFrenchFormat($feedback->getDateComment()) . ", "
-                                                                      . htmlspecialchars($feedback->getNickName()) . ' a écrit :</h3>';
+                                    echo '      <p class="info">Le ' . Utils::convertDateToFrenchFormat($feedback->getDateComment()) . ", "
+                                                                      . htmlspecialchars($feedback->getNickName()) . ' a écrit :</p>';
                                     echo '      <p class="content">' .htmlspecialchars($feedback->getComment()) . '</p>';
                                     if ($feedback->getThumbUp() > 0){
                                     echo '      <p class="info"> ';
@@ -71,8 +75,8 @@
                         <button class="submit">Soumettre</button>
                     </form>
                 </div>
-            </div>
-            <div class="newelle-text">    
+            </sidebar>
+            <article class="newelle-text">    
                 <?php if(!empty($newelle->getAudio()))
                 { ?>        
                 <div class="audio-player">
@@ -83,7 +87,7 @@
                 <p>
                     <?= utils::displayTextPerPage($newelle->getContent(), 2000) ?>
                 </p>
-            </div>
+            </article>
             <div class="feedbacks-mobile">
                     <h2>Les commentaires à propos de cette Newelle</h2>
                     <div class="feedback">
@@ -144,4 +148,4 @@
             </div>
             </nav>
         <?php }?>
-    </article>
+        </div>

@@ -296,7 +296,7 @@ article.home-profiles{
 .newelle-text .material-symbols-outlined {
     font-size: 150px!important;
     display:block;
-    margin:-60px auto 10px auto;
+    margin:-20px auto 10px auto;
     color:var(--titleColor);
     font-variation-settings: 'FILL' 1;
     border: none;
@@ -330,7 +330,6 @@ article.detail{
     flex-direction: row;
     flex-wrap: wrap;
     background-color: var(--headerPaleColor);
-    margin-top:20px;
     width:100%;
 }
 
@@ -342,14 +341,13 @@ article.detail{
     align-items: center;
 }
 
-.meta-data h1{
+.newelle-detail h1{
     width: 100%;
-    margin: 20px 0;
+    padding: 10px 0;
     font-size: 1.5em;
-    color: var(--headerColor);
-    border-bottom: 3px solid var(--titleColor);
+    color: var(--headerPaleColor);
+    background-color: var(--headerColor);
     text-align:center;
-    padding:5px;
 }
 
 .meta-data h2{
@@ -714,7 +712,7 @@ form .formGrid {
     display: grid;
     grid-template-columns: 300px minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
     gap: 10px; /* Espace entre les éléments de la grille */
-    padding-left:10px;
+    padding:10px;
 }
 
 form .formGrid .submit {

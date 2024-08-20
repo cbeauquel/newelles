@@ -16,7 +16,7 @@ class Newelle extends AbstractEntity
     private string $content = "";
     private string $nwlImg = "";
     private string $genre = "";
-    private int $duree = 0;
+    private ?int $duree = 0;
     private int $taille = 0;
     private string $modifier = "";
     private string $voir = "";
@@ -222,7 +222,7 @@ class Newelle extends AbstractEntity
      *
      * @return void
      */
-    public function setDuree(int $duree) : void
+    public function setDuree(?int $duree) : void
     {
         $this->duree = $duree;
     }
@@ -232,7 +232,7 @@ class Newelle extends AbstractEntity
      *
      * @return string
      */
-    public function getDuree() : string
+    public function getDuree() : ?string
     {
         return $this->duree . self::UNITE_DUREE;
     }
