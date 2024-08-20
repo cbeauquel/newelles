@@ -63,28 +63,39 @@ class Utils
     }
 
     /**
-     * Cette méthode protège une chaine de caractères contre les attaques XSS.
+     * Cette méthode affiche les textes sous forme d'extraits de longueurs choisis.
+     * 
      * De plus, elle transforme les retours à la ligne en balises <p> pour un affichage plus agréable. 
      * @param string $string : la chaine à protéger.
      * @return string : la chaine protégée.
      */
-    public static function format(string $string) : string
+    public static function format(?string $rawString, int $line, int $length) : string
     {
-        // Etape 1, on protège le texte avec htmlspecialchars.
-        $finalString = htmlspecialchars($string, ENT_QUOTES);
+        // Etape 1, on protège le texte avec htmlspecialchars
+        $string = strip_tags(html_entity_decode($rawString));
 
-        // Etape 2, le texte va être découpé par rapport aux retours à la ligne, 
-        $lines = explode("\n", $finalString);
-
-        // On reconstruit en mettant chaque ligne dans un paragraphe (et en sautant les lignes vides).
-        $finalString = "";
-        foreach ($lines as $line) {
-            if (trim($line) != "") {
-                $finalString .= "<p>$line</p>";
-            }
+        // Etape 2, le texte va être découpé par rapport aux retours à la ligne, on récupère le texte à partir de la 2ème ligne 
+        //pour ne pas afficher le titre du contenu
+        $lines = explode("\n", $string);
+        if (count($lines) >= 2){
+            $selectString = array_slice($lines, $line);
+            $finalString = implode("\n",$selectString);
+        } else {
+            $finalString = $string;
         }
+
+        //Etape 3, on récupère le nombre de caractères passés en paramètre/
+        if ($length > 0) {
+            // Ici, on utilise mb_substr et pas substr pour éviter de couper un caractère en deux (caractère multibyte comme les accents).
+            $content = mb_substr($finalString, 0, $length);
+            if (strlen($finalString) > $length) {
+                $content .= "...";
+            }
+            return $content;
+        }
+
         
-        return $finalString;
+        return $string;
     }
 
     /**
@@ -96,7 +107,7 @@ class Utils
      */
     private static function splitTextIntoPages(string $text, int $wordsPerPage) :array
     {
-        $nbWords = str_word_count($text);
+        $nbWords = str_word_count(strip_tags(html_entity_decode($text)), 0,'’–èéàçùêôûîÉÈÀ…');
         $words = explode(' ', $text);
         $pages = [];
 

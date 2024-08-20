@@ -190,7 +190,7 @@ class NewelleController
         }
 
         //on calcule la taille du texte envoyée (variable $content)
-        $taille = str_word_count($content);
+        $taille = str_word_count(strip_tags(html_entity_decode($content)), 0,'–èéàçùêôûîÉÈÀ');
 
         // on s 'assure que le champs "durée" est bien un entier 
         $duree = preg_replace('/\D/', '', $duree);
