@@ -71,6 +71,10 @@ class Utils
      */
     public static function format(?string $rawString, int $line, int $length) : string
     {
+        if (is_null($rawString))
+        {
+            $rawString="";
+        }
         // Etape 1, on protège le texte avec htmlspecialchars
         $string = strip_tags(html_entity_decode($rawString));
 

@@ -101,23 +101,18 @@
 
     /* Page de détail d'un newelle */
     .newelle-detail {
-        flex-direction: column reverse;
-        background-color: var(--headerPaleColor);
-        margin-top:20px;
+        display:flex;
+        flex-direction: column;
+    }
+    
+    .meta-data{
         width:100%;
     }
 
     .feedbacks{
-        display:none;
-    }
-
-    .feedbacks-mobile{
-        display:flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
         width:100%;
-    }
+}
+
 
     .newelle-text{
         width:100%;

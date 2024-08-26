@@ -151,8 +151,11 @@ class NewelleController
             if (!is_dir($path)) {
                 throw new Exception("Erreur lors de l'enregistrement de l'image, dossier cible manquant");
             }
-            move_uploaded_file($nwlImg['tmp_name'], $path . basename($nwlImg['name']));
-            $nwlImg = $path . basename($nwlImg['name']);        
+            //on renomme l'image pour éviter les erreurs dans les noms de fichier
+            $nwlImgName = $idUser . '-' . $id . '.' . $extension;
+
+            move_uploaded_file($nwlImg['tmp_name'], $path . basename($nwlImgName));
+            $nwlImg = $path . basename($nwlImgName);        
         }
 
         //on vérifie les données audio 
@@ -185,8 +188,12 @@ class NewelleController
             if (!is_dir($path)) {
                 throw new Exception("Erreur lors de l'enregistrement du son, dossier cible manquant");
             }
-            move_uploaded_file($audio['tmp_name'], $path . basename($audio['name']));
-            $audio = $path . basename($audio['name']);        
+
+            //on renomme le fichier pour éviter les erreurs dans les noms de fichier
+            $nwlaudioName = $idUser . '-' . $id . '.' . $extension;
+
+            move_uploaded_file($audio['tmp_name'], $path . basename($nwlaudioName));
+            $audio = $path . basename($nwlaudioName);        
         }
 
         //on calcule la taille du texte envoyée (variable $content)

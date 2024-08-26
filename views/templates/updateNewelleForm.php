@@ -3,6 +3,9 @@
      * Template pour afficher le formulaire de connexion.
      */
 ?>
+<div class="signature">
+    <h1>Compte utilisateur</h1>
+</div>
 
 <div class="connection-form">
     <form action="index.php" method="post" class="foldedCorner" enctype="multipart/form-data">
@@ -11,7 +14,18 @@
             <label class="title-lbl" for="title">Titre de la Newelle</label>
             <input class="title-input" type="text" name="title" id="title" value="<?= $newelle->getTitle() ?>" required>
             <label class="genre-lbl" for="genre">Genre de la Newelle</label>
-            <input class="genre-input" type="text" name="genre" id="genre" value="<?= $newelle->getGenre() ?>" required>
+            <select class="genre-input" type="select" name="genre" id="genre" required>
+                <option value="<?= $newelle->getGenre() ?>">Choisissez un genre</option>
+                <option value="Romance">Romance</option>
+                <option value="Aventure">Aventure</option>
+                <option value="Policier">Policier</option>
+                <option value="Épouvante">Épouvante</option>
+                <option value="Historique">Historique</option>
+                <option value="Conte">Conte</option>
+                <option value="Science Fiction">Science Fiction</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="Humour">Humour</option>
+            </select>
             <label class="saisie-lbl">Saisissez votre Newelle ici</label>
             <textarea class="saisie-input" id="rtf" name="content" cols="150" rows="200"><?= $newelle->getContent() ?></textarea>
             <?php if($newelle->getId() == -1) {?>

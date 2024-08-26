@@ -126,6 +126,7 @@ header{
     font-size:1.3em;
 }
 
+
 .search form{
     display:flex;
     flex-direction: row;
@@ -133,6 +134,22 @@ header{
     justify-content: center;
     padding:0;
     background-color:var(--backgroundNewelle);
+
+}
+
+.search label{
+    border-radius:30px 0px 0px 30px;
+    border-left:solid 1px var(--headerPaleColor);
+    border-top:solid 1px var(--headerPaleColor);
+    border-bottom:solid 1px var(--headerPaleColor);
+    height:60px;
+    background-color: var(--backgroundColor);
+    width:50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left:10px;
+    font-size:1.5em;
 }
 
 .search input{
@@ -142,8 +159,9 @@ header{
     height:60px;
     width:60%;
     padding:0px 15px;
-    border-radius:30px 0px 0px 30px;
-    border:solid 1px var(--headerPaleColor);
+    border-top:solid 1px var(--headerPaleColor);
+    border-bottom:solid 1px var(--headerPaleColor);
+    font-family: "Comfortaa", sans-serif;
 }
 
 .search #submit{
@@ -168,6 +186,9 @@ header{
 
 .header > .nav  .material-symbols-outlined{
     font-size:5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .signature{
@@ -226,7 +247,7 @@ article.home-newelles{
 .newelle-content {
     display:flex;
     flex-direction:column;
-    text-align: justify;
+    text-align: left;
     width:65%;
     height:262px;
 }
@@ -259,7 +280,6 @@ p.extrait {
 
 .newelle-content > p.stagename {
     font-style:italic;
-    text-decoration:underline;
 }
 .newelle-footer{
     display:flex;
@@ -326,7 +346,7 @@ article.home-profiles{
 .profile-content {
     display:flex;
     flex-direction:column;
-    text-align: justify;
+    text-align: left;
     width:60%;
     overflow: hidden;
 }
@@ -370,20 +390,18 @@ audio{
     border:none;
 }
 
-article.detail{
-    width:100%;
-}
-
 .newelle-detail {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 33% 33% 33%;
+    grid-gap: 3px;
     background-color: var(--headerPaleColor);
     width:100%;
 }
 
 .meta-data{
-    width:25%;
+    grid-column:1/2;
+	grid-row:1/2;
     padding:10px;
     display: flex;
     flex-direction: column;
@@ -397,10 +415,6 @@ article.detail{
     color: var(--headerPaleColor);
     background-color: var(--headerColor);
     text-align:center;
-}
-
-.meta-data h2{
-    font-size: 1.3em;
 }
 
 .meta-data h3{
@@ -434,8 +448,8 @@ article.detail{
 }
 
 .newelle-text{
-    width:75%;
-    text-align:justify;
+    grid-column:2/5;
+	grid-row:1/4;
     display:flex;
     flex-direction: column;
     line-height: 1.3em;
@@ -466,23 +480,34 @@ article.detail{
 /* Affichage des commentaires */
 
 .feedbacks{
+    grid-column:1/2;
+	grid-row:2/3;
     display:flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width:100%;
 }
 
-.feedbacks-mobile{
-    display:none;
+.feedbacks h2{
+    padding:0px 10px;
+}
+
+.feedbacks h3{
+    text-align:center;
+    font-size:1.2em;
+    border-bottom:solid 2px var(--headerColor);
+    margin-top:20px;
 }
 
 .feedback .material-symbols-outlined {
     font-variation-settings: 'FILL' 1;
     font-size:1.5em;
-    color:orange;
+    color:var(--headerColor);
 }
 
+.feedback{
+    width:90%;
+}
 
 .feedback li{
     width:100%;
@@ -491,8 +516,8 @@ article.detail{
     padding:20px 0px 20px 0px;
 }
 
-h4.info{
-    padding: 20px 5px 10px 15px;
+cite.info{
+    padding: 20px 5px 0px 15px;
     margin:0;
     font-size:1em;
     font-style:italic;
@@ -515,9 +540,10 @@ p.no-comment{
     background-color:var(--backgroundColor);
 } 
 
-p.content{
+blockquote.content{
     background-color: var(--backgroundColor);
     padding:10px;
+    margin-top:10px;
     font-size:1em;
 } 
 
@@ -539,41 +565,58 @@ p.content{
     border-radius:5px;
 }
 
+.feedback-form p{
+    padding:10px 0px;
+}
+
 .h-captcha{
     margin-top:10px;
-    width:100%;
+
     overflow: hidden;
 }
 
+fieldset{
+    border:none;
+}
+
 .rating {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row-reverse; /* this is the magic */
-    justify-content: flex-end;
+    justify-content: center;
     font-variation-settings: 'FILL' 1;
     color: var(--titleColor);
-  }
+}
+
+.rating legend{
+    padding:20px 0px 10px 0px;
+}
 
   .rating label.material-symbols-outlined{
-    font-size: 2em;
-  }
+    font-size: 2.5em;
+}
   
-  .rating input {
+.rating input {
     display: none;
-  }
+}
   
-  .rating label {
+.rating label {
     font-size: 1.2em;
     cursor: pointer;
-  }
+    color: var(--titleColor);
+    font-variation-settings: 'FILL' 0;
+}
   
-  .rating label:hover,
-  .rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
-    color: orange;
-  }
+.rating label:hover,
+.rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
+    color: var(--titleColor);
+    font-variation-settings: 'FILL' 1;
+
+}
   
-  .rating input:checked ~ label {
-    color: orange;
+.rating input:checked ~ label {
+    color: var(--titleColor);
+    font-variation-settings: 'FILL' 1;
   }
 
 /* Page d'erreur */
@@ -722,6 +765,8 @@ footer {
     margin-top: 0px;
     padding: 0px 10px 20px 10px;
     background-color: var(--headerPaleColor);
+    font-family: "Comfortaa", sans-serif;
+
 }
 
 form h2 {
@@ -744,12 +789,19 @@ form input {
 
 }
 
+form select {
+    padding: 5px;
+    border: none;
+    font-size: 1.2em;
+
+}
+
 form textarea {
     height: 150px;
     padding: 5px;
     border: none;
     font-size: 1.2em;
-    width:100%;
+    width:95%;
 }
 
 form .current-img{
@@ -864,6 +916,10 @@ td.delete {
     align-items: center;
 }
 
+.propos article{
+    margin-top:20px;
+}
+
 .propos p{
     padding-bottom:20px;
 }
@@ -877,26 +933,20 @@ td.delete {
     background-color: var(--backgroundNewelle); 
 }
 
-
-.header-admin > .logo{
-    width:5%;
-    padding:5px;
-}
-
 .header-admin > .title{
     width:95%;
 }
 
 .header-admin > .title p{
     font-size:1.75em;
-    margin-left:15%;
+    padding-left: 50px;
 }
 
 .header-admin > .nav {
     display: flex;
     justify-content: flex-end;
     width:5%;
-    padding:5px;
+    padding:10px 30px 5px 5px;
 }
 
 .header-admin > .nav .material-symbols-outlined{

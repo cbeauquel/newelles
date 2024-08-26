@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./styles/MainStyle.css">
     <link rel="stylesheet" href="./styles/TabletStyle.css">
     <link rel="stylesheet" href="./styles/MobileStyle.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1" >
     <!-- Place the first <script> tag in your HTML's <head> -->
     <script src="https://cdn.tiny.cloud/1/dcvenw2y0g3iby40929n5t6szarz1lw6is0467eq3u0gehmm/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
@@ -42,20 +42,17 @@
 
     <header>
         <div class="header-admin">
-            <div class="logo">
-                <a href="index.php" title="retour à l'accueil"><img src="img/interface/newel_logo.png" alt="logo du site Newelles"/></a>
-            </div>
             <div class="title">
-                    <p>Newelles</p>
+                <a href="index.php" class="title" aria-label="Retour à l'accueil" title="retour à l'accueil"><p>Newelles</p></a>
             </div>
             <div class="nav">
                 <nav>
                     <a class="material-symbols-outlined" href="index.php?action=disconnectAdmin" 
                     <?php 
                     if (isset($_SESSION['admin'])){
-                        echo "title=\"Compte utilisateur\"> admin_panel_settings";
+                        echo " title=\"Compte utilisateur\"> admin_panel_settings";
                     } else {
-                       echo "title=\"Se connecter ou créer un compte\"> login";
+                       echo " title=\"Se connecter ou créer un compte\"> login";
                     } ?>
                     </a>
                 </nav>

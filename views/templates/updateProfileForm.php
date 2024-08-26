@@ -3,6 +3,9 @@
      * Template pour afficher le formulaire de connexion.
      */
 ?>
+<div class="signature">
+    <h1>Compte utilisateur</h1>
+</div>
 
 <div class="connection-form">
     <form action="index.php" method="post" class="foldedCorner" enctype="multipart/form-data">

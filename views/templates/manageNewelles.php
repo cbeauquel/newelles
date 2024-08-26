@@ -3,6 +3,9 @@
      * Affichage de Liste des newelles. 
      */
 ?>
+<div class="signature">
+    <h1>Compte utilisateur</h1>
+</div>
 
 <div class="newelle-list">
     <h2>Gestion des Newelles</h2>

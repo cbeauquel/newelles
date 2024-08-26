@@ -12,7 +12,10 @@ class SearchController
     public function displaySearchResult() : void 
     {
         $keyword = Utils::request("keyword");
-
+        if(is_null($keyword))
+        {
+            $keyword="";
+        }
         $searchManager = new SearchManager();
         $newelles = $searchManager->extractSearchResult($keyword);
 

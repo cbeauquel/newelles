@@ -162,7 +162,7 @@ class UserController
         if (is_null($thumbupsCount)){
             $thumbupsCount = 0;
         }
-        $view = new View("userAccount");
+        $view = new View("Compte utilisateur");
         $view->render("userAccount", ['thumbupsCount' => $thumbupsCount, 'displayUser' => $displayUser]);
     }
   
@@ -261,8 +261,12 @@ class UserController
             if (!is_dir($path)) {
                 throw new Exception("Erreur lors de l'enregistrement de l'image, dossier cible manquant");
             }
-            move_uploaded_file($rawUsrImg['tmp_name'], $path . basename($rawUsrImg['name']));
-            $usrImg = $path . basename($rawUsrImg['name']);        
+
+            //on renomme l'image pour éviter les erreurs dans les noms de fichier
+             $UsrImgName = $idUser . '-' . strtr((mb_strtolower($stageName)), ' ', '-') . '.' . $extension;
+
+            move_uploaded_file($rawUsrImg['tmp_name'], $path . basename($UsrImgName));
+            $usrImg = $path . basename($UsrImgName);        
         }
 
         // On crée l'objet User.

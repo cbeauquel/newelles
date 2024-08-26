@@ -5,7 +5,7 @@
 ?>
 
 <div class="connection-form">
-    <form action="index.php?action=connectUser" method="post" class="folded-corner">
+    <form action="index.php?action=connectUser" method="post" class="folded-corner" aria-label="connexion ou création d'un compte utilisateur">
         <h1>Connexion</h1>
         <div class="formGrid">
             <label for="email">e-mail</label>

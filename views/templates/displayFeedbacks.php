@@ -3,6 +3,9 @@
      * Affichage de Liste des feedbacks. 
      */
 ?>
+<div class="signature">
+    <h1>Compte utilisateur</h1>
+</div>
 
 <div class="newelleList">
     <h2>Gestion des Feedbacks</h2>
