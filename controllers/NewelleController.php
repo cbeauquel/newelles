@@ -219,14 +219,19 @@ class NewelleController
         $newelleManager = new NewelleManager();
         $newelleManager->addOrUpdateNewelle($newelle);
 
-        // On redirige vers la page de la newelle.
-        if ($_SESSION['admin']){
-            Utils::redirect("adminNewelles");
+        // On confirme le bon fonctionnement de l'action
+        $view = new View("Succès");      
+        if (isset($_SESSION['admin'])){
+            $succesMessage ="La Newelle a bien été mise à jour";
+            $redirect = "adminNewelles";
         } elseif ($id==="-1"){
-            Utils::redirect("home");
+            $succesMessage ="La Newelle a bien été créée et publiée";
+            $redirect = "userAccount";
         } else { 
-            Utils::redirect("detail&id=" . $newelle->getId());
+            $succesMessage ="La Newelle a bien été mise à jour";
+            $redirect = "detail&id=" . $newelle->getId();
         }    
+        $view->render("succesPage", ['redirect' => $redirect, 'succesMessage' => $succesMessage]);
     }
 
     /**

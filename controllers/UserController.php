@@ -62,8 +62,11 @@ class UserController
         $userManager = new UserManager();
         $userManager->addUser($user);
 
-        // On redirige vers la page de connexion
-        Utils::redirect("userAccount");
+        //on confirme la création du compte
+        $view = new View("Succès");
+        $redirect = "userAccount";
+        $succesMessage ="Votre compte a bien été créé, vous pouvez vous connecter en cliquant sur le lien ci-dessous";
+        $view->render("succesPage", ['redirect' => $redirect, 'succesMessage' => $succesMessage]);
     }
 
     /**
@@ -75,8 +78,12 @@ class UserController
         // On déconnecte l'utilisateur.
         unset($_SESSION['user']);
 
-        // On redirige vers la page d'accueil.
-        Utils::redirect("home");
+        // On confirme la désinscription.
+        $view = new View("Succès");
+        $redirect = "home";
+        $succesMessage ="Vous avez bien été déconnecté de votre compte, bonne journée !";
+        $view->render("succesPage", ['redirect' => $redirect, 'succesMessage' => $succesMessage]);
+
     }
 
     /**
@@ -293,12 +300,15 @@ class UserController
         $userManager = new UserManager();
         $userManager->UpdateUser($profile);
 
-        // On redirige vers la page du compte utilisateur.
-        if ($_SESSION['admin']){
-            Utils::redirect("adminNewellers");
+        //on confirme la création du compte
+        $view = new View("Succès");
+        if (isset($_SESSION['admin'])){
+            $redirect = "adminNewellers";
         } else {
-        Utils::redirect("userAccount"); 
+         $redirect = "userAccount"; 
         }
+        $succesMessage ="Votre compte a bien été mis à jour";
+        $view->render("succesPage", ['redirect' => $redirect, 'succesMessage' => $succesMessage]);
     }
 
     public function displayProfile() : void
@@ -362,7 +372,7 @@ class UserController
             //on ajoute le token à la base de donnée
             $addToken = $userManager->addToken($id, $token);
         
-            $resetLink = "index.php?action=displayResetPassword&token=" . $token;
+            $resetLink = "https://newelles.fr/index.php?action=displayResetPassword&token=" . $token;
 
             // Envoyer l'email
             $to = $email;
@@ -373,8 +383,13 @@ class UserController
                     'X-Mailer: PHP/' . phpversion();
 
             mail($to, $subject, $message, $headers);
-
-            echo "Un e-mail a été envoyé à l'adresse indiquée.";
+        
+            // On confirme le succès de l'action
+            $view = new View("Succès");
+            $redirect = "userAccount";
+            $succesMessage ="Un lien a été envoyé à votre boite e-mail pour réinitialiser votre mot de passe";
+            $view->render("succesPage", ['redirect' => $redirect, 'succesMessage' => $succesMessage]);
+    
         } else {
            throw new Exception("Aucun utilisateur avec cet e-mail ou adresse e-mail erronée");
         }
@@ -408,8 +423,13 @@ class UserController
             echo "pas marcher";
         }
 
-        // On redirige vers la page de connexion
-        Utils::redirect("userAccount");
+        // On confirme le succès de l'action
+        $view = new View("Succès");
+        $redirect = "userAccount";
+        $succesMessage ="Votre mot de passe à bien été modifié. Vous pouvez vous connecter avec votre nouveau mot de passe";
+        $view->render("succesPage", ['redirect' => $redirect, 'succesMessage' => $succesMessage]);
+        
+        
     }
 
 }
