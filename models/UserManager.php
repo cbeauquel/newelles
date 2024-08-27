@@ -105,4 +105,47 @@ class UserManager extends AbstractEntityManager
         $this->db->query($sql, ['id' => $id]);
     }
 
+    /**
+     * Update Token pour la réinitialisation du mot de passe
+     *
+     * @param integer $id
+     * @param string $token
+     * @return void
+     */
+    public function addToken(int $id, string $token) : void
+    {
+        $sql = "UPDATE users SET token = :token, valid_time = NOW() WHERE id = :id";
+        $this->db->query($sql, [
+            'id' => $id,
+            'token' => $token]);
+    }
+
+    /**
+     * extract Token et valid_time pour la réinitialisation du mot de passe
+     *
+     * @param string $token
+     * @return $array
+     */
+    public function getToken(string $token) : ?array
+    {
+        $sql = "SELECT id, token, valid_time FROM users WHERE token = :token";
+        $result = $this->db->query($sql, [
+            'token' => $token]);
+        $token = [];
+        $token = $result->fetch();
+        if ($token) {
+            return $token;
+        }
+        return null;
+    }
+
+
+    public function updatePassword(int $id, string $password) : void
+    {
+        $sql = "UPDATE users SET password = :password WHERE id = :id";
+        $this->db->query($sql, [
+            'id' => $id,
+            'password' => $password]);
+    }
+
 }    

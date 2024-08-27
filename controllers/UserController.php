@@ -25,8 +25,13 @@ class UserController
         $usr_img = null;        
 
         // On vérifie que les données sont valides.
-        if (empty($email) || empty($rawPassword)  || empty($name) || empty($firstName) || empty($stageName)) {
+        if (empty($email) || empty($rawPassword)  || empty($name) || empty($firstName) || empty($stageName)) 
+        {
             throw new Exception("Tous les champs sont obligatoires.");
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            throw new Exception("Veuillez saisir une adresse e-mail valide");
+
         } else if ($rawPassword !== $confirmPassword)
         {
             throw new Exception("Les mots de passe ne correspondent pas");
@@ -117,7 +122,11 @@ class UserController
         // On vérifie que les données sont valides.
         if (empty($email) || empty($password)) {
             throw new Exception("Tous les champs sont obligatoires. 1");
+        } else if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            throw new Exception("Veuillez saisir une adresse e-mail valide");
         }
+        
 
         // On vérifie que l'utilisateur existe.
         $userManager = new UserManager();
@@ -130,7 +139,9 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_BCRYPT);
-            throw new Exception("Le mot de passe est incorrect");
+            throw new Exception("Le mot de passe est incorrect<br>
+            <a class=\"button\" href=\"index.php?action=displayResetPassword\" title=\"Réinitialisation du mot de passe\">Réinitialiser le mot de passe</a>
+            ");
         }
 
         // On connecte l'utilisateur.
@@ -140,7 +151,6 @@ class UserController
         // On redirige vers la page compte utilisateur.
         Utils::redirect("userAccount");
     }
-
 
     /**
      * Affiche le compte user.
@@ -200,7 +210,7 @@ class UserController
         $idUser = $_SESSION['idUser'];
 
         // On récupère le profil
-        $userManager = new userManager();
+        $userManager = new UserManager();
         $profile = $userManager->getUserById($idUser);
 
         // On affiche la page de modification de la newelle.
@@ -321,4 +331,85 @@ class UserController
         $view = new View("Affichage des feedbacks");
         $view->render("displayFeedbacks", ['userFeedbacks' => $userFeedbacks]);
     }
+
+    
+    public function displayResetPassword()
+    {
+        $token = utils::request('token');
+
+        $view = new View("Réinitialisation du Mot de passe");
+        $view->render("resetPassword", ['token' => $token]);
+
+    }
+
+    /**
+     * Méthode de réinitialisation du mot de passe
+     *
+     * @return void
+     */
+    public function resetPassword()
+    {
+        $email = Utils::request("email");
+        $userManager = new UserManager();
+        $userMail = $userManager->getUserByLogin($email);
+  
+        if ($userMail) {
+            $id = $userMail->getId();
+
+            //on génère un token unique
+            $token = bin2hex(random_bytes(50));
+
+            //on ajoute le token à la base de donnée
+            $addToken = $userManager->addToken($id, $token);
+        
+            $resetLink = "index.php?action=displayResetPassword&token=" . $token;
+
+            // Envoyer l'email
+            $to = $email;
+            $subject = "Réinitialisation du password";
+            $message = "Click on the link below to reset your password: \n" . $resetLink;
+            $headers = 'From: contact@neobook.fr' . "\r\n" .
+                    'Reply-To: contact@neobook.fr' . "\r\n" .
+                    'X-Mailer: PHP/' . phpversion();
+
+            mail($to, $subject, $message, $headers);
+
+            echo "Un e-mail a été envoyé à l'adresse indiquée.";
+        } else {
+           throw new Exception("Aucun utilisateur avec cet e-mail ou adresse e-mail erronée");
+        }
+    }
+
+    public function updatePassword()
+    {
+        $rawPassword = Utils::request("password");
+        $confirmPassword = Utils::request("confirm_password");
+        $rawToken = Utils::request('token');
+
+        $userManager = new UserManager();
+        $resetRequest = $userManager->getToken($rawToken);
+        $id = $resetRequest['id'];
+        if ($resetRequest && (strtotime($resetRequest['valid_time']) > strtotime('-1 hour')) && !is_null($id)) {
+
+            // On vérifie que les données sont valides.
+            if (empty($rawPassword)) {
+                throw new Exception("Tous les champs sont obligatoires.");
+            } else if ($rawPassword !== $confirmPassword)
+            {
+                throw new Exception("Les mots de passe ne correspondent pas");
+            }
+            //on fait le hash pour le mot de passe
+            $password = password_hash($rawPassword, PASSWORD_BCRYPT);
+
+            // on update le mot de passe
+            $userManager = new UserManager();
+            $userManager->updatePassword($id, $password);
+        } else {
+            echo "pas marcher";
+        }
+
+        // On redirige vers la page de connexion
+        Utils::redirect("userAccount");
+    }
+
 }

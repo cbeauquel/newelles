@@ -180,6 +180,22 @@ try {
             $searchController->displaySearchResult();
             break;
 
+        case 'displayResetPassword':
+            $userController = new UserController();
+            $userController->displayResetPassword();
+            break;
+
+        case 'resetPassword':
+            $userController = new UserController();
+            $userController->resetPassword();
+            break;
+                  
+        case 'updatePassword':
+            $userController = new UserController();
+            $userController->updatePassword();
+            break;
+
+
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

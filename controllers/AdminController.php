@@ -160,8 +160,8 @@ class AdminController extends UserController
 
         $id = Utils::request("id");
 
-        $adminUser = new AdminUser();
-        $adminUser->deleteUser($id);
+        $userManager = new UserManager();
+        $userManager->deleteUser($id);
 
         Utils::redirect("adminNewellers");
     }

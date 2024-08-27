@@ -189,6 +189,7 @@ header{
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: var(--headerColor);
 }
 
 .signature{
@@ -307,7 +308,7 @@ a.button{
     color:var(--headerPaleColor);
     display:block;
     margin:auto;
-
+    color:var(--headerPaleColor);
 }
 
 /* affichage du top 4 profiles */
@@ -633,10 +634,14 @@ fieldset{
     color: var(--titleColor)
 }
 
+.error p {
+    text-align:center;
+}
+
 .error a {
     margin: 20px;
-    color: var(--headerColor);
     font-weight: bold;
+    text-decoration:underline;
 }
 
 
@@ -856,7 +861,6 @@ form .formGrid .submit {
     padding:15px 0px;
     font-size:1.5em;
 }
-
 
 .create-form form{
     border-radius:50px;
