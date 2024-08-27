@@ -19,12 +19,12 @@
                         <p class="extrait"><?= utils::format($newelle->getContent(),1,295) ?></p>                        
                     </div>
                     <img class="newelle-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle <?= $newelle->getTitle() ?>" />
-                    <div class="newelle-footer">
-                        <div class="info"><?= $newelle->getGenre() ?></div>
-                        <div class="info"><?= $newelle->getDuree() ?></div>
-                        <div class="info"><?= $newelle->getTaille() ?></div>
-                        <span class="info"><?= ucfirst(Utils::convertDateToFrenchFormat($newelle->getDateCreation())) ?></span>
-                    </div>
+                    <ul class="newelle-footer">
+                        <li class="info"><?= $newelle->getGenre() ?></li>
+                        <li class="info"><?= $newelle->getDuree() ?></li>
+                        <li class="info"><?= $newelle->getTaille() ?></li>
+                        <li class="info"><?= ucfirst(Utils::convertDateToFrenchFormat($newelle->getDateCreation())) ?></li>
+                    </ul>
                 </div>
                 </a>
         </article>

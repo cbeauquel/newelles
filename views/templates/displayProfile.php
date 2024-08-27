@@ -17,26 +17,26 @@
     </article>
     <div class="newelle-list">
     <?php 
-    if (!empty($profileNewelles))
+    if (!empty($newelles))
         {?>
         <h2 class="profile-display">Les Newelles de <?=$profile->getStageName() ?></h2>
         <?php
-        foreach($profileNewelles as $profileNewelle) { ?>
+        foreach($newelles as $newelle) { ?>
             <article class="home-newelles">
-                <a href="index.php?action=detail&id=<?= $profileNewelle->getId()?>" title="Consulter la newelle <?= $profileNewelle->getTitle() ?>">
+                <a href="index.php?action=detail&id=<?= $newelle->getId()?>" title="Consulter la newelle <?= $newelle->getTitle() ?> ">
                     <div class="newelle">
                         <div class="newelle-content">
-                            <h3><?= $profileNewelle->getTitle() ?></h3>
-                            <p class="stagename">proposé par <?= $profileNewelle->getStageName()?></p>
-                            <p class="extrait"><?= utils::format($profileNewelle->getContent(),1,295); ?></p>                        
+                            <h3><?= $newelle->getTitle() ?></h3>
+                            <p class="stagename">par <?= $newelle->getStageName()?></p>
+                            <p class="extrait"><?= utils::format($newelle->getContent(),1,330) ?></p>                        
                         </div>
-                        <img class="newelle-img" src="<?= $profileNewelle->getNwlImg() ?>" alt="Illustration de la newelle <?= $profileNewelle->getTitle() ?>" >
-                        <div class="newelle-footer">
-                            <div class="info"><?= $profileNewelle->getGenre() ?></div>
-                            <div class="info"><?= $profileNewelle->getDuree() ?></div>
-                            <div class="info"><?= $profileNewelle->getTaille() ?></div>
-                            <span class="info"><?= ucfirst(Utils::convertDateToFrenchFormat($profileNewelle->getDateCreation())) ?></span>                       
-                        </div>
+                        <img class="newelle-img" src="<?= $newelle->getNwlImg() ?>" alt="Illustration de la newelle <?= $newelle->getTitle() ?>" >
+                        <ul class="newelle-footer">
+                            <li class="info"><?= $newelle->getGenre() ?></li>
+                            <li class="info"><?= $newelle->getDuree() ?></li>
+                            <li class="info"><?= $newelle->getTaille() ?></li>
+                            <li class="info"><?= ucfirst(Utils::convertDateToFrenchFormat($newelle->getDateCreation())) ?></li>
+                        </ul>
                     </div>
                     </a>
             </article>

@@ -5,7 +5,6 @@
 ?>
 
 <div class="connection-form">
-    <?php var_dump($token);?>
     <?php if($token) {?>
     <form action="index.php?action=updatePassword" method="post" class="folded-corner" aria-label="Mise à jour du password">
     <?php } else { ?>

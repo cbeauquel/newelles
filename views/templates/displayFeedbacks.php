@@ -18,7 +18,7 @@
         }?>
     <nav class="nwlMngmt">
         <div class="nav">
-            <a class="submit" href="index.php?action=userAccount" title="revenir au compte utilisateur">Retour</a>
+            <a class="button" href="index.php?action=userAccount" title="revenir au compte utilisateur">Retour</a>
         </div>
     </nav>
 </div>

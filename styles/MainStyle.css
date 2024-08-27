@@ -95,24 +95,25 @@ header{
     width:100%;
 }
 
-.header > .logo{
-    width:10%;
-    padding:10px 30px 10px 30px;
-}
-
 .header .title{
     width:20%;
 }
+
 
 .title p{
     display: flex;
     justify-content: flex-start;
     padding:10px 30px 10px 30px;
     font-family: 'Lily Script One', system-ui;
-    font-size: 48px;
+    font-size: 3em;
     color: var(--titleColor);
     font-weight:bold;
     width:100%
+}
+
+.header .title p:hover{                 
+    font-size:3.1em;
+
 }
 
 /*Barre recherche*/
@@ -152,6 +153,10 @@ header{
     font-size:1.5em;
 }
 
+.search form:hover{
+    font-size:1.05em;
+}
+
 .search input{
     font-size:1em;
     font-weight:bold;
@@ -181,7 +186,7 @@ header{
     display: flex;
     justify-content: flex-end;
     width:20%;
-    padding:10px 30px 10px 30px;
+    padding:0px 30px 0px 30px;
 }
 
 .header > .nav  .material-symbols-outlined{
@@ -190,6 +195,11 @@ header{
     flex-direction: column;
     align-items: center;
     color: var(--headerColor);
+}
+
+.header > .nav:hover{
+    font-size:1.1em;
+    padding:0px 20px 0px 20px;
 }
 
 .signature{
@@ -238,12 +248,18 @@ article.home-newelles{
     display:flex;
     flex-direction:row;
     flex-wrap: wrap;
-    margin:10px 5px 10px 20px;
+    margin:10px 10px 10px 20px;
     justify-content:space-around;
     background-color: var(--headerPaleColor);
-    height:300px;
+    height:310px;
     border-radius:0 50px 0 0;
+    border:solid 4px var(--backgroundColor);
 }
+
+.newelle:hover {
+    border:solid 4px var(--headerPaleColor);
+}
+
 
 .newelle-content {
     display:flex;
@@ -292,7 +308,7 @@ p.extrait {
     height:35px;
 }
 
-.newelle-footer .info{
+.newelle-footer li{
     padding:5px 5px 5px 5px;
     border-right: 1px solid var(--titleColor);
     overflow: hidden;
@@ -301,14 +317,23 @@ p.extrait {
 
 }
 
+.newelle-footer li:last-child{
+    border:none;
+}
+
 a.button{
-    padding:15px;
+    padding:13px;
     background-color: var(--titleColor);
     border-radius:5px;
     color:var(--headerPaleColor);
     display:block;
     margin:auto;
     color:var(--headerPaleColor);
+    border:solid 2px var(--backgroundNewelle);
+}
+
+a.button:hover{
+    border:solid 2px var(--headerColor);
 }
 
 /* affichage du top 4 profiles */
@@ -330,10 +355,15 @@ article.home-profiles{
     margin:10px;
     justify-content:space-around;
     background-color: var(--headerPaleColor);
-    height:250px;
+    height:256px;
     border-radius:50px;
     padding-right:15px;
     overflow: hidden;
+    border:solid 4px var(--backgroundColor);
+}
+
+.profile:hover {
+    border:solid 4px var(--headerPaleColor);
 }
 
 .profile-img{
@@ -350,6 +380,7 @@ article.home-profiles{
     text-align: left;
     width:60%;
     overflow: hidden;
+    padding:0px 0px 4px 0px;
 }
 
 
@@ -708,8 +739,9 @@ fieldset{
     padding-bottom:20px;
 }
 
-.account-card-list ul li a:hover{
-    font-size:1.2em;
+.account-card-list ul li:hover{
+    font-size:1.25em;
+    padding-bottom:14px;
 }
 
 .account-card-list ul li:last-child{
@@ -760,6 +792,17 @@ footer {
     padding: 20px;
     color: white;
     background-color: var(--headerColor);
+}
+
+footer a.footer{
+    font-size:1.1em;
+    padding:5px;
+}
+
+
+footer a.footer:hover{
+    font-size:1.15em;
+    padding:5px 3px 5px 4px;
 }
 
 /**

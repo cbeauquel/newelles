@@ -69,9 +69,9 @@
     </main>
     <footer>
         <nav aria-label="navigation de pied de page">
-            <a href="index.php?action=showApropos" title="à propos du site Newelles">À propos&nbsp;</a>
+            <a class="footer" href="index.php?action=showApropos" title="à propos du site Newelles">À propos&nbsp;</a>
              - Copyright © Newelles 2024 - Neobook - 
-             <a class="material-symbols-outlined" href="index.php?action=connectionFormAdmin" title="administration">admin_panel_settings</a>
+             <a class="material-symbols-outlined footer" href="index.php?action=connectionFormAdmin" title="administration">admin_panel_settings</a>
         </nav>
     </footer>
     <script>

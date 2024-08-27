@@ -18,7 +18,8 @@
         }?>
     <nav class="nwlMngmt">
         <div class="nav">
-            <a class="submit" href="index.php?action=addNewelle" title="ajouter une newelle">Ajouter une Newelle</a>
+            <a class="button" href="index.php?action=addNewelle" title="ajouter une newelle">Ajouter une Newelle</a>
+            <a class="button" href="index.php?action=userAccount" title="revenir au compte utilisateur">Retour</a>
         </div>
     </nav>
 </div>

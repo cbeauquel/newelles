@@ -326,9 +326,9 @@ class UserController
 
         //on récupère les newelles du profil sélectionné
         $newelleManager = new NewelleManager();
-        $profileNewelles = $newelleManager->getAllNewellesByUser($profileId);
+        $newelles = $newelleManager->getAllNewellesByUser($profileId);
         $view = new View($profile->getStageName());
-        $view->render("displayProfile", ['profile' => $profile, 'profileNewelles' => $profileNewelles]);
+        $view->render("displayProfile", ['profile' => $profile, 'newelles' => $newelles]);
     }
 
     public function displayFeedbacks():void
@@ -377,7 +377,7 @@ class UserController
             // Envoyer l'email
             $to = $email;
             $subject = "Réinitialisation du password";
-            $message = "Click on the link below to reset your password: \n" . $resetLink;
+            $message = "Bonjour, suite à votre demande, trouvez ci-dessous le lien pour réinitialiser votre mot de passe : \n" . $resetLink;
             $headers = 'From: contact@neobook.fr' . "\r\n" .
                     'Reply-To: contact@neobook.fr' . "\r\n" .
                     'X-Mailer: PHP/' . phpversion();
