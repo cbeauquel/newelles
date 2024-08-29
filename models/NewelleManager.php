@@ -154,4 +154,27 @@ class NewelleManager extends AbstractEntityManager
         $sql = "DELETE FROM newelle WHERE id = :id";
         $this->db->query($sql, ['id' => $id]);
     }
+
+    /**
+     * Crée le nom d'un fichier uploadé en fonction de l'idUser et de l'id de la newelle
+     *
+     * @param [type] $idUser
+     * @param [type] $id
+     * @return string
+     */
+    public function fileName($idUser, $id):string
+    {
+        $sql = "SELECT id
+                FROM newelle
+                ORDER BY id DESC LIMIT 1";
+        $result =$this->db->query($sql);
+        if($id === "-1"){
+            $idNewelle = $result->fetch()['id']+1;
+        } else {
+        $idNewelle = $id;}
+
+        $fileName = $idUser . '-' . $idNewelle;
+
+        return $fileName;
+    }
 }

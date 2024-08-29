@@ -101,6 +101,7 @@ class NewelleController
     public function updateNewelle() : void 
     {
         utils::checkIfUserIsConnected();
+        $newelleManager = new NewelleManager();
 
         // On récupère les données du formulaire.
         $id = Utils::request("id", -1);
@@ -152,7 +153,8 @@ class NewelleController
                 throw new Exception("Erreur lors de l'enregistrement de l'image, dossier cible manquant");
             }
             //on renomme l'image pour éviter les erreurs dans les noms de fichier
-            $nwlImgName = $idUser . '-' . $id . '.' . $extension;
+            $filename = $newelleManager->fileName($idUser, $id);
+            $nwlImgName =  $filename . '.' . $extension;
 
             move_uploaded_file($nwlImg['tmp_name'], $path . basename($nwlImgName));
             $nwlImg = $path . basename($nwlImgName);        
@@ -190,7 +192,7 @@ class NewelleController
             }
 
             //on renomme le fichier pour éviter les erreurs dans les noms de fichier
-            $nwlaudioName = $idUser . '-' . $id . '.' . $extension;
+            $nwlaudioName = $filename . '.' . $extension;
 
             move_uploaded_file($audio['tmp_name'], $path . basename($nwlaudioName));
             $audio = $path . basename($nwlaudioName);        
@@ -216,7 +218,6 @@ class NewelleController
         ]);
 
         // On ajoute la newelle.
-        $newelleManager = new NewelleManager();
         $newelleManager->addOrUpdateNewelle($newelle);
 
         // On confirme le bon fonctionnement de l'action

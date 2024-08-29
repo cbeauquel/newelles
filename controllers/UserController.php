@@ -420,7 +420,7 @@ class UserController
             $userManager = new UserManager();
             $userManager->updatePassword($id, $password);
         } else {
-            echo "pas marcher";
+            throw new Exception("Quelque-chose n'a pas fonctionné.");
         }
 
         // On confirme le succès de l'action

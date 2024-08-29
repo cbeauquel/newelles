@@ -12,9 +12,9 @@
     .header .title p{
         width:100%;
         justify-content: center;
-
+        font-size: 3em;
     }
-
+    
     .search{
         width:100%;
     }
@@ -23,6 +23,11 @@
         width:100%;
         justify-content: center;
     }
+
+    .header > .nav  .material-symbols-outlined{
+        font-size:5em;
+    }
+
 
     /*****Home Page**********/
     /* Affichage des newelles */

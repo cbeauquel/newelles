@@ -89,6 +89,7 @@ header{
     width: 100%;
     background-color: var(--backgroundNewelle); 
     border-bottom: solid 2px var(--titleColor);
+    padding-bottom: 10px;
 }
 
 .logo img{
@@ -135,7 +136,6 @@ header{
     justify-content: center;
     padding:0;
     background-color:var(--backgroundNewelle);
-
 }
 
 .search label{
@@ -143,14 +143,14 @@ header{
     border-left:solid 1px var(--headerPaleColor);
     border-top:solid 1px var(--headerPaleColor);
     border-bottom:solid 1px var(--headerPaleColor);
-    height:60px;
     background-color: var(--backgroundColor);
     width:50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-left:10px;
-    font-size:1.5em;
+    padding:0px 15px;
+    height:40px;
+    font-size:1.4em;
 }
 
 .search form:hover{
@@ -161,9 +161,8 @@ header{
     font-size:1em;
     font-weight:bold;
     border:solid 1px var(--main-bg-color);
-    height:60px;
     width:60%;
-    padding:0px 15px;
+    height:40px;
     border-top:solid 1px var(--headerPaleColor);
     border-bottom:solid 1px var(--headerPaleColor);
     font-family: "Comfortaa", sans-serif;
@@ -171,11 +170,13 @@ header{
 
 .search #submit{
     background-color:var(--headerColor);    
-    border:solid 1px var(--headerPaleColor);
+    border:solid 1px var(--headerColor);
+    padding:7px 0px;
     color:var(--backgroundColor);
     cursor: pointer;
     border-radius:0 30px 30px 0;
     width:20%;
+    height:40px
 }
 
  .search button{
