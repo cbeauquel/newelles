@@ -3,10 +3,7 @@
      * Affichage de Liste des newelles. 
      */
 ?>
-<div class="signature">
-    <h1>Écoutez, lisez, partagez des histoires originales !</h1>
-</div>
-
+<h1>Écoutez, lisez, partagez des histoires originales !</h1>
 <div class="newelle-list">
     <h2>Toutes les Newelles</h2>
     <?php foreach($newelles as $newelle) { ?>

@@ -18,7 +18,6 @@
     --backgroundNewelle: #f6f5ef;
     --headerColor: #38302b;
     --headerPaleColor: #eeece1;
-    --titleColor: #38302b;
     --linkColor: #df6811;
 }
 
@@ -39,7 +38,14 @@ h1 {
     display: flex;
     justify-content: center;
     font-family: "Comfortaa", sans-serif;
-    font-size:1em;
+    background-color: var(--headerColor);
+    color: var(--headerPaleColor);
+    font-weight: 700;
+    padding: 10px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 1.6em;
+    width: 100%;
 }
 
 h2 {
@@ -49,14 +55,14 @@ h2 {
     font-family: "Comfortaa", sans-serif;
     color: var(--headerColor);
     background-color: var(--headerPaleColor);
-    border-bottom: 3px solid var(--titleColor);
+    border-bottom: 3px solid var(--headerColor);
     text-align:center;
     padding:5px;
 }
 
 h3 {
     width: 100%;
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-family: "Comfortaa", sans-serif;
     font-weight:700;
     color: var(--headerColor);
@@ -73,6 +79,19 @@ a {
     font-weight:bold;
 }
 
+a.underline {
+    text-decoration: underline;
+}
+
+.extra-line-height{
+    line-height:1.5em;
+}
+
+.center{
+    width:100%;
+    display:flex;
+    justify-content: center;
+}
 
 /**
  * Header
@@ -88,18 +107,13 @@ header{
     align-items: center;
     width: 100%;
     background-color: var(--backgroundNewelle); 
-    border-bottom: solid 2px var(--titleColor);
+    border-bottom: solid 2px var(--headerColor);
     padding-bottom: 10px;
-}
-
-.logo img{
-    width:100%;
 }
 
 .header .title{
     width:20%;
 }
-
 
 .title p{
     display: flex;
@@ -107,14 +121,13 @@ header{
     padding:10px 30px 10px 30px;
     font-family: 'Lily Script One', system-ui;
     font-size: 3em;
-    color: var(--titleColor);
+    color: var(--headerColor);
     font-weight:bold;
     width:100%
 }
 
 .header .title p:hover{                 
     font-size:3.1em;
-
 }
 
 /*Barre recherche*/
@@ -127,7 +140,6 @@ header{
     padding:0;
     font-size:1.3em;
 }
-
 
 .search form{
     display:flex;
@@ -149,7 +161,7 @@ header{
     flex-direction: column;
     justify-content: center;
     padding:0px 15px;
-    height:40px;
+    height:50px;
     font-size:1.4em;
 }
 
@@ -162,7 +174,7 @@ header{
     font-weight:bold;
     border:solid 1px var(--main-bg-color);
     width:60%;
-    height:40px;
+    height:50px;
     border-top:solid 1px var(--headerPaleColor);
     border-bottom:solid 1px var(--headerPaleColor);
     font-family: "Comfortaa", sans-serif;
@@ -176,10 +188,9 @@ header{
     cursor: pointer;
     border-radius:0 30px 30px 0;
     width:20%;
-    height:40px
 }
 
- .search button{
+.search button{
     display:none;
 }
 
@@ -203,33 +214,18 @@ header{
     padding:0px 20px 0px 20px;
 }
 
-.signature{
-    background-color: var(--headerColor);
-    color: var(--headerPaleColor);
-    font-family: "Comfortaa", sans-serif;
-    font-weight: 600;
-    padding:10px;
-    margin-bottom: 0px;
-    text-align:center;
-    font-size:1.5em;
-    width:100%;
-}
-
-
-
 /* Coeur de page.*/
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
-    padding: 0px 0px 100px 0px;
+    padding: 0px 0px 70px 0px;
 }
 
 .hidden{
     display:none;
 }
-
 
 /*****Home Page**********/
 /* Affichage des newelles */
@@ -261,18 +257,12 @@ article.home-newelles{
     border:solid 4px var(--headerPaleColor);
 }
 
-
 .newelle-content {
     display:flex;
     flex-direction:column;
     text-align: left;
     width:65%;
     height:262px;
-}
-
-.newelle-content h3{
-    font-size:1.5em;
-    font-weight:bold;
 }
 
 .newelle-content p{
@@ -303,7 +293,7 @@ p.extrait {
     display:flex;
     flex-direction: row;
     justify-content:flex-start;
-    border-top:1px dotted var(--titleColor);
+    border-top:1px dotted var(--headerColor);
     width:100%;
     padding:5px;
     height:35px;
@@ -311,7 +301,7 @@ p.extrait {
 
 .newelle-footer li{
     padding:5px 5px 5px 5px;
-    border-right: 1px solid var(--titleColor);
+    border-right: 1px solid var(--headerColor);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -324,11 +314,8 @@ p.extrait {
 
 a.button{
     padding:13px;
-    background-color: var(--titleColor);
+    background-color: var(--headerColor);
     border-radius:5px;
-    color:var(--headerPaleColor);
-    display:block;
-    margin:auto;
     color:var(--headerPaleColor);
     border:solid 2px var(--backgroundNewelle);
 }
@@ -342,11 +329,6 @@ a.button:hover{
 
 article.home-profiles{
     width:25%;
-}
-
-.home-profiles h3{
-    font-size:1.4em;
-    font-weight:bold;
 }
 
 .profile {
@@ -373,7 +355,7 @@ article.home-profiles{
     object-fit:cover;
     height:250px;
     border-radius:50px 0px 0px 50px;
-    border-right: dotted 1px var(--titleColor);
+    border-right: dotted 1px var(--headerColor);
 }
 .profile-content {
     display:flex;
@@ -384,7 +366,6 @@ article.home-profiles{
     padding:0px 0px 4px 0px;
 }
 
-
 .profile-content > p {
     margin-bottom: 10px;
     font-size: 1em;
@@ -392,28 +373,17 @@ article.home-profiles{
     line-height: 1.35em;
 }
 
-
 /* Page de détail d'un newelle */
 
 .newelle-text .material-symbols-outlined {
     font-size: 150px!important;
     display:block;
     margin:-20px auto 10px auto;
-    color:var(--titleColor);
+    color:var(--headerColor);
     font-variation-settings: 'FILL' 1;
     border: none;
     background: none;
     cursor:pointer;
-}
-
-.newelle-text a{
-    display:inline;
-    text-align:center;
-}
-
-audio{
-    background:none;
-    border:none;
 }
 
 .audio-player {
@@ -426,7 +396,6 @@ audio{
 .newelle-detail {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 33% 33% 33%;
     grid-gap: 3px;
     background-color: var(--headerPaleColor);
     width:100%;
@@ -439,15 +408,6 @@ audio{
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.newelle-detail h1{
-    width: 100%;
-    padding: 10px 0;
-    font-size: 1.5em;
-    color: var(--headerPaleColor);
-    background-color: var(--headerColor);
-    text-align:center;
 }
 
 .meta-data h3{
@@ -468,12 +428,6 @@ audio{
 .meta-data li{
     font-size:1.2em;
     padding-bottom: 20px;;
-}
-
-.meta-data a{
-    font-size:0.9em;
-    padding-top: 10px;
-    text-decoration:underline;
 }
 
 .meta-data a:hover{
@@ -519,15 +473,11 @@ audio{
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-}
-
-.feedbacks h2{
     padding:0px 10px;
 }
 
 .feedbacks h3{
     text-align:center;
-    font-size:1.2em;
     border-bottom:solid 2px var(--headerColor);
     margin-top:20px;
 }
@@ -545,7 +495,7 @@ audio{
 .feedback li{
     width:100%;
     background-color: var(--backgroundNewelle);
-    border-bottom:dotted 1px var(--titleColor);
+    border-bottom:dotted 1px var(--headerColor);
     padding:20px 0px 20px 0px;
 }
 
@@ -587,6 +537,14 @@ blockquote.content{
     width:100%;
 }
 
+.feedback-form textarea{
+    width:100%;
+    font-family: inherit;
+    padding:10px;
+    height:200px;
+    font-size:1.1em;
+}
+
 .feedback-form label{
     padding:10px 0px 10px 0px;
     text-align:center;
@@ -618,14 +576,15 @@ fieldset{
     flex-direction: row-reverse; /* this is the magic */
     justify-content: center;
     font-variation-settings: 'FILL' 1;
-    color: var(--titleColor);
+    color: var(--headerColor);
 }
 
 .rating legend{
     padding:20px 0px 10px 0px;
+    font-size:1.1em;
 }
 
-  .rating label.material-symbols-outlined{
+.rating label.material-symbols-outlined{
     font-size: 2.5em;
 }
   
@@ -636,19 +595,18 @@ fieldset{
 .rating label {
     font-size: 1.2em;
     cursor: pointer;
-    color: var(--titleColor);
+    color: var(--headerColor);
     font-variation-settings: 'FILL' 0;
 }
   
 .rating label:hover,
 .rating label:hover ~ label { /* reason why the stars are in reverse order in the html */
-    color: var(--titleColor);
+    color: var(--headerColor);
     font-variation-settings: 'FILL' 1;
-
 }
   
 .rating input:checked ~ label {
-    color: var(--titleColor);
+    color: var(--headerColor);
     font-variation-settings: 'FILL' 1;
   }
 
@@ -663,7 +621,7 @@ fieldset{
 }
 
 .error h2 {
-    color: var(--titleColor)
+    color: var(--headerColor)
 }
 
 .error p {
@@ -680,19 +638,12 @@ fieldset{
 /**
  * Compte utilisateur
 */
-.account nav{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width:95%;
-}
 .account{
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    width:100%;
+    width:95%;
 }
 
 .account-card{
@@ -705,7 +656,7 @@ fieldset{
 }
 
 .account-card-title{
-    border-bottom:solid 1px var(--titleColor);
+    border-bottom:solid 1px var(--headerColor);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -714,13 +665,13 @@ fieldset{
 
 .account-card-title .material-symbols-outlined{
     font-size:6em;
-    color:var(--titleColor);
+    color:var(--headerColor);
     margin-top:-10px;
     padding:10px 0px 5px 0px;
 }
 
 .account-card-title h3{
-    font-size:2.2em;
+    font-size:1.7em;
     text-align:center;
     margin:0;
     padding:10px 0px 0px 0px;
@@ -734,9 +685,9 @@ fieldset{
 
 .account-card-list ul li{
     text-align:center;
-    color:var(--titleColor);
+    color:var(--headerColor);
     font-size:1.2em;
-    border-bottom:1px solid var(--titleColor);
+    border-bottom:1px solid var(--headerColor);
     padding-bottom:20px;
 }
 
@@ -754,10 +705,6 @@ fieldset{
     padding:5px 0px 5px 0px;
 }
 
-nav.nwlMngmt{
-   width:100%; 
-}
-
 /** On masque les colonnes inutiles*/
 table.manageNewelles th.idUser, table.manageNewelles th.stageName, table.manageNewelles th.audio, table.manageNewelles th.content, table.manageNewelles th.nwlImg, table.manageNewelles th.id, 
 table.manageNewelles td.idUser, table.manageNewelles td.stageName, table.manageNewelles td.audio, table.manageNewelles td.content, table.manageNewelles td.nwlImg, table.manageNewelles td.id 
@@ -772,26 +719,28 @@ table.displayFeedbacks td.nwlId, table.displayFeedbacks td.supprimer
     display:none;
 }  
 
-/**
-*Affichage du profil utilisateur
-*/
-h3.profile-display{
-    text-align:center;
-    border-bottom:solid 3px var(--titleColor);
+.user-page{
+    display:flex;
+    flex-direction: column;
 }
 
+.user-page nav{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
 
 /** 
  * Footer global de la page.
  */
 footer {
-    position: fixed;
-    bottom: 0;
+    position:fixed;
+    bottom:0;
     display: flex;
     justify-content: center;
-    width: 100%;;
+    width: 100%;
     padding: 20px;
-    color: white;
+    color:var(--headerPaleColor);
     background-color: var(--headerColor);
 }
 
@@ -799,7 +748,6 @@ footer a.footer{
     font-size:1.1em;
     padding:5px;
 }
-
 
 footer a.footer:hover{
     font-size:1.15em;
@@ -809,26 +757,48 @@ footer a.footer:hover{
 /**
  * Styles des formulaires.
  */
+.form{
+    padding:20px;
+}
+
  form {
-    width: 100%;
     margin-top: 0px;
-    padding: 0px 10px 20px 10px;
+    padding: 30px;
     background-color: var(--headerPaleColor);
     font-family: "Comfortaa", sans-serif;
-
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius:0px 50px 0px 50px;
 }
 
-form h2 {
-    margin: 0 0 20px 0;
-    color: var(--titleColor);
+.form-grid {
+    width:100%;
+    display: grid;
+    grid-template-columns: 20% minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
+    gap: 10px; /* Espace entre les éléments de la grille */
+    padding:10px;
 }
+
+.grid-input{
+    grid-column: 2; /* Place l'élément dans la deuxième colonne (la dernière) */
+    grid-row:3; /* Place l'élément dans la troisième rangée  */
+}
+
+.saisie-input{
+    height:500px;
+}
+
+legend{
+    text-align:center;
+    font-size:1.2em;
+    font-style:italic;
+    line-height:1.5em;
+}
+
 form label {
     font-weight: bold;
-    font-size: 1em;
-}
-
-form.folded-corner{
-    border-radius:0px 50px 0px 50px;
+    font-size: 1.2em;
 }
 
 form input {
@@ -845,69 +815,26 @@ form select {
 
 }
 
-form textarea {
-    height: 150px;
-    padding: 5px;
-    border: none;
-    font-size: 1.2em;
-    width:95%;
-}
-
 form .current-img{
     max-width: 30%;
-    max-height: 300px;
-}
-
-form .formGrid {
-    display: grid;
-    grid-template-columns: 300px minmax(0, 1fr); /* Une colonne de 100px et une autre de largeur automatique */
-    gap: 10px; /* Espace entre les éléments de la grille */
-    padding:10px;
-}
-
-form .formGrid .submit {
-    grid-column: 2; /* Place l'élément dans la deuxième colonne (la dernière) */
-    grid-row:10; /* Place l'élément dans la troisième rangée (la dernière) */
+    max-height: 400px;
 }
 
 
 .submit {
+    font-family:inherit;
     padding: 5px 10px;
     font-weight: bold;
-    color: white;
+    color: var(--headerPaleColor);
     background-color: var(--headerColor);
-    border: none;
+    border: 2px solid var(--headerPaleColor);
     font-size: 1.2em;
     cursor:pointer;
+    border-radius:6px;
 }
 
-.nav {
-    display : flex;
-    flex-direction: row;
-    justify-content: center;
-    gap:20px;
-}
-
-.connection-form{
-    margin-top:30px;
-}
-
-.connection-form h1{
-    font-size:1.3em;
-    padding:10px;
-}
-
-.create-form p{
-    padding:15px 0px;
-}
-
-.create-form h1{
-    padding:15px 0px;
-    font-size:1.5em;
-}
-
-.create-form form{
-    border-radius:50px;
+.submit:hover {
+    border: 2px solid var(--headerColor);
 }
 
 /*Affichage des tableaux (table - td)*/
@@ -949,16 +876,9 @@ tbody tr:nth-child(even) {
     background-color: var(--backgroundColor);
 }
 
-td.delete {
-    font-weight: bold;
-    text-decoration: underline;
-    color:var(--titleColor);
-}
-
-
 /**************A PROPOS**************************/
 .propos{
-    width:60%;
+    width:100%;
     display:flex;
     flex-direction: column;
     align-items: center;
@@ -966,6 +886,7 @@ td.delete {
 
 .propos article{
     margin-top:20px;
+    width:60%;
 }
 
 .propos p{
@@ -1007,24 +928,17 @@ main.admin{
     margin:0 50px 50px 50px;
 }
 
-main.admin h1{
-    background : none;
-    border:none;
-    text-align: center;
-    color:var(--headerPaleColor);
-    font-size:1.5em;
-}
-
 .main-container{
     display:flex;
     flex-direction: row;
     justify-content: flex-start;
     width:100%;
-    margin-top:50px;
+    margin-top:70px;
 }
 
 .left-bar{
     position:fixed;
+    top:70px;
     height:100%;
     display:flex;
     flex-direction: column;

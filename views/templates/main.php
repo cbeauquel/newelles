@@ -58,7 +58,7 @@
                 } elseif (isset($_SESSION['admin'])) {
                     echo "href=\"index.php?action=displayAdmin\" title=\"Compte Administrateur\"><span class=\"material-symbols-outlined\">admin_panel_settings</span><br>Administration";
                 } else {
-                    echo "href=\"index.php?action=userAccount\" title=\"Se connecter ou créer un compte\"><span class=\"material-symbols-outlined\">login</span><br>Se connecter";
+                    echo "href=\"index.php?action=userAccount\" title=\"Se connecter ou créer un compte\"><span class=\"material-symbols-outlined\">login</span><br>Se connecter ou s'inscrire";
                 }?>
                 </a>
         </nav>

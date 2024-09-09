@@ -5,9 +5,7 @@
 ?>
 
 <section class="propos">
-    <div class="signature">
-        <h1>À propos</h1>
-    </div>
+    <h1>À propos</h1>
     <article>
         <p>
             Newelles est une plateforme de mise en relation de lecteurs cherchant des histoires originales et des auteurs, les newellers qui souhaitent partager leurs compositions.

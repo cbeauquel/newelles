@@ -3,11 +3,8 @@
      * Affichage de Liste des feedbacks. 
      */
 ?>
-<div class="signature">
-    <h1>Compte utilisateur</h1>
-</div>
-
-<div class="newelleList">
+<h1>Compte utilisateur</h1>
+<div class="user-page">
     <h2>Gestion des Feedbacks</h2>
     <?php 
     if (empty($userFeedbacks))
@@ -16,9 +13,7 @@
         <?php } else {
             Utils::createTable($userFeedbacks);
         }?>
-    <nav class="nwlMngmt">
-        <div class="nav">
-            <a class="button" href="index.php?action=userAccount" title="revenir au compte utilisateur">Retour</a>
-        </div>
+    <nav>
+        <a class="button" href="index.php?action=userAccount" title="revenir au compte utilisateur">Retour</a>
     </nav>
 </div>

@@ -3,14 +3,11 @@
      * Template pour afficher le formulaire de connexion.
      */
 ?>
-<div class="signature">
-    <h1>Compte utilisateur</h1>
-</div>
-
-<div class="connection-form">
-    <form action="index.php" method="post" class="foldedCorner" enctype="multipart/form-data">
+<h1>Compte utilisateur</h1>
+<div class="form">
+    <form action="index.php" method="post" enctype="multipart/form-data">
         <h2>Modification de votre profil utilisateur</h2>
-        <div class="formGrid">
+        <div class="form-grid">
             <label for="email">Votre email</label>
             <input type="text" name="email" id="email" required value="<?=$profile->getEmail() ?>">
             <label for="name">Votre Nom (Nom de famille)</label>
@@ -28,7 +25,7 @@
             <input class="nwl-img-input" type="file" name="usrImg" id="usrImg">
             <input type="hidden" value="<?=$profile->getId() ?>" name="id" id="id">
             <input type="hidden" name="action" value="updateProfile">          
-            <button class="submit">Modifier</button>
         </div>
+        <button class="submit">Modifier</button>
     </form>
 </div>

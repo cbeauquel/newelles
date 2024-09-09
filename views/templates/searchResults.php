@@ -5,9 +5,7 @@
 ?>
 
 <div class="newelle-list">
-    <div class="signature">
-        <h1>Votre recherche</h1>
-    </div> 
+    <h1>Votre recherche</h1>
     <h2>Les newelles trouvées selon vos mots clés :</h2>
     <?php foreach($newelles as $newelle) { ?>
         <article class="home-newelles">

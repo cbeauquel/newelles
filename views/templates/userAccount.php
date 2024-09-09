@@ -3,10 +3,7 @@
      * Affichage du compte utilisteur
      */
 ?>
-<div class="signature">
-    <h1>Compte utilisateur</h1>
-</div>
-
+<h1>Compte utilisateur</h1>
 <h2>Bonjour <?= $displayUser->getStageName(); ?></h2>
 
 <nav class="account" aria-label="Navigation">

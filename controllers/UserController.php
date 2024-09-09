@@ -146,7 +146,7 @@ class UserController
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
             $hash = password_hash($password, PASSWORD_BCRYPT);
-            throw new Exception("Le mot de passe est incorrect<br>
+            throw new Exception("<p>Le mot de passe est incorrect</p>
             <a class=\"button\" href=\"index.php?action=displayResetPassword\" title=\"Réinitialisation du mot de passe\">Réinitialiser le mot de passe</a>
             ");
         }

@@ -3,14 +3,11 @@
      * Template pour afficher le formulaire de connexion.
      */
 ?>
-
-<div class="create-form">
-<p>Vous ne semblez pas avoir de compte.<br>
-         Si vous souhaitez publier une Newelle, vous pouvez créer un compte en remplissant les champs ci-dessous : </p>
-
-    <form action="index.php?action=createUser" method="post" class="foldedCorner">
-        <h1>Créer un compte</h1>
-        <div class="formGrid">
+<h1>Créer un compte</h1>
+<div class="form">
+    <form action="index.php?action=createUser" method="post">
+        <fieldset class="form-grid">
+        <legend><strong>Vous ne semblez pas avoir de compte.</strong><br> Si vous souhaitez publier une Newelle, vous pouvez créer un compte en remplissant les champs ci-dessous : </legend>
             <label for="email">email</label>
             <input type="text" name="email" id="email" required value="<?=$userDatas['email'] ?>">
             <label for="password">Mot de passe</label>
@@ -23,7 +20,7 @@
             <input type="text" name="firstName" id="firstName" required>
             <label for="stageName">Votre nom d'auteur</label>
             <input type="text" name="stageName" id="stageName" required>
-            <button class="submit">Créer un compte</button>
-        </div>
+        </fieldset>
+        <button class="submit">Créer un compte</button>
     </form>
 </div>

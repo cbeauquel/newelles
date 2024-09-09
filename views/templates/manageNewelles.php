@@ -3,11 +3,8 @@
      * Affichage de Liste des newelles. 
      */
 ?>
-<div class="signature">
-    <h1>Compte utilisateur</h1>
-</div>
-
-<div class="newelle-list">
+<h1>Compte utilisateur</h1>
+<div class="user-page">
     <h2>Gestion des Newelles</h2>
     <?php 
     if (empty($newellesUser))
@@ -16,10 +13,8 @@
         <?php } else {
             Utils::createTable($newellesUser);
         }?>
-    <nav class="nwlMngmt">
-        <div class="nav">
-            <a class="button" href="index.php?action=addNewelle" title="ajouter une newelle">Ajouter une Newelle</a>
-            <a class="button" href="index.php?action=userAccount" title="revenir au compte utilisateur">Retour</a>
-        </div>
+    <nav>
+        <a class="button" href="index.php?action=addNewelle" title="ajouter une newelle">Ajouter une Newelle</a>
+        <a class="button" href="index.php?action=userAccount" title="revenir au compte utilisateur">Retour</a>
     </nav>
 </div>

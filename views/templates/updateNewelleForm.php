@@ -3,14 +3,11 @@
      * Template pour afficher le formulaire de connexion.
      */
 ?>
-<div class="signature">
-    <h1>Compte utilisateur</h1>
-</div>
-
-<div class="connection-form">
-    <form action="index.php" method="post" class="foldedCorner" enctype="multipart/form-data">
+<h1>Compte utilisateur</h1>
+<div class="form">
+    <form action="index.php" method="post" enctype="multipart/form-data">
         <h2><?= $newelle->getId() == -1 ? "Création d'une Newelle" : "Modification de la Newelle "?></h2>
-        <div class="formGrid">
+        <div class="form-grid">
             <label class="title-lbl" for="title">Titre de la Newelle</label>
             <input class="title-input" type="text" name="title" id="title" value="<?= $newelle->getTitle() ?>" required>
             <label class="genre-lbl" for="genre">Genre de la Newelle</label>
@@ -52,7 +49,7 @@
             <?php } ?>           
             <input type="hidden" name="action" value="updateNewelle">
             <input type="hidden" name="id" value="<?= $newelle->getId() ?>">
-            <button class="submit"><?= $newelle->getId() == -1 ? "Ajouter" : "Modifier" ?></button>
         </div>
+        <button class="submit"><?= $newelle->getId() == -1 ? "Ajouter" : "Modifier" ?></button>
     </form>
 </div>

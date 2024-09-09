@@ -121,7 +121,13 @@ class Utils
 
         return $pages;
     }
-
+    /**
+     * Méthode qui affiche la pagination
+     *
+     * @param string $text
+     * @param integer $wordsPerPage
+     * @return void
+     */
     public static function displayTextPerPage(string $text, int $wordsPerPage) :void
     {
         $pages = self::splitTextIntoPages($text, $wordsPerPage);
@@ -134,7 +140,7 @@ class Utils
         } else {
             $currentPage = (int)$_GET['page'];
         }
-        // on inclut le html du tableau
+        // on inclut le template de pagination
         include_once('views/templates/pagination.php');
     }
 

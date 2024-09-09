@@ -3,9 +3,7 @@
      * Affichage de Liste des newelles. 
      */
 ?>
-<div class="signature">
-    <h1>Écoutez, lisez, partagez des histoires originales !</h1>
-</div>
+<h1>Écoutez, lisez, partagez des histoires originales !</h1>
 
 <section class="newelle-list">        
     <h2>Les 6 dernières Newelles</h2>
@@ -29,7 +27,7 @@
                 </a>
         </article>
     <?php } ?>
-    <a class="button" href="index.php?action=displayAllNewelles" title="Voir toutes les newelles">Voir tout</a>
+    <div class="center"><a class="button" href="index.php?action=displayAllNewelles" title="Voir toutes les newelles">Voir tout</a></div>
 </section>
 <section class="newelle-list"> 
     <h2>Top 4 Newellers</h2>
